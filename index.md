@@ -1,6 +1,6 @@
 ---
 title: Welcome to my blog
-
-Work in progress
 ---
 
+
+Work in progress
