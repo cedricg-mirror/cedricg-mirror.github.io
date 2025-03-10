@@ -3,6 +3,8 @@ title: "LAZARUS PebbleDash"
 date: 2025-03-10
 ---
 
+# Context
+
 SHA256 : 875b0cbad25e04a255b13f86ba361b58453b6f3c5cc11aca2db573c656e64e24  
 sample source : [bazar.abuse.ch](https://bazaar.abuse.ch/sample/875b0cbad25e04a255b13f86ba361b58453b6f3c5cc11aca2db573c656e64e24/)  
 VT : [VirusTotal](https://www.virustotal.com/gui/file/875b0cbad25e04a255b13f86ba361b58453b6f3c5cc11aca2db573c656e64e24)  
@@ -20,7 +22,9 @@ Analyzed sample is a 64bit PE PebbleDash sample attributed to LAZARUS
 As usual, results from dynamic analysis are shared in my repository ([logs](https://github.com/cedricg-mirror/reflexions/blob/main/APT/LAZARUS/PebbleDash/875b0cbad25e04a255b13f86ba361b58453b6f3c5cc11aca2db573c656e64e24/logs.txt))  
 
 
----
+
+
+## Persistency  
 
 In order to trigger the persistency-setup behavior from the sample a little reverse engineering was required :  
 
@@ -68,7 +72,9 @@ The sample was therefore run with the '--start' parameter, which triggered its i
 [RET] 0x7ff7f0997314 in [pebbledash.exe]
 ```
 
----  
+
+
+## C2 connection
 
 C2 connection is straightforward :  
 
@@ -140,6 +146,8 @@ Triggering additional behavior from the sample would require to reverse the C2 c
 
 ---  
 
+## API Call
+
 API call is achieved is most cases by going through the following pattern :  
 
 ![Alt text](screen/API_Call.jpg?raw=true "Dynamic API Address resolution")
@@ -178,7 +186,7 @@ ca455d40bfa3e279
 WinHTTP!WinHttpCloseHandle
 ```
 
----  
+## Encryption
 
 AES encryption is achieved by the following routine :  
 
@@ -188,13 +196,13 @@ The AES key is unxored just before the call : "NjqaPmSWYpmkTJZn"
 
 Interestingly, the Key to decrypt orders from the C2 is somewhat different : "aqjNWSmPkmpYnZJT"   
 
-to summarize  :  
+To summarize  :  
 
 ```
-loc_140007630 (aes encrypt + base64 encode -> C2) :  
+loc_140007630 (aes encrypt -> base64 encode -> C2) :  
 encrypt_key = NjqaPmSWYpmkTJZn
 
-loc_1400078A4 (C2 -> base64 decode + AES decrypt) :
+loc_1400078A4 (C2 -> base64 decode -> AES decrypt) :
 decrypt_key = aqjNWSmPkmpYnZJT
 ```
 
