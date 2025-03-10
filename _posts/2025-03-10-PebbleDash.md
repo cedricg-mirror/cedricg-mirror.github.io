@@ -17,7 +17,7 @@ http://www.addfriend.kr/board/userfiles/temp/index.html
 
 Analyzed sample is a 64bit PE PebbleDash sample attributed to LAZARUS  
 
-As usual, results from dynamic analysis are shared in my repository (![logs](https://github.com/cedricg-mirror/reflexions/blob/main/APT/LAZARUS/PebbleDash/875b0cbad25e04a255b13f86ba361b58453b6f3c5cc11aca2db573c656e64e24/logs.txt))  
+As usual, results from dynamic analysis are shared in my repository ([logs](https://github.com/cedricg-mirror/reflexions/blob/main/APT/LAZARUS/PebbleDash/875b0cbad25e04a255b13f86ba361b58453b6f3c5cc11aca2db573c656e64e24/logs.txt))  
 
 
 ---
