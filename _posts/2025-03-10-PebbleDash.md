@@ -42,7 +42,7 @@ In order to trigger the persistency-setup behavior from the sample a little reve
 
 Following the results from those call in statical analysis revealed the following :  
 
-![Alt text](screen/start.jpg?raw=true "Command Line Parsing")
+![IDA](/_posts/screen/start.jpg?raw=true "Command Line Parsing")
 
 The sample was therefore run with the '--start' parameter, which triggered its installation :  
 
