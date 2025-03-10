@@ -152,7 +152,7 @@ API call is achieved is most cases by going through the following pattern :
 ![Dynamic API Address resolution](/docs/assets/images/PebbleDash/API_Call.jpg)
 
 1) Required function name is hashed with Fowler–Noll–Vo hash function  
-<https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function>
+<https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function>  
 The FNV_offset_basis is the 64-bit value: 0xcbf29ce484222325.  
 The FNV_prime is the 64-bit value 0x100000001b3.  
 
