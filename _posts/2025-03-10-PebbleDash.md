@@ -42,7 +42,7 @@ In order to trigger the persistency-setup behavior from the sample a little reve
 
 Following the results from those call in statical analysis revealed the following :  
 
-![IDA](screen/start.jpg "Command Line Parsing")
+![Command Line Parsing](https://github.com/cedricg-mirror/cedricg-mirror.github.io/blob/main/_posts/screen/start.jpg)
 
 The sample was therefore run with the '--start' parameter, which triggered its installation :  
 
