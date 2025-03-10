@@ -73,7 +73,6 @@ The sample was therefore run with the '--start' parameter, which triggered its i
 ```
 
 
-
 ## C2 connection
 
 C2 connection is straightforward :  
@@ -150,10 +149,10 @@ Triggering additional behavior from the sample would require to reverse the C2 c
 
 API call is achieved is most cases by going through the following pattern :  
 
-![Alt text](screen/API_Call.jpg?raw=true "Dynamic API Address resolution")
+![Dynamic API Address resolution](/docs/assets/images/PebbleDash/API_Call.jpg)
 
 1) Required function name is hashed with Fowler–Noll–Vo hash function  
-https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function  
+<https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function>
 The FNV_offset_basis is the 64-bit value: 0xcbf29ce484222325.  
 The FNV_prime is the 64-bit value 0x100000001b3.  
 
@@ -190,7 +189,7 @@ WinHTTP!WinHttpCloseHandle
 
 AES encryption is achieved by the following routine :  
 
-![Alt text](screen/aes.jpg?raw=true "AES Encrypt")
+![AES Encrypt](/docs/assets/images/PebbleDash/aes.jpg)
 
 The AES key is unxored just before the call : "NjqaPmSWYpmkTJZn"  
 
