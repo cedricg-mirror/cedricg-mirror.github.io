@@ -24,7 +24,7 @@ As usual, results from dynamic analysis are shared in my repository ([logs](http
 
 
 ---
-# Persistency  
+## Persistency  
 
 In order to trigger the persistency-setup behavior from the sample a little reverse engineering was required :  
 
@@ -73,7 +73,7 @@ The sample was therefore run with the '--start' parameter, which triggered its i
 ```
 
 ---
-# C2 connection
+## C2 connection
 
 C2 connection is straightforward :  
 
@@ -140,7 +140,7 @@ As mention in a linked blog analysis from dmpdump.github, the "uid" parameter is
 ```
 
 ---
-# Encryption
+## Encryption
 
 AES encryption is achieved by the following routine :  
 
@@ -155,12 +155,12 @@ Interestingly, another AES Key "NjqaPmSWYpmkTJZn" can also be used under circums
 
 
 ---
-# PebbleDash Commands
+## PebbleDash Commands
   
   
 I'm still in the process of rewriting a basic C2 for this sample, so far I can share some dynamic analysis log for the following commands :  
 
-## CMD_ID 0x03 Set Current Directory
+# CMD_ID 0x03 Set Current Directory
 
 ```html
 [CNT] [364]
@@ -238,7 +238,7 @@ The data parameter is the feedback from the command execution :
 
 First ULONG (0x2) is unknown yet (very likely SUCCESS), 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
 
-## CMD_ID 0x10 ScreenShot
+# CMD_ID 0x10 ScreenShot
 
 ```html
 [CNT] [765]
@@ -468,7 +468,7 @@ Which gives after decryption :
 First ULONG (0x2) is unknown yet (very likely SUCCESS), 2nd ULONG (0x000156a5) is the size of the following data, in this case the JPG.   
 
 ---
-# API Call
+## API Call
 
 API call is achieved is most cases by going through the following pattern :  
 
