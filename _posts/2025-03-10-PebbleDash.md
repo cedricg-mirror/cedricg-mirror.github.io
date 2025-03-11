@@ -174,7 +174,7 @@ First 8 bytes is the command ID (0x3 for SetCurrentDirectory), then the paramete
 
 PebbleDash handles this command this way :  
 
-```
+```html
 [CNT] [373]
 [PTP] [0x22c] [0x664] [c:\users\user\desktop\pebbledash\pebbledash.exe]
 [API] <StrTrimW> in [SHLWAPI.dll] 
