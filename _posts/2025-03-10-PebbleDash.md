@@ -238,7 +238,7 @@ The "data=" parameter is the feedback from the command execution :
 
 First ULONG (0x2) is unknown yet (very likely SUCCESS), 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
 
-# CMD_ID 0x10 ScreenShot
+# CMD_ID 0x10 Screenshot
 
 ```html
 [CNT] [765]
@@ -263,7 +263,7 @@ After Base64Decode and AES Decrypt, the layout of the command is :
 00000000  10 00 00 00 00 00 00 00                          |........|
 ```
 
-First 8 bytes is the command ID (0x10 for Take a ScreenShot), no parameter is expected   
+First 8 bytes is the command ID (0x10 for Take a Screenshot), no parameter is expected   
 
 PebbleDash handles this command this way :  
 
