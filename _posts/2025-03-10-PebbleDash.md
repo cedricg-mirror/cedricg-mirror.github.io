@@ -172,6 +172,7 @@ After Base64Decode and AES Decrypt, the layout of the command is :
 ```
 
 First 8 bytes is the command ID (0x3 for SetCurrentDirectory), then the parameter (the path to the new Current Directory)  
+Path has to be set in UTF-16LE  
 
 PebbleDash handles this command this way :  
 
