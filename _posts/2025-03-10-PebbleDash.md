@@ -160,7 +160,7 @@ Interestingly, another AES Key "aqjNWSmPkmpYnZJT" can also be used under circums
   
 I'm still in the process of rewriting a basic C2 for this sample, so far I can share some dynamic analysis log for the following commands :  
 
-## 1) CMD_ID 0x03 Set Current Directory
+1) ## CMD_ID 0x03 Set Current Directory
 
 ```html
 [CNT] [364]
@@ -238,7 +238,7 @@ The data parameter is the feedback from the command execution :
 
 First ULONG (0x2) is unknown yet (very likely SUCCESS), 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
 
-## 2) CMD_ID 0x10 ScreenShot
+2) ## CMD_ID 0x10 ScreenShot
 
 ```html
 [CNT] [765]
