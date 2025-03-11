@@ -228,7 +228,7 @@ PebbleDash handles this command this way :
 
 ```
 
-The data parameter is the feedback from the command execution :  
+The "data=" parameter is the feedback from the command execution :  
 
 ```
 00000000  02 00 00 00 1c 00 00 00 43 00 3a 00 5c 00 55 00  |........C.:.\.U.|
