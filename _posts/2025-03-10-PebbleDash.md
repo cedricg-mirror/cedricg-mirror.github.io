@@ -23,7 +23,7 @@ As usual, results from dynamic analysis are shared in my repository ([logs](http
 
 
 
-
+---
 # Persistency  
 
 In order to trigger the persistency-setup behavior from the sample a little reverse engineering was required :  
@@ -72,7 +72,7 @@ The sample was therefore run with the '--start' parameter, which triggered its i
 [RET] 0x7ff7f0997314 in [pebbledash.exe]
 ```
 
-
+---
 # C2 connection
 
 C2 connection is straightforward :  
@@ -139,6 +139,22 @@ As mention in a linked blog analysis from dmpdump.github, the "uid" parameter is
 [RET] 0x7ff7f098ab33 in [pebbledash.exe]
 ```
 
+---
+# Encryption
+
+AES encryption is achieved by the following routine :  
+
+![AES Encrypt](/docs/assets/images/PebbleDash/aes.jpg)
+
+PebbleDash relies on AES-CBC-128 with an IV set to 0 for its encryption layer  
+
+The AES key is unxored just before the AES_Init call : "NjqaPmSWYpmkTJZn"  
+
+Interestingly, another AES Key "aqjNWSmPkmpYnZJT" can also be used under circumstances that I have yet to understand  
+
+
+
+---
 # PebbleDash Commands
   
   
@@ -451,7 +467,7 @@ Which gives after decryption :
 
 First ULONG (0x2) is unknown yet (very likely SUCCESS), 2nd ULONG (0x000156a5) is the size of the following data, in this case the JPG.   
 
-
+---
 # API Call
 
 API call is achieved is most cases by going through the following pattern :  
@@ -492,17 +508,6 @@ ca455d40bfa3e279
 WinHTTP!WinHttpCloseHandle
 ```
 
-# Encryption
-
-AES encryption is achieved by the following routine :  
-
-![AES Encrypt](/docs/assets/images/PebbleDash/aes.jpg)
-
-PebbleDash relies on AES-CBC-128 with an IV set to 0 for its encryption layer  
-
-The AES key is unxored just before the AES_Init call : "NjqaPmSWYpmkTJZn"  
-
-Interestingly, another AES Key "aqjNWSmPkmpYnZJT" can also be used under circumstances that I have yet to understand  
 
  
 
