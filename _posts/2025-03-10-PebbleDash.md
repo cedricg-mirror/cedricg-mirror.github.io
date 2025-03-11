@@ -148,9 +148,9 @@ AES encryption is achieved by the following routine :
 
 PebbleDash relies on AES-CBC-128 with an IV set to 0 for its encryption layer  
 
-The AES key is unxored just before the AES_Init call : "NjqaPmSWYpmkTJZn"  
+The AES key is unxored just before the AES_Init call : "aqjNWSmPkmpYnZJT"    
 
-Interestingly, another AES Key "aqjNWSmPkmpYnZJT" can also be used under circumstances that I have yet to understand  
+Interestingly, another AES Key "NjqaPmSWYpmkTJZn" can also be used under circumstances that I have yet to understand  
 
 
 
