@@ -141,7 +141,86 @@ As mention in a linked blog analysis from dmpdump.github, the "uid" parameter is
 
 ---  
 
-Triggering additional behavior from the sample would require to reverse the C2 communication protocol which I may or may not do later ...  
+I'm still in the process of rewriting a basic C2 for this sample, so far I can share some dynamic analysis log for the following commands :  
+
+1) Set Current Directory
+
+```html
+[CNT] [364]
+[PTP] [0x22c] [0x664] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpReadData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest              : 0xff3cd9c0
+[PAR] LPVOID    lpBuffer              : 0x000000A2FF401B10
+[PAR] DWORD     dwNumberOfBytesToRead : 0x46
+[PAR] LPDWORD   lpdwNumberOfBytesRead : 0x000000A2FF19D33C
+[RET] [0x7ff7a37d6fa4] [+0x6fa4] in [pebbledash.exe]
+
+[ * ] [pid 0x22c][tid 0x664] c:\users\user\desktop\pebbledash\pebbledash.exe
+[API] <WinHttpReadData>
+[PAR] LPCVOID lpBuffer : 0x000000A2FF401B10
+[STR]         -> "<html>59hmGTXPezZN8QoJ2v03xUJjESmUHo1Nw1M55KXGg0P+7KeqIKOzaj9m6H+aiUCf"
+[RES] BOOL 0x1
+```
+
+After Base64Decode and AES Decrypt, the layout of the command is :  
+
+```
+00000000  03 00 00 00 00 00 00 00 43 00 3a 00 5c 00 55 00  |........C.:.\.U.|
+00000010  73 00 65 00 72 00 73 00 5c 00 75 00 73 00 65 00  |s.e.r.s.\.u.s.e.|
+00000020  72 00 00 00                                      |r...|
+```
+
+First 8 bytes is the command ID (0x3 for SetCurrentDirectory), then the parameter (the path to the new Current Directory)  
+
+PebbleDash handles this command this way :  
+
+```
+[CNT] [373]
+[PTP] [0x22c] [0x664] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <StrTrimW> in [SHLWAPI.dll] 
+[PAR] PWSTR  psz          : 0x000000A2FF19D020
+[STR]        -> "C:\Users\user"
+[PAR] PCWSTR pszTrimChars : 0x00007FF7A3808054
+[STR]        -> "\ "
+[RET] [0x7ff7a37de70d] [+0xe70d] in [pebbledash.exe]
+
+[CNT] [375]
+[PTP] [0x22c] [0x664] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <SetCurrentDirectoryW> in [KERNEL32.DLL] 
+[PAR] LPCWSTR lpPathName : 0x000000A2FF19D020
+[STR]         -> "C:\Users\user\"
+[RET] [0x7ff7a37de826] [+0xe826] in [pebbledash.exe]
+
+[CNT] [377]
+[PTP] [0x22c] [0x664] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetCurrentDirectoryW> in [KERNEL32.DLL] 
+[PAR] DWORD  nBufferLength : 0x400
+[PAR] LPWSTR lpBuffer      : 0x000000A2FF19D020
+[RET] [0x7ff7a37de8ab] [+0xe8ab] in [pebbledash.exe]
+
+[CNT] [394]
+[PTP] [0x22c] [0x664] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpWriteData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest                 : 0x000000A2FF3CD9C0
+[PAR] LPCVOID   lpBuffer                 : 0x000000A2FF41BCC0
+[STR]           -> "sep=sRhqotvThSV&sid=013efbc9&data=RDMUOWovjIpPR5Erhn4rhFOn8dSttvdYfSrSJBryHVaAn09y8gL2iOBOckjVd4nr"
+[PAR] DWORD     dwNumberOfBytesToWrite   : 0x62
+[PAR] LPDWORD   lpdwNumberOfBytesWritten : 0x000000A2FF19CC68
+[RET] [0x7ff7a37d6c47] [+0x6c47] in [pebbledash.exe]
+
+```
+
+The data parameter is the feedback from the command execution :  
+
+```
+00000000  02 00 00 00 1c 00 00 00 43 00 3a 00 5c 00 55 00  |........C.:.\.U.|
+00000010  73 00 65 00 72 00 73 00 5c 00 75 00 73 00 65 00  |s.e.r.s.\.u.s.e.|
+00000020  72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |r...............|
+```
+
+First ULONG (0x2) is unknown yet, 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
+
+
 
 ---  
 
