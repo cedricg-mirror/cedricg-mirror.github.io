@@ -140,10 +140,11 @@ As mention in a linked blog analysis from dmpdump.github, the "uid" parameter is
 ```
 
 ---  
-
+  
+  
 I'm still in the process of rewriting a basic C2 for this sample, so far I can share some dynamic analysis log for the following commands :  
 
-1) Set Current Directory
+## 1) CMD_ID 0x03 Set Current Directory
 
 ```html
 [CNT] [364]
@@ -218,9 +219,236 @@ The data parameter is the feedback from the command execution :
 00000020  72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |r...............|
 ```
 
-First ULONG (0x2) is unknown yet, 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
+First ULONG (0x2) is unknown yet (very likely SUCCESS), 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
 
+## 2) CMD_ID 0x10 ScreenShot
 
+```html
+[CNT] [765]
+[PTP] [0x22c] [0x664] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpReadData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest              : 0xff421680
+[PAR] LPVOID    lpBuffer              : 0x000000A2FF402CF0
+[PAR] DWORD     dwNumberOfBytesToRead : 0x1e
+[PAR] LPDWORD   lpdwNumberOfBytesRead : 0x000000A2FF19D33C
+[RET] [0x7ff7a37d6fa4] [+0x6fa4] in [pebbledash.exe]
+
+[ * ] [pid 0x22c][tid 0x664] c:\users\user\desktop\pebbledash\pebbledash.exe
+[API] <WinHttpReadData>
+[PAR] LPCVOID lpBuffer : 0x000000A2FF402CF0
+[STR]         -> "<html>AKLC+sckv4iHL/2xyXcxyQ=="
+[RES] BOOL 0x1
+```
+
+After Base64Decode and AES Decrypt, the layout of the command is :  
+
+```
+00000000  10 00 00 00 00 00 00 00                          |........|
+```
+
+First 8 bytes is the command ID (0x10 for Take a ScreenShot), no parameter is expected   
+
+PebbleDash handles this command this way :  
+
+Reserve a Temp file name with the 'PMS' prefix :  
+
+```html
+[CNT] [576]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetTempFileNameW> in [KERNEL32.DLL] 
+[PAR] LPCWSTR lpPathName     : 0x00007FF6BAF5FE30
+[STR]         -> "C:\Users\user\AppData\Local\Temp\"
+[PAR] LPCWSTR lpPrefixString : 0x0000006040D1D082
+[STR]         -> "PMS"
+[PAR] UINT    uUnique        : 0x0
+[PAR] LPWSTR  lpTempFileName : 0x0000006040D1D0A0
+[RET] [0x7ff6baf2d850] [+0xd850] in [pebbledash.exe]
+
+[CNT] [578]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <DeleteFileW> in [KERNEL32.DLL] 
+[PAR] LPCWSTR lpFileName : 0x0000006040D1D0A0
+[STR]         -> "C:\Users\user\AppData\Local\Temp\PMSEE98.tmp"
+[RET] [0x7ff6baf2d8c6] [+0xd8c6] in [pebbledash.exe]
+```
+
+Take a screenshot through usual GDI32 API :  
+
+```html
+[CNT] [580]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetDC> in [USER32.dll] 
+[PAR] HWND   hWnd  : 0x0
+[RET] [0x7ff6baf299f3] [+0x99f3] in [pebbledash.exe]
+
+[CNT] [582]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <CreateCompatibleDC> in [GDI32.dll] 
+[RET] [0x7ff6baf29ab4] [+0x9ab4] in [pebbledash.exe]
+
+[CNT] [584]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetSystemMetrics> in [USER32.dll] 
+[PAR] int nIndex : 76 (SM_XVIRTUALSCREEN)
+[RET] [0x7ff6baf29b66] [+0x9b66] in [pebbledash.exe]
+
+[CNT] [585]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetSystemMetrics> in [USER32.dll] 
+[PAR] int nIndex : 77 (SM_YVIRTUALSCREEN)
+[RET] [0x7ff6baf29be6] [+0x9be6] in [pebbledash.exe]
+
+[CNT] [586]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetSystemMetrics> in [USER32.dll] 
+[PAR] int nIndex : 78 (SM_CXVIRTUALSCREEN)
+[RET] [0x7ff6baf29c86] [+0x9c86] in [pebbledash.exe]
+
+[CNT] [587]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetSystemMetrics> in [USER32.dll] 
+[PAR] int nIndex : 79 (SM_CYVIRTUALSCREEN)
+[RET] [0x7ff6baf29d66] [+0x9d66] in [pebbledash.exe]
+
+[CNT] [589]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <CreateCompatibleBitmap> in [GDI32.dll] 
+[PAR] HDC hdc : 0xFFFFFFFF8B0106EE
+[PAR] int cx  : 0x5eb
+[PAR] int cy  : 0x3fc
+[RET] [0x7ff6baf29e9e] [+0x9e9e] in [pebbledash.exe]
+
+[CNT] [591]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <SelectObject> in [GDI32.dll] 
+[PAR] HDC     hdc : 0x9010b60
+[PAR] HGDIOBJ h   : 0x7050b61
+[RET] [0x7ff6baf29fbf] [+0x9fbf] in [pebbledash.exe]
+
+[CNT] [593]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <BitBlt> in [GDI32.dll] 
+[PAR] HDC hdc    : 0x9010b60
+[PAR] int x      : 0x0
+[PAR] int y      : 0x0
+[PAR] int cx     : 0x5eb
+[PAR] int cy     : 0x3fc
+[PAR] HDC hdcSrc : 0xFFFFFFFF8B0106EE
+[PAR] int x1     : 0x0
+[PAR] int y1     : 0x0
+[PAR] int rop    : 0xcc0020
+[RET] [0x7ff6baf2a0b6] [+0xa0b6] in [pebbledash.exe]
+
+[CNT] [595]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetObjectW> in [GDI32.dll] 
+[PAR] HANDLE h  : 0x7050b61
+[PAR] int c     : 0x20
+[PAR] LPVOID pv : 0x0000006040D1D008
+[RET] [0x7ff6baf2a150] [+0xa150] in [pebbledash.exe]
+
+[CNT] [599]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetDIBits> in [GDI32.dll] 
+[PAR] HDC     hdc    : 0xFFFFFFFF8B0106EE
+[PAR] HBITMAP hbm    : 0x7050b61
+[PAR] int     start  : 0x0
+[PAR] int     clines : 0x3fc
+[RET] [0x7ff6baf2a2b3] [+0xa2b3] in [pebbledash.exe]
+```
+
+The screenshot is then saved unencrypted to the TMP file :  
+
+```html
+[CNT] [601]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <CreateFileW> in [KERNEL32.DLL] 
+[PAR] LPCWSTR lpFileName            : 0x0000006040D1D0A0
+[STR]         -> "C:\Users\user\AppData\Local\Temp\PMSEE98.tmp"
+[PAR] DWORD   dwDesiredAccess       : 0x40000000 (GENERIC_WRITE)
+[PAR] DWORD   dwCreationDisposition : 0x2 (CREATE_ALWAYS)
+[RET] [0x7ff6baf2a3f6] [+0xa3f6] in [pebbledash.exe]
+
+[CNT] [603]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WriteFile> in [KERNEL32.DLL] 
+[PAR] HANDLE       hFile                  : 0x1f8
+[PAR] LPVOID       lpBuffer               : 0x0000006043D8C040
+[PAR] DWORD        nNumberOfBytesToWrite  : 0x156a5
+[PAR] LPDWORD      lpNumberOfBytesWritten : 0x0000006040D1CFD0
+[PAR] LPOVERLAPPED lpOverlapped           : 0x0
+[RET] [0x7ff6baf2a507] [+0xa507] in [pebbledash.exe]
+
+```
+
+The file is then read, encrypted, base64 encoded and sent to the C2 :  
+
+```html
+[CNT] [613]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <CreateFileW> in [KERNEL32.DLL] 
+[PAR] LPCWSTR lpFileName            : 0x0000006040D1C820
+[STR]         -> "C:\Users\user\AppData\Local\Temp\PMSEE98.tmp"
+[PAR] DWORD   dwDesiredAccess       : 0x80000000 (GENERIC_READ)
+[PAR] DWORD   dwCreationDisposition : 0x3 (OPEN_EXISTING)
+[RET] [0x7ff6baf2f787] [+0xf787] in [pebbledash.exe]
+
+[CNT] [615]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetFileSize> in [KERNEL32.DLL] 
+[PAR] HANDLE hFile : 0x1f8
+[RET] [0x7ff6baf2f8d6] [+0xf8d6] in [pebbledash.exe]
+
+[CNT] [618]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <ReadFile> in [KERNEL32.DLL] 
+[PAR] HANDLE hFile                : 0x1f8
+[PAR] LPVOID lpBuffer             : 0x0000006040E4A160
+[PAR] DWORD  nNumberOfBytesToRead : 0x156a5
+[RET] [0x7ff6baf2f9c4] [+0xf9c4] in [pebbledash.exe]
+
+[CNT] [633]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpWriteData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest                 : 0x0000006040DFD9C0
+[PAR] LPCVOID   lpBuffer                 : 0x0000006040E917E0
+[STR]           -> "sep=sRhqotvThSV&sid=01a7561f&data=KfH4HnlItjUjNYejIRnLcK1AqJfoC0g6BPGl+CO0CE9GZOtx+J9e4hdI3hrrOLK+TKhyStgbkexhmmG1w8ul3o"
+[STR]              "4M/tVXPkLvB1VGt0BBLmzAseZfdQuKKjvrC4n34RE5ru18h04gtiwPqgOvJApLDkE9x0zQCdxn2FDq0kjIHRKvl30IlzC76+vcqInhLF1IUTFNZNDXO4aQw3"
+[STR]              "B5+/QcVpktH6wVlG10TjrZQKQ/jSP3UjEsUIC+n1DDxCHYf0X7JMsJkq82eXK64sZbkuT2FkwTuKrTquQ+NAOsHB1fqtwDBwPeG0R56Ddw13fpF2gp3Aj5ed"
+[STR]              "THup8pDYWHjbOhj4cI7kkTTp6nXxch7kk6FafqYQr96XQR2KkV5UMEqdY6dbCad/GZgcBBLoqmMqL3slAgBoyDg19a5Pp+lSAnUMlkZJiveaWLmvFQGtx/qC"
+[STR]              "U7vEz8X6QujrhHW4zJ2r0QQ3SEfSwsEmIprAmAB1Z45jqmohN7KWxAoum2B+4bTrg4+WqdFajID7x3IspO22EW2c7/DOo401bzF1p7AIsAid7IxnKpBYVwrs"
+[STR]              "jWtqSNat+yf/Rq1wDSxvaD7wE1Ybc9Tf+Vd9LVfCfeJhWBE7Xkv+T83sfRmOjQ5E1hIFDofU6ApXza4iq+J21UyXYBoJpsCcImRz/9rBMTeqzG16+Y+gsjpo"
+[STR]              "gGYhxD6gJ2FMT8a5u3CjoVJUz0fukIs8jphwCZOrdASntBQiTcSPTQP58jqRMxi0I4HNojtqjdpV+ocOeqceahUr9OpmgbG5BuidXL4LFsH2ET/Jz7/uJfq+"
+[STR]              "9GOr/TI2c7D5yF/aPZTmyXhyk+HMhmnsubZbsnXSGXFzuQJnjkvQThYoU8yph22mvPMEhrVN1l3VCB9sIpH5NgEDlKGWOZkyfkyIqyDDs+h+tjtrKWpzm8gy"
+[STR]              "Yg2Wvxmf1assyQQHP94ge+hwCWPWFZjIC26tJHwVphhqw6BJw+Q/uS1G3RYNtNQezP8p+1IDGJ49RGdfUQQYrNA0myKkXhz27fHLvE/emitfc9aRLsr+4mFd"
+[STR]              "LSc7sVTpEs4UBS3gsHiWxPRCdh1LAYlkxjduSgOaj3KTK9l5fxN+Bxm63vpVkYQx1jlafX8eed6/1WGEXLKiK7Fgq3o1O1lzyuthwCIiJHh0vFtoosr/cmOb"
+[STR]              "lbTeXKlTCAoSI77v6in/vjXRWb+40y0l2ItZrr+ByM92m9IEvYcx6vXUyazICqppiHrMbymuVDemlYCTzvJvRMKdLxK8nvx4yShxSj7kIYYRCOaeL3wayoit"
+[STR]              "AyTgpUzD69KwBDrUdC9EZTXWjtZRQAgmvmbQwdmSbpj1HX8i24hywegTKRjPZikD8y9TKl+02AuLgQKKG+/R9m8v0u7HBsyQpOB6newjxcwzM6Z8kLn8qh6n"
+[STR]              "kBYUUcTg2eyNhX71KULLNL5mYGKG9EBpSV9d9/v/IaiLZ5xEy1kZTIn0c/t7ahSE0LEJrUD1/xd40ogTCN4dLeAfU8RzsIixR9Xh1/47xSnIuMedMZ/IMxll"
+[STR]              "0Okj8Vtod4rGW3viN198K5vLc7g/IGByYyC3qYA6OYXbtQ4pdfkKSfWRSvfVpK8kpEuSU0gPkkXHC99Du++anskgkG+CWGMMjQEm0vAhdaZBlgZBTU9ZpzAQ"
+[STR]              [TRUNCATED]
+[PAR] DWORD     dwNumberOfBytesToWrite   : 0x10000
+[PAR] LPDWORD   lpdwNumberOfBytesWritten : 0x0000006040D1C458
+[RET] [0x7ff6baf26c47] [+0x6c47] in [pebbledash.exe]
+```
+
+Which gives after decryption :  
+
+```
+00000000  02 00 00 00 a5 56 01 00 ff d8 ff e0 00 10 4a 46  |....¥V..ÿØÿà..JF|
+00000010  49 46 00 01 01 01 01 2c 01 2c 00 00 ff db 00 43  |IF.....,.,..ÿÛ.C|
+00000020  00 1b 12 14 17 14 11 1b 17 16 17 1e 1c 1b 20 28  |.............. (|
+00000030  42 2b 28 25 25 28 51 3a 3d 30 42 60 55 65 64 5f  |B+(%%(Q:=0B`Ued_|
+00000040  55 5d 5b 6a 78 99 81 6a 71 90 73 5b 5d 85 b5 86  |U][jx..jq.s[].µ.|
+00000050  90 9e a3 ab ad ab 67 80 bc c9 ba a6 c7 99 a8 ab  |..£«.«g.¼Éº¦Ç.¨«|
+00000060  a4 ff db 00 43 01 1c 1e 1e 28 23 28 4e 2b 2b 4e  |¤ÿÛ.C....(#(N++N|
+00000070  a4 6e 5d 6e a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4  |¤n]n¤¤¤¤¤¤¤¤¤¤¤¤|
+00000080  a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4  |¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|
+00000090  a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4 a4  |¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤|
+000000a0  a4 a4 a4 a4 a4 a4 ff c0 00 11 08 03 fc 05 eb 03  |¤¤¤¤¤¤ÿÀ....ü.ë.|
+```
+
+First ULONG (0x2) is unknown yet (very likely SUCCESS), 2nd ULONG (0x000156a5) is the size of the following data, in this case the JPG.   
 
 ---  
 
