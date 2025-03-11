@@ -193,17 +193,9 @@ AES encryption is achieved by the following routine :
 
 The AES key is unxored just before the call : "NjqaPmSWYpmkTJZn"  
 
-Interestingly, the Key to decrypt orders from the C2 is somewhat different : "aqjNWSmPkmpYnZJT"   
+Interestingly, another AES Key "aqjNWSmPkmpYnZJT" can also be used under circumstances that I have yet to understand  
 
-To summarize  :  
-
-```
-loc_140007630 (aes encrypt -> base64 encode -> C2) :  
-encrypt_key = NjqaPmSWYpmkTJZn
-
-loc_1400078A4 (C2 -> base64 decode -> AES decrypt) :
-decrypt_key = aqjNWSmPkmpYnZJT
-```
+ 
 
 ---  
 
