@@ -238,7 +238,59 @@ The "data=" parameter is the feedback from the command execution :
 
 First ULONG (0x2) is unknown yet (very likely SUCCESS), 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
 
+# CMD_ID 0x0f Ping client
+
+Command fetched from the C2 :  
+
+```html
+[CNT] [752]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpReadData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest              : 0x40e3c690
+[PAR] LPVOID    lpBuffer              : 0x0000006040E235F0
+[PAR] DWORD     dwNumberOfBytesToRead : 0x1e
+[PAR] LPDWORD   lpdwNumberOfBytesRead : 0x0000006040D1DFDC
+[RET] [0x7ff6baf26fa4] [+0x6fa4] in [pebbledash.exe]
+
+[ * ] [pid 0x280][tid 0x858] c:\users\user\desktop\pebbledash\pebbledash.exe
+[API] <WinHttpReadData>
+[PAR] LPCVOID lpBuffer : 0x0000006040E235F0
+[STR]         -> "<html>iFRDTG4Te0XDZATNDx5ePA=="
+[RES] BOOL 0x1
+```
+
+After Base64Decode and AES Decrypt, the layout of the command is :  
+
+```
+00000000  0f 00 00 00 00 00 00 00                          |........|
+```
+
+First 8 bytes is the command ID (0x0f), no parameter is expected   
+
+PebbleDash handles this command this way :  
+
+```html
+[CNT] [796]
+[PTP] [0x280] [0x858] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpWriteData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest                 : 0x0000006040E3C690
+[PAR] LPCVOID   lpBuffer                 : 0x0000006040E226F0
+[STR]           -> "sep=sRhqotvThSV&sid=019bff28&data=mEDprwdataytk2iDklCURg=="
+[PAR] DWORD     dwNumberOfBytesToWrite   : 0x3a
+[PAR] LPDWORD   lpdwNumberOfBytesWritten : 0x0000006040D1D568
+[RET] [0x7ff6baf26c47] [+0x6c47] in [pebbledash.exe]
+```
+
+the "data=" is just a status SUCCESS (0x02) with no extra data :  
+
+```
+00000000  02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+```
+
+
 # CMD_ID 0x10 Screenshot
+
+Command fetched from the C2 :  
 
 ```html
 [CNT] [765]
