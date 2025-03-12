@@ -171,40 +171,44 @@ Interestingly, the creation of a ThreadPool Worker thread doesn't seem to trigge
 Undocumented encryption routine :
 
 ```html
-Monitoring: [pid 0x9d8][tid 0xb04] c:\windows\system32\rundll32.exe
-Monitoring: [RES]  <_vsnprintf>
-Parameter : char_t   *buffer : 0x000000FA9234AB10
-String    :          -> "{"cds":{"auth":"OV1T557KBIUECUM5"},"mtdt":{"h_name":"home","wver":"x64/6.3","ip":"10.0.2.15","arch":"x64", "bld":"9600","p_name":"QwA6AFwAVwBpAG4AZABvAHcAcwBcAHMAeQBzAHQAZQBtADMAMgBcAHIAdQBuAGQAbABsADMAMgAuAGUAeABlAA==","uid":"user","pid":"2520","tid":"2820"}}"
-Result    : int 261
+[ * ] [pid 0xa6c][tid 0xabc] c:\windows\system32\rundll32.exe
+[API] <_vsnprintf>
+[PAR] char_t   *buffer : 0x000000E03FD58240
+[STR]          -> "{"cds":{"auth":"OV1T557KBIUECUM5"},"mtdt":{"h_name":"home","wver":"x64/6.3","ip":"169.254.143.85","arch":"x64","bld":"96"
+[STR]             "00","p_name":"QwA6AFwAVwBpAG4AZABvAHcAcwBcAHMAeQBzAHQAZQBtADMAMgBcAHIAdQBuAGQAbABsADMAMgAuAGUAeABlAA==","uid":"user","pi"
+[STR]             "d":"2668","tid":"2748"}}"
+[RES] int 266
 
-Monitoring: [pid 0x9d8][tid 0xb04] c:\windows\system32\rundll32.exe
-Monitoring: [API] <SystemFunction032> in [CRYPTSP.DLL] 
-Monitoring: [ i ] [ Undocumented RC4 implementation ]
-Parameter : PBINARY_STRING buffer : 0x000000FA9437E580
-Field     :                -> Length    = 0x105
-Field     :                -> MaxLength = 0x105
-Field     :                -> Buffer    = 0x000000FA9234AA00 
-Parameter : PBINARY_STRING key    : 0x000000FA9437E570
-Field     :                -> Length    = 0x10
-Field     :                -> MaxLength = 0x10
-Field     :                -> Buffer    = 0x000000FA9234CBC0 ("S47EFEUO3D2O6641")
-Return  @ : 0xfa942c4c35
+[CNT] [330]
+[PTP] [0xa6c] [0xabc] [c:\windows\system32\rundll32.exe]
+[API] <SystemFunction032> in [CRYPTSP.DLL] 
+[INF] [ Undocumented RC4 implementation ]
+[PAR] PBINARY_STRING buffer : 0x000000E041D0E780
+[FLD]                -> Length    = 0x10a
+[FLD]                -> MaxLength = 0x10a
+[FLD]                -> Buffer    = 0x000000E03FD58900 
+[PAR] PBINARY_STRING key    : 0x000000E041D0E770
+[FLD]                -> Length    = 0x10
+[FLD]                -> MaxLength = 0x10
+[FLD]                -> Buffer    = 0x000000E03FD5CEE0 ("S47EFEUO3D2O6641")
+[RET] [0xe041c54c35]
 
 [...]
 
-Monitoring: [pid 0x9d8][tid 0xb04] c:\windows\system32\rundll32.exe
-Monitoring: [API] <HttpSendRequestA> in [wininet.dll] 
-Parameter : HINTERNET hRequest         : 0xcc000c
-Parameter : LPCTSTR   lpszHeaders      : 0x0 (null)
-Parameter : DWORD     dwHeadersLength  : 0x0
-Parameter : LPVOID    lpOptional       : 0x000000FA923527B0
-String    :           -> "88ea80d0a8145617084c1971a2e5f10dafc825dfa01aa9131c31eed2159e33380dff1f6c5b2b0f95bf9e3eccd60c1d280c96fa1f4acd82ac6739fad4"
-String    :              "6dc3ae39d58a579d7cbdc8dd1c967704a3b004fc992ed35d75e2703445c5bb2b19fb645ca258fa35101d4f173c9b3c3b0f9c9cb98e06f588208a2ec5"
-String    :              "e110eea0c0a030476ebcfb45f927108052af23591afb825078d85afa7137b4c160f29e08c276f2d7480b13b783b202c8cd7edaab47f5d3d68c20b176"
-String    :              "64349c0ffaa7a1db232df74af01128bbbace85fa393e4986135462c5afbeb7869512bd7a573fb57ffccdf0df421aa0d128b895c68be4d67693dfc2bb"
-String    :              "746254a1d74abbbe448de8cdb5ac4c87c33a42345d" // RC4 encrypted fingerprint
-Parameter : DWORD     dwOptionalLength : 0x20a
-Return  @ : 0xfa942c79dc
+[CNT] [340]
+[PTP] [0xa6c] [0xabc] [c:\windows\system32\rundll32.exe]
+[API] <HttpSendRequestA> in [wininet.dll] 
+[PAR] HINTERNET hRequest         : 0xcc000c
+[PAR] LPCTSTR   lpszHeaders      : 0x0 (null)
+[PAR] DWORD     dwHeadersLength  : 0x0
+[PAR] LPVOID    lpOptional       : 0x000000E03FD561C0
+[STR]           -> "88ea80d0a8145617084c1971a2e5f10dafc825dfa01aa9131c31eed2159e33380dff1f6c5b2b0f95bf9e3eccd60c1d280c96fa1f4acd82ac6739fad4"
+[STR]              "6dc3ae39d58a579d7cbdc8dd1c967704a3b004fc992ed35b62fc6c335fdabf3d06f73d1be31cfa6e400611012495666f57da92a1ce53a79a2a8a3bd1"
+[STR]              "a17fa2ed8fb54d132d80e926f544078052cf155d1dfb93137bf25aff3337a6e363e7a802c276d9ed4b0d03bdb4b22fc8ce5ecaa162f5cdca8f199770"
+[STR]              "4a349921f9a0b1d11f2dd44af30628be98cea3f63a006f832b5468f7afaeb783ac1299062871d81cb499b6d15a4dbcc66ff0959fdaf1cd309dc790e0"
+[STR]              "25725ea1c95ef9ef0283f09beef05c8dc375080d6f0c71cdb1da"
+[PAR] DWORD     dwOptionalLength : 0x214
+[RET] [0xe041c579dc]
 ```
 
 Here the sample is relying on the undocumented SystemFunction032 function from CRYPTSP.DLL to encrypt through RC4 the initial fingerprint of the compromised host (RC4 Key : "S47EFEUO3D2O6641").
@@ -214,28 +218,30 @@ Here the sample is relying on the undocumented SystemFunction032 function from C
 Encrypted in memory payload :
 
 ```html
-Monitoring: [pid 0x9d8][tid 0xb04] c:\windows\system32\rundll32.exe
-Monitoring: [API] <SystemFunction036> in [CRYPTBASE.DLL] 
-Monitoring: [ i ] [ RtlGenRandom ]
-Parameter : PVOID RandomBuffer       : 0x000000FA94A7FC54
-Parameter : ULONG RandomBufferLength : 0x10                 // generate a random 16byte key
-Return  @ : 0xfa942d85a6
+[CNT] [350]
+[PTP] [0xa6c] [0xabc] [c:\windows\system32\rundll32.exe]
+[API] <SystemFunction036> in [CRYPTBASE.DLL] 
+[INF] [ RtlGenRandom ]
+[PAR] PVOID RandomBuffer       : 0x000000E041D0E8C0
+[PAR] ULONG RandomBufferLength : 0x10       // generate a random 16byte key
+[RET] [0xe041c68db2]
 
 [...]
 
-Monitoring: [pid 0x9d8][tid 0xf8] c:\windows\system32\rundll32.exe
-Monitoring: [API] <SystemFunction032> in [CRYPTSP.DLL] 
-Monitoring: [!] [Illegitimate call detected !]
-Monitoring: [ i ] [ Undocumented RC4 implementation ]
-Parameter : PBINARY_STRING buffer : 0x000000FA94A7FC68
-Field     :                -> Length    = 0x4c000
-Field     :                -> MaxLength = 0x4c000
-Field     :                -> Buffer    = 0x000000FA942C0000 // memory allocated for the CreateRemoteThreadCall (see above)
-Parameter : PBINARY_STRING key    : 0x000000FA94A7FC78
-Field     :                -> Length    = 0x10
-Field     :                -> MaxLength = 0x10
-Field     :                -> Buffer    = 0x000000FA94A7FC54 ([0x3a,0xd,0x53,0xf4,0x17,0x47,0x50,0xe3,0x27,0x3d,0x4f,0x63,0x88,0xd,0xf4,0x50])
-Return  @ : 0x7ff9b6342600
+[CNT] [389]
+[PTP] [0xa6c] [0xaac] [c:\windows\system32\rundll32.exe]
+[/!\] [ Illegitimate call detected ! ]
+[API] <SystemFunction032> in [CRYPTSP.DLL] 
+[INF] [ Undocumented RC4 implementation ]
+[PAR] PBINARY_STRING buffer : 0x000000E04227F698
+[FLD]                -> Length    = 0x4c000
+[FLD]                -> MaxLength = 0x4c000
+[FLD]                -> Buffer    = 0x000000E041C50000 
+[PAR] PBINARY_STRING key    : 0x000000E04227F6A8
+[FLD]                -> Length    = 0x10
+[FLD]                -> MaxLength = 0x10
+[FLD]                -> Buffer    = 0x000000E04227F684 ([0x82,0x16,0x55,0x8a,0xe4,0xfa,0xff,0x7f,0xf3,0x71,0xf6,0xf8,0x61,0x82,0xcf,0xfa])
+[RET] [0x7ffa03692600] in [ntdll.dll]
 ```
 
 Here the malware ensure to be fully encrypted whenever possible, which prevents memory dumps as well as in memory signatures.
