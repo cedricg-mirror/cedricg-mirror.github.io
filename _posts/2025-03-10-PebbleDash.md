@@ -5,7 +5,7 @@ date: 2025-03-10
   
 <link rel="stylesheet" href="/css/main.css">
 
-### LAZARUS PebbleDash  
+## LAZARUS PebbleDash  
   
 ## Context
 
