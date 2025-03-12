@@ -34,7 +34,7 @@ In order to trigger the persistency-setup behavior from the sample a little reve
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight">
 <code>
-[CNT] [132]
+[CNT] [13]
 [PTP] [0x968] [0xbb8] [c:\users\user\desktop\pebbledash\pebbledash.exe]
 [API] <span class="nt">&lt;GetCommandLineA&gt;</span> in [KERNEL32.DLL]
 [RET] 0x7ff7f099fd96 in [pebbledash.exe]
