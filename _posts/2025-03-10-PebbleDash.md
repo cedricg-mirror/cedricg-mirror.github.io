@@ -35,12 +35,12 @@ In order to trigger the persistency-setup behavior from the sample a little reve
 ```html
 [CNT] [13]
 [PTP] [0x968] [0xbb8] [c:\users\user\desktop\pebbledash\pebbledash.exe]
-[API] <span class="nt">&lt;GetCommandLineA&gt;</span> in [KERNEL32.DLL]
+[API] <GetCommandLineA> in [KERNEL32.DLL]
 [RET] 0x7ff7f099fd96 in [pebbledash.exe]
 
 [CNT] [14]
 [PTP] [0x968] [0xbb8] [c:\users\user\desktop\pebbledash\pebbledash.exe]
-[API] <span class="nt">&lt;GetCommandLineW&gt;</span> in [KERNEL32.DLL]
+[API] <GetCommandLineW> in [KERNEL32.DLL]
 [RET] 0x7ff7f099fda3 in [pebbledash.exe]
 ```
 
