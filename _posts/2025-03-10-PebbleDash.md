@@ -30,7 +30,9 @@ As usual, results from dynamic analysis are shared in my repository ([logs](http
 
 In order to trigger the persistency-setup behavior from the sample a little reverse engineering was required :  
 
-<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight">
+<code>
+coucou
 [CNT] [13]
 [PTP] [0x968] [0xbb8] [c:\users\user\desktop\pebbledash\pebbledash.exe]
 [API] <span class="nt">&lt;GetCommandLineA&gt;</span> in [KERNEL32.DLL]
@@ -40,7 +42,8 @@ In order to trigger the persistency-setup behavior from the sample a little reve
 [PTP] [0x968] [0xbb8] [c:\users\user\desktop\pebbledash\pebbledash.exe]
 [API] <span class="nt">&lt;GetCommandLineW&gt;</span> in [KERNEL32.DLL]
 [RET] 0x7ff7f099fda3 in [pebbledash.exe]
-</code></pre></div></div>
+</code>
+</pre></div></div>
 
 Following the results from those call in statical analysis revealed the following :  
 
