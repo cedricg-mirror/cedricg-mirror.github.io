@@ -434,6 +434,9 @@ PebbleDash handles this command this way :
 [RET] [0x7ff7ac04b323] [+0xb323] in [pebbledash.exe]
 ```
 
+As described in a linked report, the bat file is in charge of deleting PebbleDash executable.  
+
+
 * Finally, exiting the running instance of PebbleDash :
 
 ```html
