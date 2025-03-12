@@ -33,7 +33,7 @@ Report :
 
 Analyzed sample is a 64bit malware named by various security engines BazaarLoader or BruteRatel C4.
 
-Runtime analysis results are shared in logs.txt which contains an execution trace until the sample tries to reach a C2.
+As usual, results from dynamic analysis are shared in my repository ([logs](https://github.com/cedricg-mirror/reflexions/blob/main/CyberCrime/BazaarLoader/5C7A3BD2BAA8303354D8098B8D5961F111E467002BB0C6FEE120825B32798228/logs.txt))  
 
 ---
 
