@@ -30,7 +30,7 @@ As usual, results from dynamic analysis are shared in my repository ([logs](http
 
 In order to trigger the persistency-setup behavior from the sample a little reverse engineering was required :  
 
-```html
+```
  [CNT] [13]
  [PTP] [0x968] [0xbb8] [c:\users\user\desktop\pebbledash\pebbledash.exe]
  [API] <GetCommandLineA> in [KERNEL32.DLL]
