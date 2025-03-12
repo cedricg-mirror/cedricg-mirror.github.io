@@ -50,7 +50,7 @@ This sample is so minimalistic that dynamic analysis alone is basically only use
 [MSG] Delay Execution reduced from 300000 ms to 15000 ms 
 ```
 
-Results of dynamic analysis without a working C2 is provided in the attached 'logs_no_c2.txt' file.  
+Results of dynamic analysis without a working C2 is provided in the [logs_no_c2.txt](https://github.com/cedricg-mirror/reflexions/blob/main/APT/TURLA/QuietCanary/3f94b20cb7f4ff55207660649ebbb02679c991fe03efbcb0bd3840fc7f0bd527/logs_no_c2.txt) file.  
 
 ---  
 
