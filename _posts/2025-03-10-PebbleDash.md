@@ -234,7 +234,135 @@ The "data=" parameter is the feedback from the command execution :
 00000020  72 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |r...............|
 ```
 
-First ULONG (0x2) is unknown yet (very likely SUCCESS), 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
+First ULONG (0x2) is likely 'SUCCESS', 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
+
+# CMD_ID 0x0d FINGERPRINT
+
+Command fetched from the C2 :  
+
+```html
+[CNT] [326]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpReadData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest              : 0xb4d6c580
+[PAR] LPVOID    lpBuffer              : 0x00000041B4D82520
+[PAR] DWORD     dwNumberOfBytesToRead : 0x32
+[PAR] LPDWORD   lpdwNumberOfBytesRead : 0x00000041B4C8E41C
+[RET] [0x7ff7ac046fa4] [+0x6fa4] in [pebbledash.exe]
+
+[ * ] [pid 0x9fc][tid 0xa00] c:\users\user\desktop\pebbledash\pebbledash.exe
+[API] <WinHttpReadData>
+[PAR] LPCVOID lpBuffer : 0x00000041B4D82520
+[STR]         -> "<html>QqOR+piWi2ntfIxYRsGnKLG1rmqOXlEcKDFgeZ8Hcgo="
+[RES] BOOL 0x1
+```
+After Base64Decode and AES Decrypt, the layout of the command is :  
+
+```
+00000000  0d 00 00 00 00 61 61 61 61 61 61 61 61 61 61 61  |.....aaaaaaaaaaa|
+```
+
+First *5* bytes is the command ID (0x0d), then some potential parameter (Haven't looked into it yet)  
+
+PebbleDash handles this command this way :  
+
+```html
+[CNT] [356]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <gethostname> in [ws2_32.dll] 
+[PAR] char* name    : 0x00000041B4C8DC90
+[PAR] int   namelen : 0x32
+[RET] [0x7ff7ac04e24d] [+0xe24d] in [pebbledash.exe]
+
+[CNT] [357]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <gethostbyname> in [ws2_32.dll] 
+[PAR] PCHAR name : 0x00000041B4C8DC90
+[STR]       -> "home"
+[RET] [0x7ff7ac04e3b8] [+0xe3b8] in [pebbledash.exe]
+
+[CNT] [358]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetAdaptersInfo> in [iphlpapi.dll] 
+[PAR] PIP_ADAPTER_INFO AdapterInfo : 0x00000041B4C8B090
+[PAR] PULONG           SizePointer : 0x00000041B4C8AF68
+[RET] [0x7ff7ac04e47a] [+0xe47a] in [pebbledash.exe]
+
+[CNT] [359]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetComputerNameW> in [KERNEL32.DLL] 
+[PAR] LPWSTR  lpBuffer : 0x00000041B4C8AF82
+[PAR] LPDWORD nSize    : 0x00000041B4C8AF68
+[RET] [0x7ff7ac04e56b] [+0xe56b] in [pebbledash.exe]
+
+[CNT] [360]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetVersionExA> in [KERNEL32.DLL] 
+[PAR] LPOSVERSIONINFOA lpVersionInformation : 0x00000041B4C8AFE8
+[RET] [0x7ff7ac04da44] [+0xda44] in [pebbledash.exe]
+
+[CNT] [361]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <NetWkstaGetInfo> in [netapi32.dll] 
+[PAR] LMSTR   servername : 0x0 (null)
+[PAR] DWORD   Level      : 100
+[PAR] LPBYTE* bufptr     : 0x00000041B4C8AEB8
+[RET] [0x7ff7ac04db0c] [+0xdb0c] in [pebbledash.exe]
+
+[CNT] [366]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetNativeSystemInfo> in [KERNEL32.DLL] 
+[PAR] LPSYSTEM_INFO lpSystemInfo : 0x00000041B4C8AEC8
+[RET] [0x7ff7ac04df55] [+0xdf55] in [pebbledash.exe]
+
+[CNT] [368]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <GetProductInfo> in [KERNEL32.DLL] 
+[PAR] DWORD  dwOSMajorVersion       : 0x6
+[PAR] DWORD  dwOSMinorVersion       : 0x3
+[PAR] DWORD  dwSpMajorVersion       : 0x0
+[PAR] DWORD  dwSpMinorVersion       : 0x0
+[PAR] PDWORD pdwReturnedProductType : 0x00000041B4C8AEC0
+[RET] [0x7ff7ac04e046] [+0xe046] in [pebbledash.exe]
+
+[CNT] [383]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpWriteData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest                 : 0x00000041B4D6C580
+[PAR] LPCVOID   lpBuffer                 : 0x00000041B4D62C30
+[STR]           -> "sep=sRhqotvThSV&sid=012562ba&data=t310xNeik0VoWxAjXk90NEUMsAsAX3PC2kA4Ko5hMXQYWLY0c3IFED7YCtdDK1l58iIhtB+7lRppRJ7GrBldXZ"
+[STR]              "yoUCdRXN1KRYc2eenQFlqlMXeOsUWzCmFCSwhG2z+L2QfKYS0tUIMHcu2PFExm13nXGapHXjI8tsc6I7+oPI1Q7XR5UqY7leI+o+v5nxIaiJjlD3XdGYRtyq"
+[STR]              "Sxtf7aszU5O8H4h2gZoQqiZHltHsvE177eeQR1+yuy2IGpLZlKioT5oXcJVwz5Q0Wt1Cjc9GZEGHZKIyTTbp0Nhz+Ktt6tRtFiJ3+O7EJAl6/qqnRQJGez8l"
+[STR]              "kf6S7YPuQrRpId2b7Abv0zVcmS2mct9R8e4fKbA3uJOJbHf2fYO5iYjDtqkmuML15RjTbiQEN0uaAr7Q=="
+[PAR] DWORD     dwNumberOfBytesToWrite   : 0x1ba
+[PAR] LPDWORD   lpdwNumberOfBytesWritten : 0x00000041B4C8ABC8
+[RET] [0x7ff7ac046c47] [+0x6c47] in [pebbledash.exe]
+```
+
+The "data=" parameter is the feedback from the command execution :  
+```
+00000000  02 00 00 00 20 01 00 00 02 00 00 00 05 00 00 00  |.... ...........|
+00000010  a9 fe 8f 55 08 00 27 8e ba 05 48 00 4f 00 4d 00  |©þ.U..'.º.H.O.M.|
+00000020  45 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |E...............|
+00000030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000040  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000050  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000060  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000070  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000080  9c 00 00 00 06 00 00 00 03 00 00 00 f0 23 00 00  |............ð#..|
+00000090  f4 01 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |ô...............|
+000000a0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+000000b0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+000000c0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+000000d0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+000000e0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+000000f0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000100  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |................|
+00000110  00 00 00 00 00 00 00 00 00 01 01 00 09 00 00 00  |................|
+00000120  30 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  |0...............|
+```
+
+First ULONG (0x2) is very likely 'SUCCESS', 2nd ULONG (0x0000120) is the size of the following data, in this case result from the fingerprinting. 
 
 # CMD_ID 0x0e CMD EXEC
 
