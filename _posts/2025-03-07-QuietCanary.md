@@ -56,7 +56,7 @@ Results of dynamic analysis without a working C2 is provided in the [logs_no_c2.
 
 Going further, I decided to use some statical analysis and develop a bare minimum C2 to trigger some additional behavior from the sample :  
 
-![Alt text](screenshots/init.jpg?raw=true "first beaconing")
+![first beaconing](/docs/assets/images/QuietCanary/init.jpg)  
 
 Statical analysis is very straightforward as this sample isn't obfuscated in any way.
 
@@ -72,7 +72,7 @@ The following routine tells us how the C2 is expected to reply (Base64(Rc4(reply
 
 After decryption of the reply, QUIETCANARY is expecting the following answer from the C2 :  
 
-![Alt text](screenshots/new_rc4_key.jpg?raw=true "New Rc4 Key")
+![New Rc4 Key](/docs/assets/images/QuietCanary/new_rc4_key.jpg)
 
 In other words, the keyword "use" followed by a 10 letters string that is going to be used as a new RC4 key to encrypt communications.  
 
@@ -211,7 +211,7 @@ So "rep" . "ok" . nonce
 
 The nonce is generated using the following routine :  
 
-![Alt text](screenshots/nonce.jpg?raw=true "New Rc4 Key")
+![Nonce](/docs/assets/images/QuietCanary/nonce.jpg)
 
 It's function is very likely to add some noise to the SSL encrypted traffic to make it more difficult to 'guess' what is happening based on the size of HTTPS requests.  
 
@@ -219,7 +219,8 @@ It's function is very likely to add some noise to the SSL encrypted traffic to m
 
 Now that we have established a trusted relationship with QUIETCANARY we can start sending some commands among the following :  
 
-![Alt text](screenshots/orders.jpg?raw=true "Available commands")
+
+![Available commands](/docs/assets/images/QuietCanary/orders.jpg)
 
 Notice the 666 code associated with the "KillCommand", TURLA developpers were kind enough to refrain from using Order 66 which would have been a much violent crime...
 
@@ -382,10 +383,11 @@ So "rep" . "i" . id (43) . "l" . result_length (604) . "r" . result . nonce
 
 My (very) lazy C2 implementation looks like this : 
 
-![Alt text](screenshots/c2.jpg?raw=true "Lazy C2")
+![Lazy C2](/docs/assets/images/QuietCanary/c2.jpg)
 
 ---  
 
 As a final note, there is a piece of dead code that may or may not be useful to look for previous or newer samples :  
 
-![Alt text](screenshots/dead_code.jpg?raw=true "unused routine")
+![Unused Routine](/docs/assets/images/QuietCanary/dead_code.jpg)
+
