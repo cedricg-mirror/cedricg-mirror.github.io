@@ -1,4 +1,5 @@
 url: 'https://cedricg-mirror.github.io'
+google_analytics: "G-KWXC4M8HVK"
 theme: jekyll-theme-time-machine
 plugins:
   - jekyll-relative-links
