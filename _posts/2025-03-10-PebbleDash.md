@@ -283,7 +283,170 @@ The "data=" parameter is the feedback from the command execution :
 
 First ULONG (0x2) is likely 'SUCCESS', 2nd ULONG (0x1c) is the size of the following data, in this case the new Current Directory  
 
-# CMD_ID 0x0d FINGERPRINT
+# CMD_ID 0x0C UNINSTALL
+
+Command fetched from the C2 :  
+
+```html
+[CNT] [775]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpReadData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest              : 0xb4d38be0
+[PAR] LPVOID    lpBuffer              : 0x00000041B4D6C630
+[PAR] DWORD     dwNumberOfBytesToRead : 0x1e
+[PAR] LPDWORD   lpdwNumberOfBytesRead : 0x00000041B4C8E41C
+[RET] [0x7ff7ac046fa4] [+0x6fa4] in [pebbledash.exe]
+
+[ * ] [pid 0x9fc][tid 0xa00] c:\users\user\desktop\pebbledash\pebbledash.exe
+[API] <WinHttpReadData>
+[PAR] LPCVOID lpBuffer : 0x00000041B4D6C630
+[STR]         -> "<html>xe3pubTIrgrxZVeDWQMb6A=="
+[RES] BOOL 0x1
+```
+After Base64Decode and AES Decrypt, the layout of the command is :  
+
+```
+00000000  0c 00 00 00 00 00 00 00                          |........|
+```
+
+First 8 bytes is the command ID (0x0C), no parameter is expected  
+
+PebbleDash handles this command this way :  
+
+* Acknowledging the order to the C2 :
+
+```html
+[CNT] [819]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WinHttpWriteData> in [winhttp.dll] 
+[PAR] HINTERNET hRequest                 : 0x00000041B4D38BE0
+[PAR] LPCVOID   lpBuffer                 : 0x00000041B4D53020
+[STR]           -> "sep=sRhqotvThSV&sid=010e5bd3&data=mEDprwdataytk2iDklCURg=="
+[PAR] DWORD     dwNumberOfBytesToWrite   : 0x3a
+[PAR] LPDWORD   lpdwNumberOfBytesWritten : 0x00000041B4C8CFB8
+[RET] [0x7ff7ac046c47] [+0x6c47] in [pebbledash.exe]
+```
+
+* Deleting any remaining production files (Screenshots, cmd results, ...) from the Temp folder :  
+
+```html
+[CNT] [834]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <FindFirstFileW> in [KERNEL32.DLL] 
+[PAR] LPCWSTR lpFileName : 0x00000041B4C8C2D0
+[STR]         -> "C:\Users\user\AppData\Local\Temp\PMS*.tmp"
+[RET] [0x7ff7ac04ea9d] [+0xea9d] in [pebbledash.exe]
+
+[CNT] [836]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <DeleteFileW> in [KERNEL32.DLL] 
+[PAR] LPCWSTR lpFileName : 0x00000041B4C8CAD0
+[STR]         -> "C:\Users\user\AppData\Local\Temp\PMS13A6.tmp"
+[RET] [0x7ff7ac04ec08] [+0xec08] in [pebbledash.exe]
+
+[CNT] [838]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <FindNextFileW> in [KERNEL32.DLL] 
+[PAR] HANDLE             hFindFile      : 0x00000041B4D22020
+[PAR] LPWIN32_FIND_DATAW lpFindFileData : 0x00000041B4C8C080
+[RET] [0x7ff7ac04ed2e] [+0xed2e] in [pebbledash.exe]
+
+[CNT] [839]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <DeleteFileW> in [KERNEL32.DLL] 
+[PAR] LPCWSTR lpFileName : 0x00000041B4C8CAD0
+[STR]         -> "C:\Users\user\AppData\Local\Temp\PMS180C.tmp"
+[RET] [0x7ff7ac04ec08] [+0xec08] in [pebbledash.exe]
+
+[...]
+```
+
+* Deleting the autorun registry entry :
+
+```html
+[CNT] [1025]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <CreateProcessW> in [KERNEL32.DLL] 
+[PAR] LPCWSTR               lpApplicationName   : 0x0 (null)
+[PAR] LPCWSTR               lpCommandLine       : 0x00000041B4C8D4C0
+[STR]                       -> "reg delete hkcu\software\microsoft\windows\currentversion\run /v "PAY" /f"
+[PAR] LPSECURITY_ATTRIBUTES lpProcessAttributes : 0x0
+[PAR] LPSECURITY_ATTRIBUTES lpThreadAttributes  : 0x0
+[PAR] BOOL                  bInheritHandles     : 0x0
+[PAR] DWORD                 dwCreationFlags     : 0x0 
+[PAR] LPVOID                lpEnvironment        : 0x0
+[PAR] LPCWSTR               lpCurrentDirectory   : 0x0 (null)
+[PAR] LPSTARTUPINFOW        lpStartupInfo        : 0x00000041B4C8D450
+[FLD]                       -> lpDesktop   = 0x0 (null)
+[FLD]                       -> lpTitle     = 0x0 (null)
+[FLD]                       -> dwFlags     = 0x1 (STARTF_USESHOWWINDOW)
+[FLD]                       -> wShowWindow = 0x0
+[FLD]                       -> hStdInput   = 0x0
+[FLD]                       -> hStdOutput  = 0x0
+[FLD]                       -> hStdError   = 0x0
+[PAR] LPPROCESS_INFORMATION lpProcessInformation : 0x00000041B4C8D430
+[RET] [0x7ff7ac053f84] [+0x13f84] in [pebbledash.exe]
+```
+
+* Creating and executing a .bat file :
+
+```html
+[CNT] [1036]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <CreateFileA> in [KERNEL32.DLL] 
+[PAR] LPCTSTR lpFileName            : 0x00000041B4C8BED0
+[STR]         -> "C:\Users\user\AppData\Local\Temp\ico.bat"
+[PAR] DWORD   dwDesiredAccess       : 0x40000000 (GENERIC_WRITE)
+[PAR] DWORD   dwCreationDisposition : 0x2 (CREATE_ALWAYS)
+[RET] [0x7ff7ac04b056] [+0xb056] in [pebbledash.exe]
+
+[CNT] [1038]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <WriteFile> in [KERNEL32.DLL] 
+[PAR] HANDLE       hFile                  : 0x300
+[PAR] LPVOID       lpBuffer               : 0x00000041B4C8C6D0
+[PAR] DWORD        nNumberOfBytesToWrite  : 0xbb
+[PAR] LPDWORD      lpNumberOfBytesWritten : 0x00000041B4C8BE58
+[PAR] LPOVERLAPPED lpOverlapped           : 0x0
+[RET] [0x7ff7ac04b0f7] [+0xb0f7] in [pebbledash.exe]
+
+[CNT] [1041]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <CreateProcessA> in [KERNEL32.DLL] 
+[PAR] LPCTSTR               lpApplicationName    : 0x0 (null)
+[PAR] LPCTSTR               lpCommandLine        : 0x00000041B4C8BED0
+[STR]                       -> "C:\Users\user\AppData\Local\Temp\ico.bat"
+[PAR] LPSECURITY_ATTRIBUTES lpProcessAttributes  : 0x0
+[PAR] LPSECURITY_ATTRIBUTES lpThreadAttributes   : 0x0
+[PAR] BOOL                  bInheritHandles      : 0x0
+[PAR] DWORD                 dwCreationFlags      : 0x0 
+[PAR] LPVOID                lpEnvironment        : 0x0
+[PAR] LPCSTR                lpCurrentDirectory   : 0x0 (null)
+[PAR] LPSTARTUPINFOA        lpStartupInfo        : 0x00000041B4C8BE60
+[FLD]                       -> lpDesktop   = 0x0 (null)
+[FLD]                       -> lpTitle     = 0x0 (null)
+[FLD]                       -> dwFlags     = 0x1 (STARTF_USESHOWWINDOW)
+[FLD]                       -> wShowWindow = 0x0
+[FLD]                       -> hStdInput   = 0x0
+[FLD]                       -> hStdOutput  = 0x0
+[FLD]                       -> hStdError   = 0x0
+[PAR] LPPROCESS_INFORMATION lpProcessInformation : 0x00000041B4C8BE40
+[RET] [0x7ff7ac04b323] [+0xb323] in [pebbledash.exe]
+```
+
+* Finally, exiting the running instance of PebbleDash :
+
+```html
+[CNT] [1107]
+[PTP] [0x9fc] [0xa00] [c:\users\user\desktop\pebbledash\pebbledash.exe]
+[API] <ExitProcess> in [KERNEL32.DLL] 
+[PAR] UINT uExitCode : 0x0
+[RET] [0x7ff7ac05fcb1] [+0x1fcb1] in [pebbledash.exe]
+```
+
+
+
+# CMD_ID 0x0D FINGERPRINT
 
 Command fetched from the C2 :  
 
@@ -411,7 +574,9 @@ The "data=" parameter is the feedback from the command execution :
 
 First ULONG (0x2) is very likely 'SUCCESS', 2nd ULONG (0x0000120) is the size of the following data, in this case result from the fingerprinting. 
 
-# CMD_ID 0x0e CMD EXEC
+
+
+# CMD_ID 0x0E CMD EXEC
 
 Command fetched from the C2 :  
 
@@ -576,7 +741,7 @@ Which gives after decryption :
 
 First ULONG (0x2) is very likely 'SUCCESS', 2nd ULONG (0x000155a) is the size of the following data, in this case result from 'tasklist'. 
 
-# CMD_ID 0x0f Ping client
+# CMD_ID 0x0F Ping client
 
 Command fetched from the C2 :  
 
