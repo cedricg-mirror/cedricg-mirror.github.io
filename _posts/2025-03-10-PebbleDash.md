@@ -31,8 +31,8 @@ As usual, results from dynamic analysis are shared in my repository ([logs](http
 In order to trigger the persistency-setup behavior from the sample a little reverse engineering was required :  
 
 <div class="highlight">
-tt
-[CNT] [13]
+<pre>
+[CNT] [134]
 [PTP] [0x968] [0xbb8] [c:\users\user\desktop\pebbledash\pebbledash.exe]
 [API] <span class="nt">&lt;GetCommandLineA&gt;</span> in [KERNEL32.DLL]
 [RET] 0x7ff7f099fd96 in [pebbledash.exe]
@@ -41,6 +41,7 @@ tt
 [PTP] [0x968] [0xbb8] [c:\users\user\desktop\pebbledash\pebbledash.exe]
 [API] <span class="nt">&lt;GetCommandLineW&gt;</span> in [KERNEL32.DLL]
 [RET] 0x7ff7f099fda3 in [pebbledash.exe]
+</pre>
 </div>
 
 Following the results from those call in statical analysis revealed the following :  
