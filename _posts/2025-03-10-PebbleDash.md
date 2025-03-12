@@ -140,6 +140,49 @@ As mention in a linked blog analysis from dmpdump.github, the "uid" parameter is
 ```
 
 ---
+## API Call
+
+API call is achieved is most cases by going through the following pattern :  
+
+![Dynamic API Address resolution](/docs/assets/images/PebbleDash/API_Call.jpg)
+
+1) Required function name is hashed with Fowler–Noll–Vo hash function  
+<https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function>  
+The FNV_offset_basis is the 64-bit value: 0xcbf29ce484222325.  
+The FNV_prime is the 64-bit value 0x100000001b3.  
+
+2) Function address is dynamically retrieved by walking the PEB and looking for an exported function matching the given Hash  
+
+3) Calling the function  
+
+Few examples of hashed function names below :  
+
+```
+2cd62eda1e190cc8  
+winhttp!WinHttpWriteData
+
+bcfc93e92c75c701
+WinHTTP!WinHttpReceiveResponse
+
+200cc715113de71d  
+KERNEL32!LocalAlloc
+
+ddd409e63a9cb926
+WinHTTP!WinHttpQueryDataAvailable
+
+90fc86b9e2232aa9  
+WinHTTP!WinHttpReadData
+
+3cf811a64137c676
+KERNEL32!LocalFree
+
+ca455d40bfa3e279
+WinHTTP!WinHttpCloseHandle
+```
+
+
+
+---
 ## Encryption
 
 AES encryption is achieved by the following routine :  
@@ -810,49 +853,6 @@ Which gives after decryption :
 
 First ULONG (0x2) is very likely 'SUCCESS', 2nd ULONG (0x000156a5) is the size of the following data, in this case the JPG.   
 
----
-## API Call
-
-API call is achieved is most cases by going through the following pattern :  
-
-![Dynamic API Address resolution](/docs/assets/images/PebbleDash/API_Call.jpg)
-
-1) Required function name is hashed with Fowler–Noll–Vo hash function  
-<https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function>  
-The FNV_offset_basis is the 64-bit value: 0xcbf29ce484222325.  
-The FNV_prime is the 64-bit value 0x100000001b3.  
-
-2) Function address is dynamically retrieved by walking the PEB and looking for an exported function matching the given Hash  
-
-3) Calling the function  
-
-Few examples of hashed function names below :  
-
-```
-2cd62eda1e190cc8  
-winhttp!WinHttpWriteData
-
-bcfc93e92c75c701
-WinHTTP!WinHttpReceiveResponse
-
-200cc715113de71d  
-KERNEL32!LocalAlloc
-
-ddd409e63a9cb926
-WinHTTP!WinHttpQueryDataAvailable
-
-90fc86b9e2232aa9  
-WinHTTP!WinHttpReadData
-
-3cf811a64137c676
-KERNEL32!LocalFree
-
-ca455d40bfa3e279
-WinHTTP!WinHttpCloseHandle
-```
-
-
- 
 
 ---  
 
