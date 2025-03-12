@@ -10,6 +10,6 @@ title: Welcome to my blog
 
 # 07/03/2025
 
-## [TURLA QUIETCANARY](https://cedricg-mirror.github.io/2025/03/07/QuietCanary.html)
+## [TURLA QUIETCANARY Analysis](https://cedricg-mirror.github.io/2025/03/07/QuietCanary.html)
 
 
