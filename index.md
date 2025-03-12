@@ -21,4 +21,4 @@ I'll be happy to exchange with other researchers in the field of static or dynam
 
 # 04/02/2025
 
-## [BAZARLOADER Analysis](https://cedricg-mirror.github.io/2025/02/04/BazaarLoader.html)
+## [BAZAARLOADER Analysis](https://cedricg-mirror.github.io/2025/02/04/BazaarLoader.html)
