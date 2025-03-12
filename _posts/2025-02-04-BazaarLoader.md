@@ -85,37 +85,40 @@ memory layout:
 
 In memory execution :
 
-```python
-Monitoring: [pid 0x9d8][tid 0xb00] c:\windows\system32\rundll32.exe
-Monitoring: [API] <VirtualAllocEx> in [KERNEL32.DLL] 
-Parameter : HANDLE hProcess     : 0xffffffff
-Parameter : LPVOID lpAddress    : 0x0
-Parameter : SIZE_T dwSize       : 0x3dbbf
-Parameter : DWORD  flProtect    : 0x40 (PAGE_EXECUTE_READWRITE)
-Return  @ : 0x2e4d113c9
+```html
+[CNT] [185]
+[PTP] [0xa6c] [0xb3c] [c:\windows\system32\rundll32.exe]
+[API] <VirtualAllocEx> in [KERNEL32.DLL] 
+[PAR] HANDLE hProcess     : 0xffffffff
+[PAR] LPVOID lpAddress    : 0x0
+[PAR] SIZE_T dwSize       : 0x3dbbf
+[PAR] DWORD  flProtect    : 0x40 (PAGE_EXECUTE_READWRITE)
+[RET] [0x2e4d113c9]
 
-Monitoring: [pid 0x9d8][tid 0xb00] c:\windows\system32\rundll32.exe
-Monitoring: [RES]  <VirtualAllocEx>
-Result    : LPVOID  0x000000FA94200000
+[ * ] [pid 0xa6c][tid 0xb3c] c:\windows\system32\rundll32.exe
+[API] <VirtualAllocEx>
+[RES] LPVOID  0x000000E0400B0000
 
-Monitoring: [pid 0x9d8][tid 0xb00] c:\windows\system32\rundll32.exe
-Monitoring: [API] <WriteProcessMemory> in [KERNEL32.DLL] 
-Parameter : HANDLE  hProcess      : 0xffffffff
-Parameter : LPVOID  lpBaseAddress : 0x000000FA94200000
-Parameter : LPCVOID lpBuffer      : 0x00000002E4D13010
-Parameter : SIZE_T  nSize         : 0x3dbbf
-Return  @ : 0x2e4d113fe
+[CNT] [186]
+[PTP] [0xa6c] [0xb3c] [c:\windows\system32\rundll32.exe]
+[API] <WriteProcessMemory> in [KERNEL32.DLL] 
+[PAR] HANDLE  hProcess      : 0xffffffff
+[PAR] LPVOID  lpBaseAddress : 0x000000E0400B0000
+[PAR] LPCVOID lpBuffer      : 0x00000002E4D13010
+[PAR] SIZE_T  nSize         : 0x3dbbf
+[RET] [0x2e4d113fe]
 
-Monitoring: [pid 0x9d8][tid 0xb00] c:\windows\system32\rundll32.exe
-Monitoring: [API] <CreateRemoteThread> in [KERNEL32.DLL] 
-Parameter : HANDLE                 hProcess           : 0xffffffff
-Parameter : LPSECURITY_ATTRIBUTES  lpThreadAttributes : 0x0
-Parameter : SIZE_T                 dwStackSize        : 0x0
-Parameter : LPTHREAD_START_ROUTINE lpStartAddress     : 0x00000002E4D11370 // jmp rcx
-Parameter : LPVOID                 lpParameter        : 0x000000FA94200000 // Allocated memory
-Parameter : DWORD                  dwCreationFlags    : 0x0
-Parameter : LPDWORD                lpThreadId         : 0x0
-Return  @ : 0x2e4d11434
+[CNT] [187]
+[PTP] [0xa6c] [0xb3c] [c:\windows\system32\rundll32.exe]
+[API] <CreateRemoteThread> in [KERNEL32.DLL] 
+[PAR] HANDLE                 hProcess           : 0xffffffff
+[PAR] LPSECURITY_ATTRIBUTES  lpThreadAttributes : 0x0
+[PAR] SIZE_T                 dwStackSize        : 0x0
+[PAR] LPTHREAD_START_ROUTINE lpStartAddress     : 0x00000002E4D11370
+[PAR] LPVOID                 lpParameter        : 0x000000E0400B0000
+[PAR] DWORD                  dwCreationFlags    : 0x0
+[PAR] LPDWORD                lpThreadId         : 0x0
+[RET] [0x2e4d11434]
 ```
 
 A little trick regarding this CreateRemoteThread call, the thread's StartAddress doesn't point directly to the PAGE_EXECUTE_READWRITE allocated memory. Instead, lpStartAddress points to an `jmp rcx` instruction, rcx beeing the lpParameter from the created thread.  
@@ -125,31 +128,36 @@ A little trick regarding this CreateRemoteThread call, the thread's StartAddress
 Thread Pool Worker Threads :
 
 ```html
-Monitoring: [pid 0x9d8][tid 0xb04] c:\windows\system32\rundll32.exe
-Monitoring: [API] <TpAllocWork> in [ntdll.dll] 
-Parameter : PTP_WORK             *WorkReturn     : 0x000000FA9437E610
-Parameter : PTP_WORK_CALLBACK    Callback        : 0x000000FA942C3250
-Parameter : PVOID                Context         : 0x000000FA9437E618
-Parameter : PTP_CALLBACK_ENVIRON CallbackEnviron : 0x0
-Return  @ : 0xfa942d78a7
+[CNT] [235]
+[PTP] [0xa6c] [0xabc] [c:\windows\system32\rundll32.exe]
+[API] <TpAllocWork> in [ntdll.dll] 
+[PAR] PTP_WORK             *WorkReturn     : 0x000000E041D0E810
+[PAR] PTP_WORK_CALLBACK    Callback        : 0x000000E041C53250
+[PAR] PVOID                Context         : 0x000000E041D0E818
+[PAR] PTP_CALLBACK_ENVIRON CallbackEnviron : 0x0
+[RET] [0xe041c678a7]
 
-Monitoring: [pid 0x9d8][tid 0xb04] c:\windows\system32\rundll32.exe
-Monitoring: [API] <TpPostWork> in [ntdll.dll] 
-Parameter : PTP_WORK    Work : 0x000000FA92382D80
-Return  @ : 0xfa942d78b2
+[CNT] [236]
+[PTP] [0xa6c] [0xabc] [c:\windows\system32\rundll32.exe]
+[API] <TpPostWork> in [ntdll.dll] 
+[PAR] PTP_WORK    Work : 0x000000E03FD92D90
+[RET] [0xe041c678b2]
 
-Monitoring: [pid 0x9d8][tid 0xb04] c:\windows\system32\rundll32.exe
-Monitoring: [API] <TpReleaseWork> in [ntdll.dll] 
-Parameter : PTP_WORK    Work : 0x000000FA92382D80
-Return  @ : 0xfa942d78bd
+[CNT] [237]
+[PTP] [0xa6c] [0xabc] [c:\windows\system32\rundll32.exe]
+[API] <TpReleaseWork> in [ntdll.dll] 
+[PAR] PTP_WORK    Work : 0x000000E03FD92D90
+[RET] [0xe041c678bd]
 
-Thread created by monitored process : Now monitoring [pid 0x9d8][tid 0xb2c] // ThreadPool Worker Thread
+Thread created by monitored process : Now monitoring [pid 0xa6c][tid 0xac4] <--ThreadPool Worker Thread>
 
-Monitoring: [pid 0x9d8][tid 0xb2c] c:\windows\system32\rundll32.exe 
-Monitoring: [API] <LoadLibraryExA> in [KERNEL32.DLL] 
-Parameter : LPCTSTR lpFileName : 0x000000FA9437E693 ("iphlpapi.dll")        // DLL loaded by the worker thread
-Parameter : DWORD   dwFlags    : 0x0 (Same behavior as LoadLibrary)
-Return  @ : 0x7ff9b52e53c7                                                  // return address in NTDLL
+[CNT] [238]
+[PTP] [0xa6c] [0xac4] [c:\windows\system32\rundll32.exe]
+[INF] [ Thread is from a Worker Pool ]
+[API] <LoadLibraryExA> in [KERNEL32.DLL] 
+[PAR] LPCTSTR lpFileName : 0x000000E041D0E893 ("iphlpapi.dll") <--DLL loaded by the worker thread>
+[PAR] DWORD   dwFlags    : 0x0 (Same behavior as LoadLibrary)
+[RET] 0x7ffa026353c7                                           <--return address in NTDLL>
 ```
 
 The sample relies on the ThreadPool worker thread feature to execute various sensitives actions.  
@@ -162,7 +170,7 @@ Interestingly, the creation of a ThreadPool Worker thread doesn't seem to trigge
 
 Undocumented encryption routine :
 
-```python
+```html
 Monitoring: [pid 0x9d8][tid 0xb04] c:\windows\system32\rundll32.exe
 Monitoring: [RES]  <_vsnprintf>
 Parameter : char_t   *buffer : 0x000000FA9234AB10
@@ -205,7 +213,7 @@ Here the sample is relying on the undocumented SystemFunction032 function from C
 
 Encrypted in memory payload :
 
-```python
+```html
 Monitoring: [pid 0x9d8][tid 0xb04] c:\windows\system32\rundll32.exe
 Monitoring: [API] <SystemFunction036> in [CRYPTBASE.DLL] 
 Monitoring: [ i ] [ RtlGenRandom ]
