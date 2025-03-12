@@ -1,8 +1,5 @@
 ---
 title: Welcome to my blog
-include_scripts: [
-  "/assets/js/analytics.js"
-]
 ---
 
 You will find here technical analysis on various APT / Cybercrime malware that I have been studying through the custom sandbox I'm currently developping.  
