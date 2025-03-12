@@ -226,7 +226,7 @@ Now that we have established a trusted relationship with QUIETCANARY we can star
 
 ![Available commands](/docs/assets/images/QuietCanary/orders.jpg)
 
-Notice the 666 code associated with the "KillCommand", TURLA developpers were kind enough to refrain from using Order 66 which would have been a much violent crime...
+Notice the 666 code associated with the "KillCommand", TURLA developpers were kind enough to refrain from using Order 66 which would have been a much more violent crime...
 
 ---  
 
