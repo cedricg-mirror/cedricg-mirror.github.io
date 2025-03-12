@@ -5,4 +5,3 @@ plugins:
 relative_links:
   enabled: true
   collections: true
-title: Static and Dynamic Analysis
