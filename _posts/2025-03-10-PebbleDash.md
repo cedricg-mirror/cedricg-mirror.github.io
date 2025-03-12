@@ -291,7 +291,7 @@ PebbleDash handles this command this way :
 [RET] [0x7ff72797c7dd] [+0xc7dd] in [pebbledash.exe]
 ```
 
-* Execute command with output redirect to the temp file :  
+* Execute command with output redirected to the temp file :  
 
 ```html
 [CNT] [240]
