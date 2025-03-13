@@ -43,6 +43,11 @@ Analyzed sample contains many protection against runtime analysis / detection :
 
 ---
 
+# Encrypted Resource DLL
+
+[Resource](/docs/BazaarLoader/rsrc.jpg)
+
+
 NTDLL Base Address :
 
 The sample use the fact that PEB->LDR is located whithin NTDLL image to locate its base address : 
