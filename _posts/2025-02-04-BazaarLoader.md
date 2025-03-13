@@ -45,10 +45,57 @@ Analyzed sample contains many protection against runtime analysis / detection :
 
 # Encrypted Resource DLL
 
-[Resource](/docs/assets/images/BazaarLoader/rsrc.jpg)
+Main DLL contains an encrypted resource with a size of 0x48C00 bytes :  
+
+![Resource](/docs/assets/images/BazaarLoader/rsrc.jpg)
+
+Getting the resource after decryption is quite straightforward, first locate a VirtualAlloc call with a size matching the resource's size :  
+
+```html
+[CNT] [109]
+[PTP] [0x764] [0x708] [c:\windows\system32\rundll32.exe]
+[API] <VirtualAlloc> in [KERNEL32.DLL] 
+[PAR] LPVOID lpAddress    : 0x0
+[PAR] SIZE_T dwSize       : 0x48c00  <-- same size as resource>
+[PAR] DWORD  flProtect    : 0x4 (PAGE_READWRITE)
+[RET] [0x1800e943b] in [x64_stealth.dll]
+```
+
+The resource is decrypted right after the call with the following routine : 
+
+```asm
+call    rdi ; VirtualAlloc
+__0x1800e943b:
+mov 	rbx,18017A494h
+mov     r15,rax
+mov     r11,rax
+sub     rbx,rax
+mov     r10d,r14d
+__loop:
+movsxd  r8,r10d
+mov 	rax,2492492492492493h
+add     r10d,r12d
+mov     rcx,r8
+mul     rax,r8
+sub     rcx,rdx
+shr     rcx,1
+add     rcx,rdx
+shr     rcx,4
+imul    rax,rcx,1Ch
+sub     r8,rax
+mov     al,byte ptr [rsp+r8+20h]
+xor     al,byte ptr [rbx+r11]
+mov     byte ptr [r11],al
+add     r11,r12
+cmp     r10d,48C00h
+jb      __loop
+```
+
+I've uploaded the decrypted resource, which is still a packed DLL on [MalwareBazar](https://bazaar.abuse.ch/sample/4749186ec02e1600ae8b8031478d7ce7074e96cf70de008ef0037f2d63e93647/) for anyone interested.   
 
 
-NTDLL Base Address :
+
+# NTDLL Base Address 
 
 The sample use the fact that PEB->LDR is located whithin NTDLL image to locate its base address : 
 
@@ -88,7 +135,7 @@ memory layout:
 
 ---
 
-In memory execution :
+# In memory execution 
 
 ```html
 [CNT] [185]
@@ -130,7 +177,7 @@ A little trick regarding this CreateRemoteThread call, the thread's StartAddress
 
 --- 
 
-Thread Pool Worker Threads :
+# Thread Pool Worker Threads 
 
 ```html
 [CNT] [235]
@@ -173,7 +220,7 @@ Interestingly, the creation of a ThreadPool Worker thread doesn't seem to trigge
 
 --- 
 
-Undocumented encryption routine :
+# Undocumented encryption routines 
 
 ```html
 [ * ] [pid 0xa6c][tid 0xabc] c:\windows\system32\rundll32.exe
@@ -220,7 +267,7 @@ Here the sample is relying on the undocumented SystemFunction032 function from C
 
 --- 
 
-Encrypted in memory payload :
+# Encrypted in memory payload 
 
 ```html
 [CNT] [350]
