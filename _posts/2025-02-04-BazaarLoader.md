@@ -87,7 +87,7 @@ mov     al,byte ptr [rsp+r8+20h]
 xor     al,byte ptr [rbx+r11]
 mov     byte ptr [r11],al
 add     r11,r12
-cmp     r10d,48C00h
+cmp     r10d,48C00h   ; resource size
 jb      __loop
 ```
 
