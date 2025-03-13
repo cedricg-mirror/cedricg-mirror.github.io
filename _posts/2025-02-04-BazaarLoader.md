@@ -45,7 +45,7 @@ Analyzed sample contains many protection against runtime analysis / detection :
 
 # Encrypted Resource DLL
 
-[Resource](/docs/BazaarLoader/rsrc.jpg)
+[Resource](/docs/assets/images/BazaarLoader/rsrc.jpg)
 
 
 NTDLL Base Address :
