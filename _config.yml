@@ -1,6 +1,16 @@
 title: Reflexions
 description: >- # this means to ignore newlines until "baseurl:"
   <a href="https://cedricg-mirror.github.io/"> Static and Dynamic analysis of APT and CyberCrime malware 
+  <div class="follow-btns">
+    <a
+      class="btn btn-github"
+      href="https://github.com/cedricg-mirror"
+      target="_blank"
+      rel="noopener noreferrer"
+      >GitHub</a
+    >
+    <a class="btn btn-rss" href="/feed.xml" target="_blank">RSS</a>
+  </div>
 google_analytics: G-KWXC4M8HVK
 url: 'https://cedricg-mirror.github.io'
 email: git_reflexions@proton.me
