@@ -1,3 +1,38 @@
 pre.lines {
   display:none !important;
 }
+
+.btn {
+  border-radius: var(--border-radius);
+  color: white;
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 3px 9px 3px 9px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn-github {
+  background-color: #24292e;
+}
+
+.btn-github:hover {
+  background-color: #515960;
+}
+
+.btn-rss {
+  background-color: #b9501f;
+}
+
+.btn-rss:hover {
+  background-color: #923507;
+}
+
+.follow-btns {
+  display: flex;
+  gap: 0.5rem;
+}
