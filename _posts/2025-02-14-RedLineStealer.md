@@ -348,7 +348,7 @@ Even without beeing able to establish a connection with the telegram bot, the ma
 [RET] 0x7398da93
 ```
 
-The full list of targeted application is provided in "targets.txt".  
+The full list of targeted application is provided in [target.txt](https://github.com/cedricg-mirror/reflexions/blob/main/CyberCrime/Redline_Stealer/420f888c8bc5a5e5c71b6c157e7a8ed83527bb4893605f7c827cccd89f286cbc/targets.txt).  
 
 --- 
 
