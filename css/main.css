@@ -35,6 +35,10 @@ pre.lines {
   background-color: #923507;
 }
 
+.btn-mail {
+  background-color: #923507;
+}
+
 .follow-btns {
   display: flex;
   gap: 0.5rem;
