@@ -7,8 +7,4 @@ email: git_reflexions@proton.me
 github_username: cedricg-mirror
 theme: jekyll-theme-time-machine
 plugins:
-  - jekyll-relative-links
   - jekyll-feed
-relative_links:
-  enabled: true
-  collections: true
