@@ -19,6 +19,7 @@ pre.lines {
 }
 
 .btn-github {
+  border: 1px solid white;
   background-color: #24292e;
 }
 
