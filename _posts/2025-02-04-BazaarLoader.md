@@ -91,8 +91,9 @@ cmp     r10d,48C00h   ; resource size
 jb      __loop
 ```
 
-I've uploaded the decrypted resource (badger_x64_stealth_rtl.bin.packed.dll), which is still a packed DLL, on [MalwareBazar](https://bazaar.abuse.ch/sample/4749186ec02e1600ae8b8031478d7ce7074e96cf70de008ef0037f2d63e93647/) for anyone interested.   
+I've uploaded the decrypted resource (badger_x64_stealth_rtl.bin.packed.dll), which is still a packed DLL, on [MalwareBazar](https://bazaar.abuse.ch/sample/4749186ec02e1600ae8b8031478d7ce7074e96cf70de008ef0037f2d63e93647/) for anyone interested.    
 
+I've also uploaded the final unpacked payload here [MalwareBazar](https://bazaar.abuse.ch/sample/d8080b4f7a238f28435649f74fdd5679f7f7133ea81d12d9f10b05017b0897b1/)  
 
 
 # NTDLL Base Address 
