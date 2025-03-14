@@ -1,8 +1,14 @@
+title: Reflexions - Blog
+description: >- # this means to ignore newlines until "baseurl:"
+  Static and Dynamic analysis of APT and CyberCrime malware
 google_analytics: G-KWXC4M8HVK
 url: 'https://cedricg-mirror.github.io'
+email: git_reflexions@proton.me
+github_username: cedricg-mirror
 theme: jekyll-theme-time-machine
 plugins:
   - jekyll-relative-links
+  - jekyll-feed
 relative_links:
   enabled: true
   collections: true
