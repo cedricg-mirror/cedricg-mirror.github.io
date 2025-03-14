@@ -2,14 +2,10 @@ pre.lines {
   display:none !important;
 }
 
-:root {
-  --border-radius: 4px;
-  --strava-brand-color: #e34402;
-}
 
 
 .btn {
-  border-radius: var(--border-radius);
+  border-radius: 4px;
   color: white;
   display: inline-block;
   font-size: 0.75rem;
