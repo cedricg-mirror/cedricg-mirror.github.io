@@ -193,7 +193,7 @@ Then another free service is requested to localize the victim from its external 
 [RET] 0x72d60bb5
 ```
 
-The request is encrypted through HTTPS, it is nonetheless possible the clear content by looking at the right place :  
+The request is encrypted through HTTPS, it is nonetheless possible to get the clear content by looking at the right place :  
 
 ```html
 [ * ] [pid 0x66c][tid 0x76c] c:\windows\syswow64\svchost.exe
