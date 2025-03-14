@@ -378,7 +378,7 @@ If the malware is unable to retrieve it's external IP address the following cras
 [RET] 0x73314cbe
 ```
 
-![Alt text](fail.jpg?raw=true "Fake crash")
+![Crash](/docs/assets/images/RedLineStealer/fail.jpg)
 
 The same behavior is observed if a debugger is detected : 
 
