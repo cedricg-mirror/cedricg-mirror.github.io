@@ -10,6 +10,7 @@ description: >- # this means to ignore newlines until "baseurl:"
       >GitHub</a
     >
     <a class="btn btn-rss" href="/feed.xml" target="_blank">RSS</a>
+    <a class="btn btn-mail" href="mailto:git_reflexions@proton.me">Send email</a>
   </div>
 google_analytics: G-KWXC4M8HVK
 url: 'https://cedricg-mirror.github.io'
