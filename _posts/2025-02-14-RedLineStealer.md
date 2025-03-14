@@ -317,7 +317,7 @@ Unfortunatly something might be missing in my analysis environnment because the 
 
 # Credential harvesting
 
-Even without beeing able to establish a connection with the telegram bot, the malware nonetheless proceed with its credential harvesting procedure :  
+Even without beeing able to establish a connection with the telegram bot, the malware nonetheless proceeds with its credential harvesting procedure :  
 
 ```html
 [ * ] [pid 0x66c][tid 0x76c] c:\windows\syswow64\svchost.exe
