@@ -375,7 +375,7 @@ which triggered the following behavior :
 [RET] 0x7fff33b86a45 in [tinyturla.dll]
 ```
 
-Once the file download succesfuly, the malware reports back to the C2 :  
+Once the file has downloaded succesfuly, the malware reports back to the C2 :  
 
 ```html
 [ * ] [pid 0x250][tid 0x990] c:\windows\system32\svchost.exe
