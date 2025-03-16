@@ -9,7 +9,7 @@ I'll be happy to exchange with other researchers in the field of static or dynam
 
 ---  
 
-XX/03/2025
+# XX/03/2025
 
 ## [BRUTERATEL]
 The Emperor's New Clothes
