@@ -7,6 +7,16 @@ Raw dynamic analysis results are available for more samples on my dedicated GitH
 
 I'll be happy to exchange with other researchers in the field of static or dynamic analysis, as well as provide some logs for any publicly available sample.  
 
+---  
+
+XX/03/2025
+
+## [BRUTERATEL]
+The Emperor's New Clothes
+Full command list - Work in progress
+
+---
+
 # 12/03/2025  
 
 ## [LAZARUS PEBBLEDASH Analysis](https://cedricg-mirror.github.io/2025/03/10/PebbleDash.html)  
