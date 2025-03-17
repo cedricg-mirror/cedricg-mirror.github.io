@@ -18,12 +18,12 @@ VirusTotal :
 [VirusTotal](https://www.virustotal.com/gui/file/d8080b4f7a238f28435649f74fdd5679f7f7133ea81d12d9f10b05017b0897b1)  
 
 Network / C2 :  
-http://tiguanin[.]com/bazar.php:8041
+http://tiguanin[.]com/bazar.php:8041  
 http://tiguanin[.]com/admin.php:8041  
 http://bazarunet[.]com/admin.php:8041  
 http://bazarunet[.]com/bazar.php:8041  
-http://greshunka[.]com/bazar.php:8041 
-http://greshunka[.]com/admin.php:8041 
+http://greshunka[.]com/bazar.php:8041  
+http://greshunka[.]com/admin.php:8041  
 
 # INTRO  
 
