@@ -793,6 +793,11 @@ Empty result because of a lack of a domain controler in my lab, I'll update the 
 [RET] [0x4eabfde028]
 ```
 
+<a id="ExitThread"></a>
+# ExitThread  
+
+Self-explanatory. Not quite sure about the use case though.   
+
 <a id="GetMemoryDump"></a>
 # GetMemoryDump  
 
