@@ -61,6 +61,8 @@ Here is a short description of the first 20 command codes and purpose :
 | "\x9a\xbe"   | QuerySessionInformation | NA            | 
 | "\xb7\x38"   | GetDnsCacheDataTable    | NA            |
 
+# Command Syntaxe  
+
 On the C2 side, a command can be issued this way (example with the GetMemoryDump order) :  
 
 ```php
@@ -87,4 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 	return;
 }
 ```
+
+# Dynamic Analysis  
+
 
