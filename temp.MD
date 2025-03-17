@@ -322,3 +322,51 @@ S-1-2-1|
 07
 [...]
 ```
+
+# LockWorkStation  
+
+1. Order  
+
+```html
+[CNT] [395]
+[PTP] [0x828] [0x8c0] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000006AC9578750
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+f9rYErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000006AC958D160
+[PAR] DWORD   *pcbBinary : 0x0000006ACB48E85C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x6acb3ebea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [404]
+[PTP] [0x828] [0x8c0] [c:\windows\system32\rundll32.exe]
+[API] <LockWorkStation> in [USER32.dll] 
+[RET] [0x6acb3f3f0f]
+```
+
+3. Result  
+
+```html
+[CNT] [412]
+[PTP] [0x828] [0x8c0] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000006AC957DFD0
+[STR]        -> "9103"
+[PAR] DWORD  cbBinary   : 0xa
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000006AC958D370
+[PAR] DWORD* pcchString : 0x0000006ACB48E6EC
+[RET] [0x6acb3ee028]
+```
+
+# GetLogicalDrives  
+
+1. Order  
+
