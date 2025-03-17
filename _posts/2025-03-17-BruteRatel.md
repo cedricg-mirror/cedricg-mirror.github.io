@@ -40,7 +40,7 @@ Here is a short description of the first 20 command codes and purpose :
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
-| "\x9f\x3c"   | GetCurrentDirectory     | NA                |
+| "\x9f\x3c"   | [GetCurrentDirectory](#GetCurrentDirectory)  | NA                |
 | "\x3f\xd5"   | GetIpTable              | NA                |
 | "\xfe\x4f"   | GetAccountPrivileges    | NA                |
 | "\x91\x03"   | LockWorkStation         | NA                |
