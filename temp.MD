@@ -370,3 +370,303 @@ S-1-2-1|
 
 1. Order  
 
+```html
+[CNT] [327]
+[PTP] [0xa4c] [0x740] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000EC56118CB0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+V9rMErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000EC560FEFE0
+[PAR] DWORD   *pcbBinary : 0x000000EC5802E7BC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0xec57f8bea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [341]
+[PTP] [0xa4c] [0x740] [c:\windows\system32\rundll32.exe]
+[API] <GetLogicalDrives> in [KERNEL32.DLL] 
+[RET] [0xec57f94125]
+```
+
+3. Result  
+
+```html
+[CNT] [343]
+[PTP] [0xa4c] [0x740] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000EC56119270
+[STR]        -> "0906"
+[STR]           "C:\"
+[STR]           "D:\"
+[STR]           "X:\"
+[STR]           "Y:\"
+[STR]           "Z:\"
+[PAR] DWORD  cbBinary   : 0x32
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000000EC56126F10
+[PAR] DWORD* pcchString : 0x000000EC5802E62C
+[RET] [0xec57f8e028]
+```
+
+# GetSystemUptime  
+
+It's just GetTickCount() / 60000  
+
+1. Order  
+
+```html
+[CNT] [429]
+[PTP] [0x6c8] [0x7e0] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000007B27F06740
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+Vdr6ErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000007B27F1A670
+[PAR] DWORD   *pcbBinary : 0x0000007B29E4E77C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x7b29dabea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [437]
+[PTP] [0x6c8] [0x7e0] [c:\windows\system32\rundll32.exe]
+[API] <GetTickCount> in [KERNEL32.DLL] 
+[RET] [0x7b29dc1eef]
+```
+
+3. Result  
+
+```html
+[CNT] [447]
+[PTP] [0x6c8] [0x7e0] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000007B27F0E550
+[STR]        -> "010A"
+[STR]           "3"
+[PAR] DWORD  cbBinary   : 0xc
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000007B27F1AA30
+[PAR] DWORD* pcchString : 0x0000007B29E4E5FC
+[RET] [0x7b29dae028]
+```
+
+# GetLastInputInfo  
+
+1. Order  
+
+```html
+[CNT] [429]
+[PTP] [0x664] [0x37c] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x00000095520C5F80
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+VuzmErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x00000095520D7900
+[PAR] DWORD   *pcbBinary : 0x000000955402E5CC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x9553f8bea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [438]
+[PTP] [0x664] [0x37c] [c:\windows\system32\rundll32.exe]
+[API] <GetTickCount> in [KERNEL32.DLL] 
+[RET] [0x9553f9099c]
+
+[CNT] [439]
+[PTP] [0x664] [0x37c] [c:\windows\system32\rundll32.exe]
+[API] <GetLastInputInfo> in [USER32.dll] 
+[PAR] PLASTINPUTINFO plii : 0x000000955402E4F8
+[RET] [0x9553f909bb]
+```
+
+3. Result  
+
+```html
+[CNT] [449]
+[PTP] [0x664] [0x37c] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x00000095520CC210
+[STR]        -> "060B"
+[STR]           "0"
+[PAR] DWORD  cbBinary   : 0xc
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x00000095520D7840
+[PAR] DWORD* pcchString : 0x000000955402E44C
+[RET] [0x9553f8e028]
+```
+
+# ExitProcess  
+
+Self-explanatory. It's maybe worth mentionning that the malware will shutdown without acknowledging the order to the C2.  
+
+# RevertToSelf  
+
+TODO  
+
+# GetClipBoardData  
+
+1. Order  
+
+```html
+[CNT] [429]
+[PTP] [0x7cc] [0x7ac] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000D135D99000
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+VtrQErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000D135DAA4D0
+[PAR] DWORD   *pcbBinary : 0x000000D137CDE5FC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0xd137c3bea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [438]
+[PTP] [0x7cc] [0x7ac] [c:\windows\system32\rundll32.exe]
+[API] <OpenClipboard> in [USER32.dll] 
+[PAR] HWND hWndNewOwner : 0x0
+[RET] [0xd137c3dbf9]
+
+[CNT] [439]
+[PTP] [0x7cc] [0x7ac] [c:\windows\system32\rundll32.exe]
+[API] <GetClipboardData> in [USER32.dll] 
+[PAR] UINT uFormat : 0xd (CF_UNICODETEXT)
+[RET] [0xd137c3dc08]
+```
+
+3. Result  
+
+```html
+[CNT] [449]
+[PTP] [0x7cc] [0x7ac] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000D135D92340
+[STR]        -> "0501"
+[STR]           "It is not in the stars to hold our destiny but in ourselves. WS"
+[PAR] DWORD  cbBinary   : 0x88
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0
+[PAR] DWORD* pcchString : 0x000000D137CDE47C
+[RET] [0xd137c3dff1]
+```
+
+# EnumDevicesDrivers  
+
+1. Order  
+
+```html
+[CNT] [798]
+[PTP] [0xaf8] [0x834] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000005D6C3B8A00
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+RsbQErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0
+[PAR] DWORD   *pcbBinary : 0x0000005D6E28EB0C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x5d6e1ebe5c]
+```
+
+2. Execution  
+
+```html
+[CNT] [812]
+[PTP] [0xaf8] [0x834] [c:\windows\system32\rundll32.exe]
+[API] <EnumDeviceDrivers> in [PSAPI.DLL] 
+[PAR] LPVOID* lpImageBase : 0x0000005D6E28CA20
+[PAR] DWORD   cb          : 0x2000
+[PAR] LPDWORD lpcbNeeded  : 0x0000005D6E28C1F4
+[RET] [0x5d6e1ed495]
+
+[CNT] [823]
+[PTP] [0xaf8] [0x834] [c:\windows\system32\rundll32.exe]
+[API] <GetDeviceDriverFileNameW> in [PSAPI.DLL] 
+[PAR] LPVOID ImageBase  : 0xFFFFF80085C0E000
+[PAR] LPWSTR lpFilename : 0x0000005D6E28C220
+[PAR] DWORD  nSize      : 0x400
+[RET] [0x5d6e1ed541]
+
+[CNT] [835]
+[PTP] [0xaf8] [0x834] [c:\windows\system32\rundll32.exe]
+[API] <GetFileVersionInfoSizeW> in [version.dll] 
+[PAR] LPCWSTR lptstrFilename : 0x0000005D6C3B47B0
+[STR]         -> "C:\Windows\system32\ntoskrnl.exe"
+[PAR] LPDWORD lpdwHandle     : 0x0000005D6E28C104
+[RET] [0x5d6e1ee782]
+
+[CNT] [837]
+[PTP] [0xaf8] [0x834] [c:\windows\system32\rundll32.exe]
+[API] <GetFileVersionInfoW> in [version.dll] 
+[PAR] LPCWSTR lptstrFilename : 0x0000005D6C3B47B0
+[STR]         -> "C:\Windows\system32\ntoskrnl.exe"
+[RET] [0x5d6e1ee8af]
+
+[CNT] [843]
+[PTP] [0xaf8] [0x834] [c:\windows\system32\rundll32.exe]
+[API] <VerQueryValueW> in [version.dll] 
+[PAR] LPCVOID pBlock      : 0x0000005D6C3B0660
+[PAR] LPCWSTR  lpSubBlock : 0x0000005D6C3C7F80
+[STR]          -> "\StringFileInfo\040904B0\FileDescription"
+[PAR] LPVOID* lplpBuffer  : 0x0000005D6E28C128
+[PAR] PUINT   puLen       : 0x0000005D6E28C10C
+[RET] [0x5d6e1ee9dd]
+
+[CNT] [848]
+[PTP] [0xaf8] [0x834] [c:\windows\system32\rundll32.exe]
+[API] <VerQueryValueW> in [version.dll] 
+[PAR] LPCVOID pBlock      : 0x0000005D6C3B0660
+[PAR] LPCWSTR  lpSubBlock : 0x0000005D6C3C8460
+[STR]          -> "\StringFileInfo\040904B0\CompanyName"
+[PAR] LPVOID* lplpBuffer  : 0x0000005D6E28C130
+[PAR] PUINT   puLen       : 0x0000005D6E28C10C
+[RET] [0x5d6e1eeaf6]
+
+[...]
+```
+
+3. Result  
+
+```
+44C1
+130
+0xFFFFF80085C0E000|C:\Windows\system32\ntoskrnl.exe|Microsoft Corporation|NT Kernel & System
+0xFFFFF800863A2000|C:\Windows\system32\hal.dll|Microsoft Corporation|Hardware Abstraction Layer DLL
+0xFFFFF8008530F000|C:\Windows\system32\kdcom.dll|Sysprogs OU|Kernel Debugger Extension DLL for VM debugging
+0xFFFFF801ACA14000|C:\Windows\system32\mcupdate_GenuineIntel.dll|Microsoft Corporation|Intel Microcode Update Library
+0xFFFFF801ACA91000|C:\Windows\System32\drivers\werkernel.sys|Microsoft Corporation|Windows Error Reporting Kernel Driver
+0xFFFFF801ACA9F000|C:\Windows\System32\drivers\CLFS.SYS|Microsoft Corporation|Common Log File System Driver
+[...]
+```
+
+# Screenshot  
+
+I have to come forward and confess that I'm still running a Windows 8.1 system for my lab.  
+Unfortunatly this sample is relying on an API not available for this version of Windows, and also doesn't check whether the required API is available, triggering a crash when attempting to execute the order...   
+
+![Missing Function](/docs/assets/images/BazaarLoader/ScreenShot_fail.jpg)  
+
+# GetDomainControlerInfo  
+
+
+
