@@ -1,5 +1,5 @@
 ---
-title: "BruteRatel full command analysis 1/X"
+title: "BruteRatel full command analysis (1/X)"
 date: 2025-03-XX
 ---
 
