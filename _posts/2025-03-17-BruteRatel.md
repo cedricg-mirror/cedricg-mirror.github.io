@@ -30,7 +30,7 @@ http://greshunka[.]com/admin.php:8041
 This article is a follow-up from a previous post regarding a BazaarLoader sample analysis : [Initial Post](https://cedricg-mirror.github.io/2025/02/04/BazaarLoader.html)  
 After going through various stages of unpacking and in-memory loading, I was able to retrieve the final payload from the initial sample and made it available on [bazaar.abuse.ch](https://bazaar.abuse.ch/sample/d8080b4f7a238f28435649f74fdd5679f7f7133ea81d12d9f10b05017b0897b1/)  
 
-Working on this unpacked payload made the sample analysis much more straightforward and given the sheer amount of functionalities offered by this malware I've decided to review them all.  
+Working on this unpacked payload made the sample analysis much more straightforward and given the sheer amount of functionalities offered by this malware (~70 commands) I've decided to review them all.  
 
 This detailed analysis will be split into several parts, I will be presenting in this the 'first' 20 commands that BruteRatel can respond to.  
 
