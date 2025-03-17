@@ -7,13 +7,6 @@ Raw dynamic analysis results are available for more samples on my dedicated GitH
 
 I'll be happy to exchange with other researchers in the field of static or dynamic analysis, as well as provide some logs for any publicly available sample.  
 
----  
-
-# 17/03/2025
-
-## [BRUTERATEL Full command list](https://cedricg-mirror.github.io/2025/03/17/BruteRatel.html)
-The Emperor's New Clothes  
-Part 1 of X  
 
 ---
 
