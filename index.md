@@ -9,11 +9,11 @@ I'll be happy to exchange with other researchers in the field of static or dynam
 
 ---  
 
-# XX/03/2025
+# 17/03/2025
 
-## [BRUTERATEL]
+## [BRUTERATEL](https://cedricg-mirror.github.io/2025/03/17/BruteRatel.html)
 The Emperor's New Clothes  
-Full command list - Work in progress
+Full command list, Part 1 of XX 
 
 ---
 
