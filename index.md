@@ -7,6 +7,13 @@ Raw dynamic analysis results are available for more samples on my dedicated GitH
 
 I'll be happy to exchange with other researchers in the field of static or dynamic analysis, as well as provide some logs for any publicly available sample.  
 
+---  
+
+# 17/03/2025
+
+## [BRUTERATEL Full command list]
+The Emperor's New Clothes  
+Part 1 of X  
 
 ---
 
