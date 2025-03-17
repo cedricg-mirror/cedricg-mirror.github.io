@@ -96,7 +96,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 # GetCurrentDirectory  
 
-1. Fetching the order  
+**I. Fetching the order**  
 
 ```html
 [CNT] [358]
@@ -122,7 +122,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 [RET] [0x44972fbea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [369]
@@ -133,7 +133,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 [RET] [0x449730964b]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [377]
@@ -151,7 +151,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 # GetIpTable  
 
-1. Order  
+**I. Order**    
 
 ```html
 [CNT] [327]
@@ -168,7 +168,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 [RET] [0x9d1482bea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [336]
@@ -180,7 +180,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 [RET] [0x9d14829f1b]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [512]
@@ -203,7 +203,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 # GetAccountPrivileges  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [327]
@@ -220,7 +220,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 [RET] [0xa447dbea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [335]
@@ -290,7 +290,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 [...]
 ```
 
-3. Result  
+**III. Result**  
 
 ```
 FE4F
@@ -325,7 +325,7 @@ S-1-2-1|
 
 # LockWorkStation  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [395]
@@ -342,7 +342,7 @@ S-1-2-1|
 [RET] [0x6acb3ebea1]
 ```
 
-2. Execution  
+** II. Execution**  
 
 ```html
 [CNT] [404]
@@ -351,7 +351,7 @@ S-1-2-1|
 [RET] [0x6acb3f3f0f]
 ```
 
-3. Result  
+** III. Result**  
 
 ```html
 [CNT] [412]
@@ -368,7 +368,7 @@ S-1-2-1|
 
 # GetLogicalDrives  
 
-1. Order  
+** I. Order**  
 
 ```html
 [CNT] [327]
@@ -385,7 +385,7 @@ S-1-2-1|
 [RET] [0xec57f8bea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [341]
@@ -394,7 +394,7 @@ S-1-2-1|
 [RET] [0xec57f94125]
 ```
 
-3. Result  
+**III. Result***  
 
 ```html
 [CNT] [343]
@@ -418,7 +418,7 @@ S-1-2-1|
 
 It's just GetTickCount() / 60000  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [429]
@@ -435,7 +435,7 @@ It's just GetTickCount() / 60000
 [RET] [0x7b29dabea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [437]
@@ -444,7 +444,7 @@ It's just GetTickCount() / 60000
 [RET] [0x7b29dc1eef]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [447]
@@ -462,7 +462,7 @@ It's just GetTickCount() / 60000
 
 # GetLastInputInfo  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [429]
@@ -479,7 +479,7 @@ It's just GetTickCount() / 60000
 [RET] [0x9553f8bea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [438]
@@ -494,7 +494,7 @@ It's just GetTickCount() / 60000
 [RET] [0x9553f909bb]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [449]
@@ -520,7 +520,7 @@ TODO
 
 # GetClipBoardData  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [429]
@@ -537,7 +537,7 @@ TODO
 [RET] [0xd137c3bea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [438]
@@ -553,7 +553,7 @@ TODO
 [RET] [0xd137c3dc08]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [449]
@@ -571,7 +571,7 @@ TODO
 
 # EnumDevicesDrivers  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [798]
@@ -588,7 +588,7 @@ TODO
 [RET] [0x5d6e1ebe5c]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [812]
@@ -645,7 +645,7 @@ TODO
 [...]
 ```
 
-3. Result  
+**III. Result**  
 
 ```
 44C1
@@ -668,7 +668,7 @@ Unfortunatly this sample is relying on an API not available for this version of 
 
 # GetDomainControlerInfo  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [327]
@@ -685,7 +685,7 @@ Unfortunatly this sample is relying on an API not available for this version of 
 [RET] [0x73530bbea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [370]
@@ -700,7 +700,7 @@ Unfortunatly this sample is relying on an API not available for this version of 
 [RET] [0x73530bbf68]
 ```
 
-3. Result  
+**III. Result**  
 
 Empty result because of a lack of a domain controler in my lab, I'll update the results later  
 
@@ -719,7 +719,7 @@ Empty result because of a lack of a domain controler in my lab, I'll update the 
 
 # GetNetworkAdaptersInfo  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [829]
@@ -736,7 +736,7 @@ Empty result because of a lack of a domain controler in my lab, I'll update the 
 [RET] [0x4eabfdbea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [843]
@@ -769,7 +769,7 @@ Empty result because of a lack of a domain controler in my lab, I'll update the 
 [RET] [0x4eabfe123e]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [948]
@@ -791,7 +791,7 @@ Empty result because of a lack of a domain controler in my lab, I'll update the 
 
 I tried a memory dump on explorer.exe :  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [361]
@@ -808,7 +808,7 @@ I tried a memory dump on explorer.exe :
 [RET] [0xc999a8bea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [385]
@@ -954,7 +954,7 @@ I tried a memory dump on explorer.exe :
 [RET] [0xc999aa491d]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [2608]
@@ -989,7 +989,7 @@ I tried a memory dump on explorer.exe :
 ```
 # GetTcpUdpTables  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [395]
@@ -1005,7 +1005,7 @@ I tried a memory dump on explorer.exe :
 [PAR] DWORD   *pdwFlags  : 0x0
 [RET] [0x4a4f92bea1]
 ```
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [410]
@@ -1029,9 +1029,31 @@ I tried a memory dump on explorer.exe :
 [PAR] TCP_TABLE_CLASS TableClass : 0x2 (TCP_TABLE_BASIC_ALL)
 [PAR] ULONG           Reserved   : 0x0
 [RET] [0x4a4f91545f]
+
+[CNT] [973]
+[PTP] [0xb20] [0xa04] [c:\windows\system32\rundll32.exe]
+[API] <GetExtendedUdpTable> in [iphlpapi.dll] 
+[PAR] PVOID           pUdpTable  : 0x0000004A4DC8F750
+[PAR] PDWORD          pdwSize    : 0x0000004A4FB5E8AC
+[PAR] BOOL            bOrder     : 0x1
+[PAR] ULONG           ulAf       : 0x2
+[PAR] UDP_TABLE_CLASS TableClass : 0x1 (UDP_TABLE_OWNER_PID)
+[PAR] ULONG           Reserved   : 0x0
+[RET] [0x4a4f91586c]
+
+[CNT] [1072]
+[PTP] [0xb20] [0xa04] [c:\windows\system32\rundll32.exe]
+[API] <GetExtendedUdpTable> in [iphlpapi.dll] 
+[PAR] PVOID           pUdpTable  : 0x0000004A4DC95730
+[PAR] PDWORD          pdwSize    : 0x0000004A4FB5E8AC
+[PAR] BOOL            bOrder     : 0x1
+[PAR] ULONG           ulAf       : 0x2
+[PAR] UDP_TABLE_CLASS TableClass : 0x0 (UDP_TABLE_BASIC)
+[PAR] ULONG           Reserved   : 0x0
+[RET] [0x4a4f91586c]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [1122]
@@ -1067,7 +1089,7 @@ I tried a memory dump on explorer.exe :
 
 # GetIpForwardTable  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [327]
@@ -1084,7 +1106,7 @@ I tried a memory dump on explorer.exe :
 [RET] [0x78ce8cbea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [337]
@@ -1103,7 +1125,7 @@ I tried a memory dump on explorer.exe :
 [RET] [0x78ce8daae9]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [586]
@@ -1130,7 +1152,7 @@ I tried a memory dump on explorer.exe :
 
 # QuerySessionInformation  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [429]
@@ -1147,7 +1169,7 @@ I tried a memory dump on explorer.exe :
 [RET] [0x4ab1aabea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [452]
@@ -1181,7 +1203,7 @@ I tried a memory dump on explorer.exe :
 [RET] [0x4ab1aaff4e]
 ```
 
-3. Result  
+**III. Result**  
 
 ```html
 [CNT] [482]
@@ -1199,7 +1221,7 @@ I tried a memory dump on explorer.exe :
 
 # GetDnsCacheDataTable  
 
-1. Order  
+**I. Order**  
 
 ```html
 [CNT] [327]
@@ -1216,7 +1238,7 @@ I tried a memory dump on explorer.exe :
 [RET] [0x4ca278bea1]
 ```
 
-2. Execution  
+**II. Execution**  
 
 ```html
 [CNT] [341]
@@ -1227,7 +1249,7 @@ I tried a memory dump on explorer.exe :
 [RET] [0x4ca278cb0c]
 ```
 
-3. Result  
+**III. Result**  
 
 Well... unsurprisingly, lots of C2 in there...
 
