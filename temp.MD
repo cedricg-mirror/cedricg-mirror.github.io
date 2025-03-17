@@ -512,7 +512,7 @@ It's just GetTickCount() / 60000
 
 # ExitProcess  
 
-Self-explanatory. It's maybe worth mentionning that the malware will shutdown without acknowledging the order to the C2.  
+Self-explanatory. It may be worth mentionning that the malware will shutdown without acknowledging the order to the C2.  
 
 # RevertToSelf  
 
@@ -668,5 +668,292 @@ Unfortunatly this sample is relying on an API not available for this version of 
 
 # GetDomainControlerInfo  
 
+1. Order  
 
+```html
+[CNT] [327]
+[PTP] [0x930] [0x334] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x00000073510FAEB0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+baDYErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000007351114C90
+[PAR] DWORD   *pcbBinary : 0x000000735315EB6C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x73530bbea1]
+```
 
+2. Execution  
+
+```html
+[CNT] [370]
+[PTP] [0x930] [0x334] [c:\windows\system32\rundll32.exe]
+[API] <DsGetDcNameW> in [LOGONCLI.DLL] 
+[PAR] LPCWSTR                  ComputerName         : 0x0 (null)
+[PAR] LPCWSTR                  DomainName           : 0x0 (null)
+[PAR] GUID*                     DomainGuid           : 0x0
+[PAR] LPWCSTR                  SiteName             : 0x0 (null)
+[PAR] ULONG                     Flags                : 0x0
+[PAR] PDOMAIN_CONTROLLER_INFOW* DomainControllerInfo : 0x000000735315EA58
+[RET] [0x73530bbf68]
+```
+
+3. Result  
+
+Empty result because of a lack of a domain controler in my lab, I'll update the results later  
+
+```html
+[CNT] [377]
+[PTP] [0x930] [0x334] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x00000073511009E0
+[STR]        -> "CBE3"
+[PAR] DWORD  cbBinary   : 0xa
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000007351114A50
+[PAR] DWORD* pcchString : 0x000000735315E94C
+[RET] [0x73530be028]
+```
+
+# GetNetworkAdaptersInfo  
+
+1. Order  
+
+```html
+[CNT] [829]
+[PTP] [0x9e0] [0xb68] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000004EAA118470
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+Uv3MErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000004EAA129950
+[PAR] DWORD   *pcbBinary : 0x0000004EAC07E94C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x4eabfdbea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [843]
+[PTP] [0x9e0] [0xb68] [c:\windows\system32\rundll32.exe]
+[API] <GetNetworkParams> in [iphlpapi.dll] 
+[PAR] PFIXED_INFO pFixedInfo : 0x0000004EAA135760
+[PAR] PULONG      pOutBufLen : 0x0000004EAC07E7F0
+[RET] [0x4eabfe0dc4]
+
+[CNT] [879]
+[PTP] [0x9e0] [0xb68] [c:\windows\system32\rundll32.exe]
+[API] <GetAdaptersInfo> in [iphlpapi.dll] 
+[PAR] PIP_ADAPTER_INFO AdapterInfo : 0x0000004EAA10FE30
+[PAR] PULONG           SizePointer : 0x0000004EAC07E7F4
+[RET] [0x4eabfe0f9b]
+
+[CNT] [936]
+[PTP] [0x9e0] [0xb68] [c:\windows\system32\rundll32.exe]
+[API] <_localtime64_s> in [msvcrt.dll] 
+[PAR] tm*         _Tm   : 0x0000004EAC07E83C
+[PAR] __time64_t* _Time : 0x0000004EAA1100E8
+[RET] [0x4eabfe1225]
+
+[CNT] [937]
+[PTP] [0x9e0] [0xb68] [c:\windows\system32\rundll32.exe]
+[API] <asctime_s> in [msvcrt.dll] 
+[PAR] char*            _Buffer      : 0x0000004EAC07E81C
+[PAR] size_t           _SizeInBytes : 0x20
+[PAR] struct tm const* _Tm          : 0x0000004EAC07E83C
+[RET] [0x4eabfe123e]
+```
+
+3. Result  
+
+```html
+[CNT] [948]
+[PTP] [0x9e0] [0xb68] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000004EAA102650
+[STR]        -> "16F6"
+[STR]           "home  8 NA 0 0 0"
+[STR]           "6 {54BD383F-B0DD-43E2-87FF-399DE077C35F} Carte Intel(R) PRO/1000 MT pour station de travail|"
+[STR]           "08-00-27-8E-BA-05 1 169.254.143.85 255.255.0.0 0.0.0.0 0.0.0.0  |Thu Jan 01 01:00:00 1970|Thu Jan 01 01:00:00 1970"
+[PAR] DWORD  cbBinary   : 0x1ca
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000004EAA13B5A0
+[PAR] DWORD* pcchString : 0x0000004EAC07E72C
+[RET] [0x4eabfde028]
+```
+
+# GetMemoryDump  
+
+I tried a memory dump on explorer.exe :  
+
+1. Order  
+
+```html
+[CNT] [361]
+[PTP] [0xaf4] [0xae0] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000C997BB3BB0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+Ws7+SMQANg/Z0G+yJFVm92kWXjNHwdzTJtM="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000C997BB71F0
+[PAR] DWORD   *pcbBinary : 0x000000C999B2EB6C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0xc999a8bea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [385]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[API] <CreateToolhelp32Snapshot> in [KERNEL32.DLL] 
+[PAR] DWORD dwFlags       : 0x2 ( TH32CS_SNAPPROCESS)
+[PAR] DWORD th32ProcessID : 0x0
+[RET] [0xc999a8ed24]
+
+[CNT] [386]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[API] <Process32FirstW> in [KERNEL32.DLL] 
+[PAR] HANDLE            hSnapshot : 0x304
+[PAR] LPPROCESSENTRY32W lppe      : 0x000000C99A09EC68
+[RET] [0xc999a8ed43]
+
+[ * ] [pid 0xaf4][tid 0x32c] c:\windows\system32\rundll32.exe
+[API] <Process32NextW>
+[PAR] LPPROCESSENTRY32W lppe : 0x000000C99A09EC68
+[FLD]                   -> th32ProcessID = 0x4
+[FLD]                   -> szExeFile     = "System"
+[RES] BOOL 0x1
+
+[...]
+
+[ * ] [pid 0xaf4][tid 0x32c] c:\windows\system32\rundll32.exe
+[API] <Process32NextW>
+[PAR] LPPROCESSENTRY32W lppe : 0x000000C99A09EC68
+[FLD]                   -> th32ProcessID = 0x804
+[FLD]                   -> szExeFile     = "explorer.exe"
+[RES] BOOL 0x1
+
+[CNT] [424]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtOpenProcessToken> in [ntdll.dll] 
+[PAR] HANDLE      ProcessHandle : 0xFFFFFFFFFFFFFFFF
+[PAR] ACCESS_MASK DesiredAccess : 0x8 (TOKEN_QUERY)
+[PAR] PHANDLE     TokenHandle   : 0x000000C99A09EC78
+[RET] [0xc999aa4b2f]
+
+[CNT] [425]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[API] <LookupPrivilegeValueA> in [ADVAPI32.dll] 
+[PAR] LPCTSTR lpSystemName : 0x0 (null)
+[PAR] LPCTSTR lpName       : 0x000000C99A09EC8B
+[STR]         -> "SeDebugPrivilege"
+[RET] [0xc999a8a385]
+
+[CNT] [426]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[API] <PrivilegeCheck> in [ADVAPI32.dll] 
+[PAR] HANDLE         ClientToken        : 0x304
+[PAR] PPRIVILEGE_SET RequiredPrivileges : 0x000000C99A09EC9C
+[PAR] LPBOOL         pfResult           : 0x000000C99A09EC74
+[RET] [0xc999a8a3c9]
+
+[CNT] [429]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtOpenProcess> in [ntdll.dll] 
+[PAR] PHANDLE             ProcessHandle    : 0x000000C99A09EDB0
+[PAR] ACCESS_MASK         DesiredAccess    : 0x410 (PROCESS_VM_READ | PROCESS_QUERY_INFORMATION)
+[PAR] POBJECT_ATTRIBUTES  ObjectAttributes : 0x000000C99A09EE40
+[PAR] PCLIENT_ID          ClientId         : 0x000000C99A09EE20
+[RET] [0xc999aa4aab]
+
+[CNT] [433]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtCreateFile> in [ntdll.dll] 
+[PAR] PHANDLE            FileHandle       : 0x000000C99A09EDB8
+[PAR] ACCESS_MASK        DesiredAccess    : 0x12019f 
+[PAR] POBJECT_ATTRIBUTES ObjectAttributes : 0x000000C99A09EE40
+[FLD]                    -> ObjectName = "\??\C:\Users\Public\cache"
+[PAR] PIO_STATUS_BLOCK  IoStatusBlock     : 0x000000C99A09EE10
+[PAR] PLARGE_INTEGER    AllocationSize    : 0x000000C99A09EDF0
+[PAR] ULONG             FileAttributes    : 0x80
+[PAR] ULONG             ShareAccess       : 0x3 (FILE_SHARE_READ | FILE_SHARE_WRITE)
+[PAR] ULONG             CreateDisposition : 0x5 (FILE_DOES_NOT_EXIST)
+[PAR] ULONG             CreateOptions     : 0x20 (FILE_SYNCHRONOUS_IO_NONALERT)
+[RET] [0xc999aa421a]
+
+[CNT] [455]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[API] <SymInitializeW> in [dbghelp.dll] 
+[PAR] HANDLE hProcess       : 0x304 
+[PAR] PWSTR  UserSearchPath : 0x0 (null)
+[PAR] BOOL   fInvadeProcess : 0x1
+[RET] [0xc999a9ebe0]
+
+[CNT] [460]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtQuerySystemInformation> in [ntdll.dll] 
+[PAR] SYSTEM_INFORMATION_CLASS SystemInformationClass  : 0x5 (SystemProcessInformation)
+[PAR] PVOID                    SystemInformation       : 0x000000C99F333650
+[PAR] ULONG                    SystemInformationLength : 0x10000
+[PAR] PULONG                   ReturnLength            : 0x0
+[RET] [0xc999aa4f0d]
+
+[CNT] [461]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[API] <EnumerateLoadedModulesW64> in [dbghelp.dll] 
+[PAR] HANDLE                          hProcess                  : 0x304 
+[PAR] PENUMLOADED_MODULES_CALLBACKW64 EnumLoadedModulesCallback : 0x000000C999A8E100
+[PAR] PVOID                           UserContext               : 0x000000C99A09EC70
+[RET] [0xc999a9ec9c]
+
+[CNT] [935]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[API] <SymCleanup> in [dbghelp.dll] 
+[RET] [0xc999a9edc4]
+
+[CNT] [936]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[API] <GetFileSizeEx> in [KERNEL32.DLL] 
+[PAR] HANDLE         hFile      : 0x314
+[PAR] PLARGE_INTEGER lpFileSize : 0x000000C99A09EDF8
+[RET] [0xc999a975d3]
+
+[CNT] [937]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtCreateSection> in [ntdll.dll] 
+[PAR] PHANDLE            SectionHandle         : 0x000000C99A09EDC8
+[PAR] ACCESS_MASK        DesiredAccess         : 0x4 (SECTION_MAP_READ)
+[PAR] POBJECT_ATTRIBUTES ObjectAttributes      : 0x0
+[PAR] PLARGE_INTEGER     MaximumSize           : 0x000000C99A09EDF0
+[PAR] ULONG              SectionPageProtection : 0x2
+[PAR] ULONG              AllocationAttributes  : 0x8000000
+[PAR] HANDLE             FileHandle            : 0x314
+[RET] [0xc999aa4324]
+
+[CNT] [938]
+[PTP] [0xaf4] [0x32c] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtMapViewOfSection> in [ntdll.dll] 
+[PAR] HANDLE SectionHandle  : 0x304
+[PAR] HANDLE ProcessHandle  : 0xFFFFFFFFFFFFFFFF
+[PAR] PVOID  *BaseAddress   : 0x000000C99A09EDA8 (0x0000000000000000)
+[PAR] ULONG  Protect        : 0x2(PAGE_READONLY)
+[RET] [0xc999aa491d]
+```
+
+3. Result  
+
+TODO  
