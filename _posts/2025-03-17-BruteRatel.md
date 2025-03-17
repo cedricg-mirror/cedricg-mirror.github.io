@@ -42,24 +42,24 @@ Here is a short description of the first 20 command codes and purpose :
 | :----------- | :---------------------- | :----------------:|
 | "\x9f\x3c"   | [GetCurrentDirectory](#GetCurrentDirectory) | NA                |
 | "\x3f\xd5"   | [GetIpTable](#GetIpTable) | NA                |
-| "\xfe\x4f"   | GetAccountPrivileges    | NA                |
-| "\x91\x03"   | LockWorkStation         | NA                |
-| "\x09\x06"   | GetLogicalDrives        | NA                |
-| "\x01\x0a"   | GetSystemUptime         | NA                |
-| "\x06\x0b"   | GetLastInputInfo        | NA                |
-| "\x03\x07"   | ExitProcess             | NA                |
-| "\x05\x06"   | RevertToSelf            | NA                |
-| "\x05\x01"   | GetClipBoardData        | NA                |
-| "\x44\xc1"   | EnumDevicesDrivers      | NA                |
-| "\x41\x9c"   | Screenshot              | NA                |
-| "\xcb\xe3"   | GetDomainControlerInfo  | NA                |
-| "\x16\xf6"   | GetNetworkAdaptersInfo  | NA                |
-| "\x03\x08"   | ExitThread              | NA                |
-| "\x34\x49"   | GetMemoryDump           | "processname.exe" |
-| "\x39\xb3"   | GetTcpUdpTables         | NA                | 
-| "\x1a\xd4"   | GetIpForwardTable       | NA                | 
-| "\x9a\xbe"   | QuerySessionInformation | NA                | 
-| "\xb7\x38"   | GetDnsCacheDataTable    | NA                |
+| "\xfe\x4f"   | [GetAccountPrivileges](#GetAccountPrivileges) | NA                |
+| "\x91\x03"   | [LockWorkStation](#LockWorkStation) | NA                |
+| "\x09\x06"   | [GetLogicalDrives](#GetLogicalDrives) | NA                |
+| "\x01\x0a"   | [GetSystemUptime](#GetSystemUptime) | NA                |
+| "\x06\x0b"   | [GetLastInputInfo](#GetLastInputInfo) | NA                |
+| "\x03\x07"   | [ExitProcess](#ExitProcess) | NA                |
+| "\x05\x06"   | [RevertToSelf](#RevertToSelf) | NA                |
+| "\x05\x01"   | [GetClipBoardData](#GetClipBoardData) | NA                |
+| "\x44\xc1"   | [EnumDevicesDrivers](#EnumDevicesDrivers) | NA                |
+| "\x41\x9c"   | [Screenshot](#Screenshot) | NA                |
+| "\xcb\xe3"   | [GetDomainControlerInfo](#GetDomainControlerInfo) | NA                |
+| "\x16\xf6"   | [GetNetworkAdaptersInfo](#GetNetworkAdaptersInfo) | NA                |
+| "\x03\x08"   | [ExitThread](#ExitThread) | NA                |
+| "\x34\x49"   | [GetMemoryDump](#GetMemoryDump) | "processname.exe" |
+| "\x39\xb3"   | [GetTcpUdpTables](#GetTcpUdpTables) | NA                | 
+| "\x1a\xd4"   | [GetIpForwardTable](#GetIpForwardTable) | NA                | 
+| "\x9a\xbe"   | [QuerySessionInformation](#QuerySessionInformation) | NA                | 
+| "\xb7\x38"   | [GetDnsCacheDataTable](#GetDnsCacheDataTable) | NA                |
 
 # Command Syntax  
 
@@ -201,7 +201,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 [PAR] DWORD* pcchString : 0x0000009D148CE7BC
 [RET] [0x9d1482e028]
 ```
-
+<a id="GetAccountPrivileges"></a>
 # GetAccountPrivileges  
 
 **I. Order**  
@@ -323,7 +323,7 @@ S-1-2-1|
 07
 [...]
 ```
-
+<a id="LockWorkStation"></a>
 # LockWorkStation  
 
 **I. Order**  
@@ -414,7 +414,7 @@ S-1-2-1|
 [PAR] DWORD* pcchString : 0x000000EC5802E62C
 [RET] [0xec57f8e028]
 ```
-
+<a id="GetSystemUptime"></a>
 # GetSystemUptime  
 
 It's just GetTickCount() / 60000  
@@ -460,7 +460,7 @@ It's just GetTickCount() / 60000
 [PAR] DWORD* pcchString : 0x0000007B29E4E5FC
 [RET] [0x7b29dae028]
 ```
-
+<a id="GetLastInputInfo"></a>
 # GetLastInputInfo  
 
 **I. Order**  
@@ -510,7 +510,7 @@ It's just GetTickCount() / 60000
 [PAR] DWORD* pcchString : 0x000000955402E44C
 [RET] [0x9553f8e028]
 ```
-
+<a id="ExitProcess"></a>
 # ExitProcess  
 
 Self-explanatory. It may be worth mentionning that the malware will shutdown without acknowledging the order to the C2.  
@@ -569,7 +569,7 @@ TODO
 [PAR] DWORD* pcchString : 0x000000D137CDE47C
 [RET] [0xd137c3dff1]
 ```
-
+<a id="EnumDevicesDrivers"></a>
 # EnumDevicesDrivers  
 
 **I. Order**  
@@ -659,7 +659,7 @@ TODO
 0xFFFFF801ACA9F000|C:\Windows\System32\drivers\CLFS.SYS|Microsoft Corporation|Common Log File System Driver
 [...]
 ```
-
+<a id="Screenshot"></a>
 # Screenshot  
 
 I have to come forward and confess that I'm still running a Windows 8.1 system for my lab.  
@@ -718,6 +718,7 @@ Empty result because of a lack of a domain controler in my lab, I'll update the 
 [RET] [0x73530be028]
 ```
 
+<a id="GetNetworkAdaptersInfo"></a>
 # GetNetworkAdaptersInfo  
 
 **I. Order**  
@@ -788,6 +789,7 @@ Empty result because of a lack of a domain controler in my lab, I'll update the 
 [RET] [0x4eabfde028]
 ```
 
+<a id="GetMemoryDump"></a>
 # GetMemoryDump  
 
 I tried a memory dump on explorer.exe :  
@@ -988,6 +990,7 @@ I tried a memory dump on explorer.exe :
 [STR]                -> "S47EFEUO3D2O6641"
 [RET] [0xd017d34c35]
 ```
+<a id="GetTcpUdpTables"></a>
 # GetTcpUdpTables  
 
 **I. Order**  
@@ -1087,7 +1090,7 @@ I tried a memory dump on explorer.exe :
 [PAR] DWORD* pcchString : 0x0000004A4FB5E88C
 [RET] [0x4a4f92e028]
 ```
-
+<a id="GetIpForwardTable"></a>
 # GetIpForwardTable  
 
 **I. Order**  
@@ -1150,7 +1153,7 @@ I tried a memory dump on explorer.exe :
 [PAR] DWORD* pcchString : 0x00000078CE96E3BC
 [RET] [0x78ce8ce028]
 ```
-
+<a id="QuerySessionInformation"></a>
 # QuerySessionInformation  
 
 **I. Order**  
@@ -1220,6 +1223,7 @@ I tried a memory dump on explorer.exe :
 [RET] [0x4ab1aae028]
 ```
 
+<a id="GetDnsCacheDataTable"></a>
 # GetDnsCacheDataTable  
 
 **I. Order**  
