@@ -94,6 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
 In the following section, I share some dynamic analysis results from the aforementioned commands :  
 
+<a id="GetCurrentDirectory"></a>
 # GetCurrentDirectory  
 
 **I. Fetching the order**  
@@ -148,7 +149,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 [PAR] DWORD* pcchString : 0x000000449739E9DC
 [RET] [0x44972fe028]
 ```
-
+<a id="GetIpTable"></a>
 # GetIpTable  
 
 **I. Order**    
