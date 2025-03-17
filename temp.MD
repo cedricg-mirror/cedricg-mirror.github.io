@@ -956,4 +956,332 @@ I tried a memory dump on explorer.exe :
 
 3. Result  
 
-TODO  
+```html
+[CNT] [2608]
+[PTP] [0x604] [0x7e4] [c:\windows\system32\rundll32.exe]
+[API] <SystemFunction032> in [CRYPTSP.DLL] 
+[INF] [ Undocumented RC4 implementation ]
+[PAR] PBINARY_STRING buffer : 0x000000D017D2F120
+[FLD]                -> Length    = 0xa6b34
+[FLD]                -> MaxLength = 0xa6b34
+[FLD]                -> Buffer    = 0x000000D01C43E010
+[STR]                -> "{"cds":{"auth":"OV1T557KBIUECUM5"},"dt":{"chkin":"TURNUJOnAAAEAAAAIAAAAAAAAADQAAAAAgAAAAAAAAAHAAAAOAAAAFAAAAAEAAAAgFYAAI"
+[STR]                   "wAAAAJAAAAIGsAALSRAAAAAAAAAAAAAAAAAAAJAAYACToCAQYAAAADAAAAgCUAAAIAAACIAAAAEAAAAEx3wgAAAAAAAAAAAAAAAAAA4dQX0AAAAAAAAADNAA"
+[STR]                   "AAAABpDPZ/AAAAECYATiYnADo6UFQMVwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+[STR]                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAABPPv9/AAAAwBoAvMYaAJ5VUFRAVwAAvQTv/gAAAQADAAYAB0SAJQMABgAHRIAlPwAAAAAAAAAEAAQAAgAAAAAAAAAAAA"
+[STR]                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB5Pf9/AAAA4BMA7A8UAMpUUFSAVwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+[STR]                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB3O/9/AAAAUBEAXE0RADdXUFTGVwAAvQTv/gAAAQADAA"
+[STR]                   "YAB0SAJQMABgAHRIAlPwAAAAAAAAAEAAQAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeOv9/AAAA4AgA368IAK"
+[STR]                   "VUUFQQWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+[STR]                   "AAAACrPf9/AAAAoAoAtAULAP5VUFRUWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+[STR]                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAABCPv9/AAAAEAwAmtUMAK1CUFSWWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+[STR]                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADWO/9/AAAAECEACUohAPlEUFTcWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+[STR]                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABfO/9/AAAAYAQA9+gEAIJCUFQgWQAAAAAAAAAAAAAAAA"
+[STR]                   "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVPP9/AAAAoAoAMGgLAB"
+[STR]                   "FUUFRmWQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+[STR]                   "[TRUNCATED]"
+[PAR] PBINARY_STRING key    : 0x000000D017D2F110
+[FLD]                -> Length    = 0x10
+[FLD]                -> MaxLength = 0x10
+[FLD]                -> Buffer    = 0x000000D015E5CEA0
+[STR]                -> "S47EFEUO3D2O6641"
+[RET] [0xd017d34c35]
+```
+# GetTcpUdpTables  
+
+1. Order  
+
+```html
+[CNT] [395]
+[PTP] [0xb20] [0xa04] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000004A4DC96A40
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+W+nYErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000004A4DCAB8C0
+[PAR] DWORD   *pcbBinary : 0x0000004A4FB5E9FC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x4a4f92bea1]
+```
+2. Execution  
+
+```html
+[CNT] [410]
+[PTP] [0xb20] [0xa04] [c:\windows\system32\rundll32.exe]
+[API] <GetExtendedTcpTable> in [iphlpapi.dll] 
+[PAR] PVOID           pTcpTable  : 0x0000004A4DC8FEB0
+[PAR] PDWORD          pdwSize    : 0x0000004A4FB5E8AC
+[PAR] BOOL            bOrder     : 0x1
+[PAR] ULONG           ulAf       : 0x2
+[PAR] TCP_TABLE_CLASS TableClass : 0x5 (TCP_TABLE_OWNER_PID_ALL)
+[PAR] ULONG           Reserved   : 0x0
+[RET] [0x4a4f91545f]
+
+[CNT] [927]
+[PTP] [0xb20] [0xa04] [c:\windows\system32\rundll32.exe]
+[API] <GetExtendedTcpTable> in [iphlpapi.dll] 
+[PAR] PVOID           pTcpTable  : 0x0000004A4DC8F0F0
+[PAR] PDWORD          pdwSize    : 0x0000004A4FB5E8AC
+[PAR] BOOL            bOrder     : 0x1
+[PAR] ULONG           ulAf       : 0x2
+[PAR] TCP_TABLE_CLASS TableClass : 0x2 (TCP_TABLE_BASIC_ALL)
+[PAR] ULONG           Reserved   : 0x0
+[RET] [0x4a4f91545f]
+```
+
+3. Result  
+
+```html
+[CNT] [1122]
+[PTP] [0xb20] [0xa04] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000004A4DCB0270
+[STR]        -> "39B3"
+[STR]           "T 0.0.0.0:135,0 2,2 620 svchost.exe"
+[STR]           "T 0.0.0.0:445,0 2,2 4 System"
+[STR]           "T 0.0.0.0:1025,0 2,2 432 wininit.exe"
+[STR]           "T 0.0.0.0:1026,0 2,2 864 svchost.exe"
+[STR]           "T 0.0.0.0:1027,0 2,2 532 lsass.exe"
+[STR]           "T 0.0.0.0:1028,0 2,2 900 svchost.exe"
+[STR]           "T 0.0.0.0:1029,0 2,2 1036 spoolsv.exe"
+[STR]           "T 0.0.0.0:1030,0 2,2 524 services.exe"
+[STR]           "T 169.254.143.85:139,0 2,2 4 System"
+[STR]           "T 169.254.143.85:1033,1 169.254.143.46:8041 5,2 2848 rundll32.exe"
+[STR]           "T 169.254.143.85:1034,1 169.254.143.46:8041 5,2 2848 rundll32.exe"
+[STR]           "T 0.0.0.0:135,0 2"
+[STR]           "T 0.0.0.0:1029,0 2"
+[STR]           "U 0.0.0.0:5355,2 312 svchost.exe"
+[STR]           "U 169.254.143.85:137,2 4 System"
+[STR]           "U 169.254.143.85:138,2 4 System"
+[STR]           "U 0.0.0.0:5355"
+[STR]           "U 0.137.0.0:43518"
+[STR]           "U 0.0.0.0:0"
+[PAR] DWORD  cbBinary   : 0x4fe
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000004A4DCB5E70
+[PAR] DWORD* pcchString : 0x0000004A4FB5E88C
+[RET] [0x4a4f92e028]
+```
+
+# GetIpForwardTable  
+
+1. Order  
+
+```html
+[CNT] [327]
+[PTP] [0xbec] [0xafc] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x00000078CCA569D0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+U//EErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x00000078CCA697B0
+[PAR] DWORD   *pcbBinary : 0x00000078CE96E56C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x78ce8cbea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [337]
+[PTP] [0xbec] [0xafc] [c:\windows\system32\rundll32.exe]
+[API] <GetAdaptersInfo> in [iphlpapi.dll] 
+[PAR] PIP_ADAPTER_INFO AdapterInfo : 0x00000078CCA4F3E0
+[PAR] PULONG           SizePointer : 0x00000078CE96E474
+[RET] [0x78ce8daaca]
+
+[CNT] [338]
+[PTP] [0xbec] [0xafc] [c:\windows\system32\rundll32.exe]
+[API] <GetIpForwardTable> in [iphlpapi.dll] 
+[PAR] PMIB_IPFORWARDTABLE pIpForwardTable : 0x00000078CCA4FA40
+[PAR] PULONG              pdwSize         : 0x00000078CE96E470
+[PAR] BOOL                bOrder          : 0x1
+[RET] [0x78ce8daae9]
+```
+
+3. Result  
+
+```html
+[CNT] [586]
+[PTP] [0xbec] [0xafc] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x00000078CCA4FEC0
+[STR]        -> "1AD4"
+[STR]           "127.0.0.0 255.0.0.0 127.0.0.1 1 306"
+[STR]           "127.0.0.1 255.255.255.255 127.0.0.1 1 306"
+[STR]           "127.255.255.255 255.255.255.255 127.0.0.1 1 306"
+[STR]           "169.254.0.0 255.255.0.0 169.254.143.85 3 266"
+[STR]           "169.254.143.85 255.255.255.255 169.254.143.85 3 266"
+[STR]           "169.254.255.255 255.255.255.255 169.254.143.85 3 266"
+[STR]           "224.0.0.0 240.0.0.0 127.0.0.1 1 306"
+[STR]           "224.0.0.0 240.0.0.0 169.254.143.85 3 266"
+[STR]           "255.255.255.255 255.255.255.255 127.0.0.1 1 306"
+[STR]           "255.255.255.255 255.255.255.255 169.254.143.85 3 266"
+[PAR] DWORD  cbBinary   : 0x396
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x00000078CCA733C0
+[PAR] DWORD* pcchString : 0x00000078CE96E3BC
+[RET] [0x78ce8ce028]
+```
+
+# QuerySessionInformation  
+
+1. Order  
+
+```html
+[CNT] [429]
+[PTP] [0x654] [0x2d8] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000004AAFBF6BC0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+efmhErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000004AAFC09A30
+[PAR] DWORD   *pcbBinary : 0x0000004AB1B4E74C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x4ab1aabea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [452]
+[PTP] [0x654] [0x2d8] [c:\windows\system32\rundll32.exe]
+[API] <WTSEnumerateSessionsW> in [wtsapi32.dll] 
+[PAR] HANDLE              hServer       : 0x0 (WTS_CURRENT_SERVER_HANDLE)
+[PAR] DWORD               Reserved      : 0x0
+[PAR] DWORD               Version       : 0x1
+[PAR] PWTS_SESSION_INFOW* ppSessionInfo : 0x0000004AB1B4E5E8
+[PAR] DWORD*              pCount        : 0x0000004AB1B4E5E0
+[RET] [0x4ab1aafe7c]
+
+[CNT] [455]
+[PTP] [0x654] [0x2d8] [c:\windows\system32\rundll32.exe]
+[API] <WTSQuerySessionInformationW> in [wtsapi32.dll] 
+[PAR] HANDLE         hServer        : 0x0
+[PAR] DWORD          SessionId      : 0x1
+[PAR] WTS_INFO_CLASS WTSInfoClass   : 0x5 (WTSUserName)
+[PAR] LPWSTR*        ppBuffer       : 0x0000004AB1B4E600
+[PAR] DWORD*         pBytesReturned : 0x0000004AB1B4E5E4
+[RET] [0x4ab1aafeb6]
+
+[CNT] [457]
+[PTP] [0x654] [0x2d8] [c:\windows\system32\rundll32.exe]
+[API] <WTSQuerySessionInformationW> in [wtsapi32.dll] 
+[PAR] HANDLE         hServer        : 0x0
+[PAR] DWORD          SessionId      : 0x1
+[PAR] WTS_INFO_CLASS WTSInfoClass   : 0x6 (WTSWinStationName)
+[PAR] LPWSTR*        ppBuffer       : 0x0000004AB1B4E5F8
+[PAR] DWORD*         pBytesReturned : 0x0000004AB1B4E5E4
+[RET] [0x4ab1aaff4e]
+```
+
+3. Result  
+
+```html
+[CNT] [482]
+[PTP] [0x654] [0x2d8] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000004AAFBF6BC0
+[STR]        -> "9ABE"
+[STR]           "1 Console home\user"
+[PAR] DWORD  cbBinary   : 0x32
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000004AAFC02B80
+[PAR] DWORD* pcchString : 0x0000004AB1B4E5DC
+[RET] [0x4ab1aae028]
+```
+
+# GetDnsCacheDataTable  
+
+1. Order  
+
+```html
+[CNT] [327]
+[PTP] [0xbb0] [0x830] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000004CA08998E0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+YPHyErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000004CA08AB260
+[PAR] DWORD   *pcbBinary : 0x0000004CA282E70C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x4ca278bea1]
+```
+
+2. Execution  
+
+```html
+[CNT] [341]
+[PTP] [0xbb0] [0x830] [c:\windows\system32\rundll32.exe]
+[API] <DnsGetCacheDataTable> in [DNSAPI.dll] 
+[INF] [ Undocumented Function ]
+[PAR] PDNSCACHEENTRY  lpDnsCacheEntry : 0x0000004CA089EAC0
+[RET] [0x4ca278cb0c]
+```
+
+3. Result  
+
+Well... unsurprisingly, lots of C2 in there...
+
+```html
+[CNT] [553]
+[PTP] [0xbb0] [0x830] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000004CA08B7070
+[STR]        -> "B738"
+[STR]           "megatoolkit.com"
+[STR]           "megatoolkit.com"
+[STR]           "bazarunet.com"
+[STR]           "bazarunet.com"
+[STR]           "hotspot.accesscam.org"
+[STR]           "hotspot.accesscam.org"
+[STR]           "api.dropboxapi.com"
+[STR]           "api.dropboxapi.com"
+[STR]           "api.telegram.org"
+[STR]           "api.telegram.org"
+[STR]           "43.143.254.169.in-addr.arpa"
+[STR]           "codevexillium.org"
+[STR]           "codevexillium.org"
+[STR]           "greshunka.com"
+[STR]           "greshunka.com"
+[STR]           "content.dropboxapi.com"
+[STR]           "content.dropboxapi.com"
+[STR]           "45.143.254.169.in-addr.arpa"
+[STR]           "46.143.254.169.in-addr.arpa"
+[STR]           "42.143.254.169.in-addr.arpa"
+[STR]           "hanagram.jp"
+[STR]           "hanagram.jp"
+[STR]           "checkip.dyndns.org"
+[STR]           "checkip.dyndns.org"
+[STR]           "internal-hot-addition.glitch.me"
+[STR]           "internal-hot-addition.glitch.me"
+[STR]           "www.dronerc.it"
+[STR]           "www.dronerc.it"
+[STR]           "content.dropbox.com"
+[STR]           "content.dropbox.com"
+[STR]           "www.addfriend.kr"
+[STR]           "www.addfriend.kr"
+[STR]           "tiguanin.com"
+[STR]           "tiguanin.com"
+[STR]           "thefinetreats.com"
+[STR]           "thefinetreats.com"
+[STR]           "api.dropbox.com"
+[STR]           "api.dropbox.com"
+[STR]           "zebra.wthelpdesk.com"
+[STR]           "zebra.wthelpdesk.com"
+[STR]           "transplugin.io"
+[STR]           "transplugin.io"
+[PAR] DWORD  cbBinary   : 0x63e
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000004CA08B76C0
+[PAR] DWORD* pcchString : 0x0000004CA282E57C
+[RET] [0x4ca278e028]
+```
