@@ -38,28 +38,28 @@ This detailed analysis will be split into several parts, I will be presenting in
 
 Here is a short description of the first 20 command codes and purpose :  
 
-| Command ID   | Description             | Parameter     |
-| :----------- | :---------------------- | :------------:|
-| "\x9f\x3c"   | GetCurrentDirectory     | NA            |
-| "\x3f\xd5"   | GetIpTable              | NA            |
-| "\xfe\x4f"   | GetAccountPrivileges    | NA            |
-| "\x91\x03"   | LockWorkStation         | NA            |
-| "\x09\x06"   | GetLogicalDrives        | NA            |
-| "\x01\x0a"   | GetSystemUptime         | NA            |
-| "\x06\x0b"   | GetLastInputInfo        | NA            |
-| "\x03\x07"   | ExitProcess             | NA            |
-| "\x05\x06"   | RevertToSelf            | NA            |
-| "\x05\x01"   | GetClipBoardData        | NA            |
-| "\x44\xc1"   | EnumDevicesDrivers      | NA            |
-| "\x41\x9c"   | Screenshot              | NA            |
-| "\xcb\xe3"   | GetDomainControlerInfo  | NA            |
-| "\x16\xf6"   | GetNetworkAdaptersInfo  | NA            |
-| "\x03\x08"   | ExitThread              | NA            |
-| "\x34\x49"   | GetMemoryDump           | "processname" |
-| "\x39\xb3"   | GetTcpUdpTables         | NA            | 
-| "\x1a\xd4"   | GetIpForwardTable       | NA            | 
-| "\x9a\xbe"   | QuerySessionInformation | NA            | 
-| "\xb7\x38"   | GetDnsCacheDataTable    | NA            |
+| Command ID   | Description             | Parameter         |
+| :----------- | :---------------------- | :----------------:|
+| "\x9f\x3c"   | GetCurrentDirectory     | NA                |
+| "\x3f\xd5"   | GetIpTable              | NA                |
+| "\xfe\x4f"   | GetAccountPrivileges    | NA                |
+| "\x91\x03"   | LockWorkStation         | NA                |
+| "\x09\x06"   | GetLogicalDrives        | NA                |
+| "\x01\x0a"   | GetSystemUptime         | NA                |
+| "\x06\x0b"   | GetLastInputInfo        | NA                |
+| "\x03\x07"   | ExitProcess             | NA                |
+| "\x05\x06"   | RevertToSelf            | NA                |
+| "\x05\x01"   | GetClipBoardData        | NA                |
+| "\x44\xc1"   | EnumDevicesDrivers      | NA                |
+| "\x41\x9c"   | Screenshot              | NA                |
+| "\xcb\xe3"   | GetDomainControlerInfo  | NA                |
+| "\x16\xf6"   | GetNetworkAdaptersInfo  | NA                |
+| "\x03\x08"   | ExitThread              | NA                |
+| "\x34\x49"   | GetMemoryDump           | "processname.exe" |
+| "\x39\xb3"   | GetTcpUdpTables         | NA                | 
+| "\x1a\xd4"   | GetIpForwardTable       | NA                | 
+| "\x9a\xbe"   | QuerySessionInformation | NA                | 
+| "\xb7\x38"   | GetDnsCacheDataTable    | NA                |
 
 # Command Syntaxe  
 
