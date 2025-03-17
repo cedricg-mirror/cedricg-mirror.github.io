@@ -367,6 +367,7 @@ S-1-2-1|
 [RET] [0x6acb3ee028]
 ```
 
+<a id="GetLogicalDrives"></a>
 # GetLogicalDrives  
 
 ** I. Order**  
@@ -515,10 +516,12 @@ It's just GetTickCount() / 60000
 
 Self-explanatory. It may be worth mentionning that the malware will shutdown without acknowledging the order to the C2.  
 
+<a id="RevertToSelf"></a>
 # RevertToSelf  
 
 TODO  
 
+<a id="GetClipBoardData"></a>
 # GetClipBoardData  
 
 **I. Order**  
@@ -667,6 +670,7 @@ Unfortunatly this sample is relying on an API not available for this version of 
 
 ![Missing Function](/docs/assets/images/BazaarLoader/ScreenShot_fail.jpg)  
 
+<a id="GetDomainControlerInfo"></a>
 # GetDomainControlerInfo  
 
 **I. Order**  
