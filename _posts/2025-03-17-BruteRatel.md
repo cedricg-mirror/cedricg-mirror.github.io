@@ -32,7 +32,7 @@ After going through various stages of unpacking and in-memory loading, I was abl
 
 Working on this unpacked payload made the sample analysis much more straightforward and given the sheer amount of functionalities offered by this malware (~100 commands) I've decided to review them all.  
 
-This detailed analysis will be split into several parts, I will be presenting in this the 'first' 20 commands that BruteRatel can respond to.  
+This detailed analysis will be split into several parts, I will be presenting in this post the 'first' 20 commands that BruteRatel can respond to.  
 
 # COMMAND LIST
 
