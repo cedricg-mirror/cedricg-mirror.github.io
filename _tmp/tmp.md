@@ -33,7 +33,7 @@ This detailed analysis will be split into several parts, I will be presenting in
 
 # COMMAND LIST
 
-Here is a short description of the 20 command codes and purpose :  
+Here is a short description of the next 20 command codes and purpose :  
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
