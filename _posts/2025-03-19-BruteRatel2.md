@@ -838,7 +838,7 @@ TODO
 <a id="update_sleep_conf"></a>
 # update_sleep_conf
 
-I didn't look to much into it, but it's definitly related to ZWWaitForSingleObjectEx and will update the in-memory configuration of the malware  
+I didn't look to much into it, but it's definitly related to ZwWaitForSingleObjectEx and will update the in-memory configuration of the malware  
 Maybe something related to the beaconing frequency ?  
 
 ```php
