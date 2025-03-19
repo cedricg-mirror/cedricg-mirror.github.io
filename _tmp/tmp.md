@@ -112,8 +112,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 ```html
 
 ```
-<a id="TODO"></a>
-# TODO  
+<a id="ShellExecuteExA"></a>
+# ShellExecuteExA  
 
 ```php
 
@@ -137,8 +137,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="ListActiveProcess"></a>
+# ListActiveProcess  
 
 ```php
 
@@ -162,8 +162,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="ImpersonateSystem"></a>
+# ImpersonateSystem  
 
 ```php
 
@@ -187,8 +187,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="ImpersonateSystem2"></a>
+# ImpersonateSystem2  
 
 ```php
 
@@ -212,8 +212,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="unknown"></a>
+# unknown  
 
 ```php
 
@@ -237,8 +237,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="unknown2"></a>
+# unknown2  
 
 ```php
 
@@ -262,8 +262,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="ReadFileW"></a>
+# ReadFileW  
 
 ```php
 
@@ -287,8 +287,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="RegEnumKeyA"></a>
+# RegEnumKeyA  
 
 ```php
 
@@ -312,8 +312,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="QueryServiceConfig"></a>
+# QueryServiceConfig  
 
 ```php
 
@@ -337,8 +337,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="maybe_push_cmd"></a>
+# maybe_push_cmd  
 
 ```php
 
@@ -362,8 +362,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="WriteFile"></a>
+# WriteFile  
 
 ```php
 
@@ -387,8 +387,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="listen"></a>
+# listen  
 
 ```php
 
@@ -412,8 +412,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="pipe_com_todo"></a>
+# pipe_com_todo  
 
 ```php
 
@@ -437,8 +437,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="install_as_service"></a>
+# install_as_service  
 
 ```php
 
@@ -462,8 +462,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="createService"></a>
+# createService  
 
 ```php
 
@@ -487,8 +487,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="deleteService"></a>
+# deleteService  
 
 ```php
 
@@ -512,8 +512,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="changeServiceConfig"></a>
+# changeServiceConfig  
 
 ```php
 
@@ -537,8 +537,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="GetProcessInfo"></a>
+# GetProcessInfo  
 
 ```php
 
@@ -562,8 +562,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 ```
 
-<a id="TODO"></a>
-# TODO  
+<a id="port_scan"></a>
+# port_scan  
 
 ```php
 
