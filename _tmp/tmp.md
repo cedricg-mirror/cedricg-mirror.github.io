@@ -95,7 +95,32 @@ function fingerprint()
 **II. Execution**   
 
 ```html
+[CNT] [369]
+[PTP] [0x728] [0xb70] [c:\windows\system32\rundll32.exe]
+[API] <GlobalMemoryStatusEx> in [KERNEL32.DLL] 
+[PAR] LPMEMORYSTATUSEX lpBuffer : 0x000000653952E608
+[RET] [0x65394a14c0]
 
+[CNT] [380]
+[PTP] [0x728] [0xb70] [c:\windows\system32\rundll32.exe]
+[API] <GetDiskFreeSpaceExA> in [KERNEL32.DLL] 
+[PAR] LPCSTR          lpDirectoryName              : 0x0 (null)
+[PAR] PULARGE_INTEGER lpFreeBytesAvailableToCaller : 0x0
+[PAR] PULARGE_INTEGER lpTotalNumberOfBytes         : 0x000000653952E5C8
+[PAR] PULARGE_INTEGER lpTotalNumberOfFreeBytes     : 0x000000653952E5D0
+[RET] [0x65394a1563]
+
+[CNT] [389]
+[PTP] [0x728] [0xb70] [c:\windows\system32\rundll32.exe]
+[API] <GetNativeSystemInfo> in [KERNEL32.DLL] 
+[PAR] LPSYSTEM_INFO lpSystemInfo : 0x000000653952E5D8
+[RET] [0x65394a1621]
+
+[CNT] [434]
+[PTP] [0x728] [0xb70] [c:\windows\system32\rundll32.exe]
+[API] <RtlGetVersion> in [ntdll.dll] 
+[PAR] PRTL_OSVERIONINFOW lpVersionInformation : 0x000000653952E5F8
+[RET] [0x65394a17f6]
 ```
 
 **III. Result**   
@@ -147,14 +172,58 @@ function EnumWindows()
 **II. Execution**   
 
 ```html
+[CNT] [802]
+[PTP] [0x484] [0xb20] [c:\windows\system32\rundll32.exe]
+[API] <EnumDesktopWindows> in [USER32.dll] 
+[PAR] HDESK       hDesktop : 0x0
+[PAR] WNDENUMPROC lpfn     : 0x0000007EFF511E40
+[PAR] LPARAM      lParam   : 0x0000007EFF5CE578
+[RET] [0x7eff5427d0]
 
+[CNT] [809]
+[PTP] [0x484] [0xb20] [c:\windows\system32\rundll32.exe]
+[API] <GetWindowTextW> in [USER32.dll] 
+[PAR] HWND   hWnd      : 0x40054
+[PAR] LPWSTR lpString  : 0x0000007EFF5CE268
+[PAR] int    nMaxCount : 0x9ca6ec20
+[RET] [0x7eff511e8a]
+
+[CNT] [810]
+[PTP] [0x484] [0xb20] [c:\windows\system32\rundll32.exe]
+[API] <IsWindowVisible> in [USER32.dll] 
+[RET] [0x7eff511e9f]
+
+[ * ] [pid 0x484][tid 0xb20] c:\windows\system32\rundll32.exe
+[API] <_vsnwprintf>
+[PAR] wchar_t  *buffer : 0x0000007EFE9DA430
+[STR]          -> "Changement de tâche"
+[RES] int 19
+
+[CNT] [825]
+[PTP] [0x484] [0xb20] [c:\windows\system32\rundll32.exe]
+[API] <GetWindowTextW> in [USER32.dll] 
+[PAR] HWND   hWnd      : 0x101a0
+[PAR] LPWSTR lpString  : 0x0000007EFF5CE268
+[PAR] int    nMaxCount : 0x9ca6ec20
+[RET] [0x7eff511e8a]
+
+[CNT] [826]
+[PTP] [0x484] [0xb20] [c:\windows\system32\rundll32.exe]
+[API] <IsWindowVisible> in [USER32.dll] 
+[RET] [0x7eff511e9f]
+
+[ * ] [pid 0x484][tid 0xb20] c:\windows\system32\rundll32.exe
+[API] <_vsnwprintf>
+[PAR] wchar_t  *buffer : 0x0000007EFE9C6080
+[STR]          -> "VBoxSharedClipboardClass"
+[RES] int 24
+
+[...]
 ```
 
 **III. Result**   
 
-```html
-
-```
+No proper result so far, malware is always freezing before ending the command execution  
 
 <a id="GetInstalledProgramsList"></a>
 # GetInstalledProgramsList
@@ -583,20 +652,43 @@ function send($socket, $b64_data)
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [429]
+[PTP] [0x808] [0x6ac] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000EA4F6AD0B0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+TcXESM8xHCvp7T6lJFtMt34bWhY+jKTME5ToKiAcCaC6FAT8uJY3cbOjUNqSHZ/6L9cc0ai/dO4YGPGqJ4vHR4c7K4oMbCmc"
+[STR]            "3DtN6FJArXO8WHsfIBF65nojU8GSo+1IoIU="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000EA4F689590
+[PAR] DWORD   *pcbBinary : 0x000000EA516DEA6C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0xea5163bea1]
 ```
 
 **II. Execution**   
 
 ```html
+[CNT] [439]
+[PTP] [0x808] [0x6ac] [c:\windows\system32\rundll32.exe]
+[API] <send> in [ws2_32.dll] 
+[PAR] SOCKET s    : 0xb
+[PAR] char   *buf : 0x000000EA4F69AD20
+[STR]        -> "Do you think that's air you're breathing now ?"
+[PAR] int    len  : 0x2e
+[RET] [0xea5164fac4]
 
+[CNT] [440]
+[PTP] [0x808] [0x6ac] [c:\windows\system32\rundll32.exe]
+[API] <closesocket> in [ws2_32.dll] 
+[PAR] SOCKET       s : 0xb
+[RET] [0xea5164fafb]
 ```
 
 **III. Result**   
 
-```html
-
-```
+TODO  
 
 <a id="closesocket"></a>
 # closesocket
@@ -616,19 +708,34 @@ function closesocket($socket)
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [327]
+[PTP] [0x734] [0x41c] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000E1BFF16800
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+Q+/+SM8/Y0WXtxe8HTA="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000E1BFF29760
+[PAR] DWORD   *pcbBinary : 0x000000E1C1E5E82C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0xe1c1dbbea1]
 ```
 
 **II. Execution**   
 
 ```html
-
+[CNT] [335]
+[PTP] [0x734] [0x41c] [c:\windows\system32\rundll32.exe]
+[API] <closesocket> in [ws2_32.dll] 
+[PAR] SOCKET       s : 0xb
+[RET] [0xe1c1dcfb9b]
 ```
 
 **III. Result**   
 
 ```html
-
+Nothing
 ```
 
 <a id="start_keylogging"></a>
@@ -725,7 +832,7 @@ function start_keylogging()
 **III. Result**   
 
 ```html
-
+TODO
 ```
 
 <a id="update_sleep_conf"></a>
@@ -747,19 +854,40 @@ function update_sleep_conf($int1, $int2)
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [327]
+[PTP] [0x9f0] [0x3bc] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000004997BA61C0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+X9jQSNMMHx/10x/2Ui1u9VBz"
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000004997BB97F0
+[PAR] DWORD   *pcbBinary : 0x0000004999B7E6EC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x4999adbea1]
 ```
 
 **II. Execution**   
 
 ```html
-
+Nothing to 'see', it's purely an update of the malware's configuration
 ```
 
 **III. Result**   
 
 ```html
-
+[CNT] [348]
+[PTP] [0x9f0] [0x3bc] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000004997BAD3D0
+[STR]        -> "2921"
+[STR]           "10 42"
+[PAR] DWORD  cbBinary   : 0x14
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000004997BA2D10
+[PAR] DWORD* pcchString : 0x0000004999B7E54C
+[RET] [0x4999ade028]
 ```
 
 <a id="SetCurrentDirectory"></a>
