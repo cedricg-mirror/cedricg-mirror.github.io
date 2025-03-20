@@ -48,7 +48,7 @@ Here is a short description of the next 20 command codes and purpose :
 | "\x74\x2c"   | [ReadFileW](#ReadFileW) | $filename, $size_in_KB              |
 | "\x36\x6c"   | [RegEnumKeyA](#RegEnumKeyA) | $hKey, $SubKey       |
 | "\x58\xb4"   | [QueryServiceConfig](#QueryServiceConfig) | $MachineName, $p2, $ServiceName       |
-| "\xea\xe2"   | [maybe_push_cmd](#maybe_push_cmd) | $p1         |
+| "\xea\xe2"   | [unknown3](#unknown3) | $p1         |
 | "\xa1\x13"   | [WriteFile](#WriteFile) | $filename, $data   |
 | "\x9a\x69"   | [listen](#listen) | $label, $port        |
 | "\x4d\x3c"   | [pipe_com_todo](#pipe_com_todo) | $PipeName   $p2     |
@@ -1054,15 +1054,15 @@ function QueryServiceConfig($MachineName, $p2, $ServiceName)
 [RET] [0x79b3a0e028]
 ```
 
-<a id="maybe_push_cmd"></a>
-# maybe_push_cmd  
+<a id="unknown3"></a>
+# unknown3  
 
 ```php
-function maybe_push_cmd($p1)
+function maybe_push_cmd($p1 $p2)
 {
-	$p1_b64 = base64_encode($p1);
+	$p2_b64 = base64_encode($p2);
 	
-	$cmd_id = "\xea\xe2 $p1_b64";
+	$cmd_id = "\xea\xe2 $p1 $p2_b64";
 	$cmd_id_b64 = base64_encode($cmd_id);
 	
 	return $cmd_id_b64;
@@ -1070,7 +1070,7 @@ function maybe_push_cmd($p1)
 ```
 
 I still need to figure this one out, this command is expecting some base64 encoded data from the C2 that is going to be stored into an internal structure.
-So this command is handled in an asynchonous way, possibly expecting a list a commands or actions that are to be executed later on..  
+
 
 
 <a id="WriteFile"></a>
