@@ -1672,15 +1672,6 @@ function changeServiceConfig($MachineName, $serviceName, $BinaryPathName)
 [PAR] DWORD     dwDesiredAccess : 0xf01ff (SERVICE_ALL_ACCESS)
 [RET] [0xcf671bd260]
 
-[CNT] [409]
-[PTP] [0x72c] [0x9f0] [c:\windows\system32\rundll32.exe]
-[API] <QueryServiceConfigW> in [ADVAPI32.dll] 
-[PAR] SC_HANDLE               hService        : 0x000000CF653F3840
-[PAR] LPQUERY_SERVICE_CONFIGW lpServiceConfig : 0x0
-[PAR] DWORD                   cbBufSize       : 0x0
-[PAR] LPDWORD                 pcbBytesNeeded  : 0x000000CF6724EA6C
-[RET] [0xcf671bd28a]
-
 [CNT] [411]
 [PTP] [0x72c] [0x9f0] [c:\windows\system32\rundll32.exe]
 [API] <QueryServiceConfigW> in [ADVAPI32.dll] 
