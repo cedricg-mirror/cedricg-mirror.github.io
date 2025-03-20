@@ -47,7 +47,7 @@ Here is a short description of the next 20 command codes and purpose :
 | "\xd4\x3f"   | [unknown2](#unknown2) | $p1, $p2          |
 | "\x74\x2c"   | [ReadFileW](#ReadFileW) | $filename, $size_in_KB              |
 | "\x36\x6c"   | [RegEnumKeyA](#RegEnumKeyA) | $hKey, $SubKey       |
-| "\x58\xb4"   | [QueryServiceConfig](#QueryServiceConfig) | $dir_path             |
+| "\x58\xb4"   | [QueryServiceConfig](#QueryServiceConfig) | $MachineName, $p2, $ServiceName       |
 | "\xea\xe2"   | [maybe_push_cmd](#maybe_push_cmd) | $p1         |
 | "\xa1\x13"   | [WriteFile](#WriteFile) | $src, $dst    |
 | "\x9a\x69"   | [listen](#listen) | $label, $port        |
