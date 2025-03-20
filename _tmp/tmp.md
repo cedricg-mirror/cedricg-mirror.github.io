@@ -49,7 +49,7 @@ Here is a short description of the next 20 command codes and purpose :
 | "\x36\x6c"   | [RegEnumKeyA](#RegEnumKeyA) | $hKey, $SubKey       |
 | "\x58\xb4"   | [QueryServiceConfig](#QueryServiceConfig) | $MachineName, $p2, $ServiceName       |
 | "\xea\xe2"   | [maybe_push_cmd](#maybe_push_cmd) | $p1         |
-| "\xa1\x13"   | [WriteFile](#WriteFile) | $src, $dst    |
+| "\xa1\x13"   | [WriteFile](#WriteFile) | $filename, $data   |
 | "\x9a\x69"   | [listen](#listen) | $label, $port        |
 | "\x4d\x3c"   | [pipe_com_todo](#pipe_com_todo) | $PipeName   $p2     |
 | "\x37\xfe"   | [install_as_service](#install_as_service) | $MachineName, $serviceName, $payload |
