@@ -163,7 +163,7 @@ This short article illustrate a few keypoint :
 
 - It's much easier to change the packaging (loader) than the payload
 - Changes to the loader, or changing the loader altogether, doesn't make much difference from a dynamic analysis point of view
-- Behavior based signatures still prove to be a very efficient and reliable way not only to identify a specific malware but also to spot potentieal updates
+- Behavior based signatures still prove to be a very efficient and reliable way not only to identify a specific malware but also to spot potential updates
 
 Nonetheless, statical analysis remains the only option to get to specific changes, for instance if the 'ExitProcess' command ID was changed between the two samples generation it would have made my job much more tedious.  
 
