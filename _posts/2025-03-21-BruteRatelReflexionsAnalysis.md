@@ -28,8 +28,11 @@ Sold for 3000$, their authors claim that "each release includes new evasion meth
 The two samples I chose for this analysis vary a lot from the 'outside', first one is a 248KB DLL while the second one is a 3MB signed DLL.  
 
 I ran the two samples in a controlled environment while redirecting their network communications to my own (basic) implementation of a BruteRatel C2.  
+
 In this case the C2 simply reply to their beaconing with an 'ExitProcess' order.  
+
 A list of all BrutelRatel commands is available [here](https://cedricg-mirror.github.io/2025/03/17/BruteRatel.html) (Ongoing process)  
+
 Samples were supervised by the Reflexions Sandbox, results are available [here](https://github.com/cedricg-mirror/reflexions/tree/main/CyberCrime/BRUTERATEL)   
 
 # Loader  
