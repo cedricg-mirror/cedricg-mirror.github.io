@@ -37,7 +37,7 @@ Samples were supervised by the Reflexions Sandbox, results are available [here](
 Manually comparing the excution trace clearly indicates that the two samples used a different 1st stage loader.  
 Early execution stage shows for instance that the 1st sample is resolving dynamic imports while the 2nd one is busy pretending to rely on a graphical user interface :  
 
-<p><a>
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/loader1.jpg">
 <img src="/docs/assets/images/BRUTERATEL_DIFF/loader1.jpg" alt="1st Loader">
 </a></p>
 
