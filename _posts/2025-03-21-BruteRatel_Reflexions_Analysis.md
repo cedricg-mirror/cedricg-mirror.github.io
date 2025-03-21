@@ -148,3 +148,4 @@ This short article illustrate a few keypoint :
 
 Nonetheless, statical analysis remains the only option to get to specific changes, for instance if the 'ExitProcess' command ID was changed between the two samples generation it would have made my job much more tedious.  
 
+On a side note : String functions may be convenient, but they should be a hard pass for obvious reasons exposed in this article...  
