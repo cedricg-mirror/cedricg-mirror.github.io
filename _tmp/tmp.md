@@ -23,7 +23,7 @@ Sample Source :
 In this article I will demonstrate how simple it can be to spot code evolution between 2 versions of the same malware using dynamic analysis and Reflexions Sandbox.  
 The 2 samples analysed here are from the BruteRatel Malware.  
 
-Sold for 3000$ their authors claim that 'each release includes new evasion methods tested with more than 10 EDR software solutions', and their code is indeed packed with various countermesures that I partially described in a previous [post](https://cedricg-mirror.github.io/2025/02/04/BazaarLoader.html)   
+Sold for 3000$ their authors claim that "each release includes new evasion methods tested with more than 10 EDR software solutions", and their code is indeed packed with various countermesures that I partially described in a previous [post](https://cedricg-mirror.github.io/2025/02/04/BazaarLoader.html)   
 
 The two samples I chose for this analysis vary a lot from the 'outside', first one is a 248KB DLL while the second one is a 3MB signed DLL.  
 
