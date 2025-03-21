@@ -53,7 +53,7 @@ The excution traces then merge completly at API call 213 for the first sample an
 ![BruteRatel Payload](/docs/assets/images/BRUTERATEL_DIFF/bruteratel_start.jpg)  
 
 This is when the final stage, the BruteRatel payload is reached.  
-Notice how the Region size of each NtProtectVirtualMemory call is strictly identical.  
+Notice how the Region size of each NtProtectVirtualMemory call is strictly identical between the two samples.  
 
 # C2  
 
