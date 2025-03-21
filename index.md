@@ -9,6 +9,13 @@ I'll be happy to exchange with other researchers in the field of static or dynam
 
 ---  
 
+# 21/03/2025
+
+## [BRUTERATEL Comparative Analysis](https://cedricg-mirror.github.io/2025/03/21/2025-03-21-BruteRatel_Reflexions_Analysis.html)  
+Spot the differences  
+
+---  
+
 # 20/03/2025
 
 ## [BRUTERATEL Full command list 3/X](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html)  
