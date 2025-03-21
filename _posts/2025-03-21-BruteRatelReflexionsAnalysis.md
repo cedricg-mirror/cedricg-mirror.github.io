@@ -41,12 +41,12 @@ Early execution stage shows for instance that the 1st sample is resolving dynami
 <img src="/docs/assets/images/BRUTERATEL_DIFF/loader1.jpg" alt="1st Loader">
 </a></p>
 
-![1st Loader](/docs/assets/images/BRUTERATEL_DIFF/loader1.jpg)  
-
 
 The traces then start to converge around API call 150 for the 1st sample and API call 302 for the second sample with some differences however :  
 
-![2nd Loader](/docs/assets/images/BRUTERATEL_DIFF/diff_loader2.jpg)  
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/diff_loader2.jpg">
+<img src="/docs/assets/images/BRUTERATEL_DIFF/diff_loader2.jpg" alt="2nd Loader">
+</a></p>
 
 This indicate that the two samples used the same 2nd stage loader which was modified between the generation of sample 1 and 2.  
 
@@ -54,7 +54,9 @@ This indicate that the two samples used the same 2nd stage loader which was modi
 
 The excution traces then merge completly at API call 213 for the first sample and 355 for the second sample :  
 
-![BruteRatel Payload](/docs/assets/images/BRUTERATEL_DIFF/bruteratel_start.jpg)  
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/bruteratel_start.jpg">
+<img src="/docs/assets/images/BRUTERATEL_DIFF/bruteratel_start.jpg" alt="BruteRatel Payload">
+</a></p>
 
 This is when the final stage, the BruteRatel payload is reached.  
 Notice how the Region size of each NtProtectVirtualMemory call is strictly identical between the two samples.  
@@ -63,7 +65,9 @@ Notice how the Region size of each NtProtectVirtualMemory call is strictly ident
 
 A logical shift happens between the two samples at API call 212 and 414 for the simple reason that the 1st sample is relying on 3 different C2 while the 2nd sample on uses 2 :  
 
-![BruteRatel Payload](/docs/assets/images/BRUTERATEL_DIFF/C2.jpg)  
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/C2.jpg">
+<img src="/docs/assets/images/BRUTERATEL_DIFF/C2.jpg" alt="C2">
+</a></p> 
 
 # User-Agent  
 
@@ -109,24 +113,31 @@ Sample 2 :
 
 So did the Token :  
 
-![Auth Token](/docs/assets/images/BRUTERATEL_DIFF/Auth.jpg)  
-
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/Auth.jpg">
+<img src="/docs/assets/images/BRUTERATEL_DIFF/Auth.jpg" alt="Auth Token">
+</a></p> 
 
 # Update in sample 2  
 
 At this point in its loading procedure, BruteRatel normally start a simple fingerprinting of the infected host to send to the C2 upon its first beaconing.  
 
-![Fingerprint Diff](/docs/assets/images/BRUTERATEL_DIFF/fingerprint.jpg)  
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/fingerprint.jpg">
+<img src="/docs/assets/images/BRUTERATEL_DIFF/fingerprint.jpg" alt="Fingerprint Diff">
+</a></p> 
 
 This fingerprint phase is visible in green for sample1, sample 2 however is doing something else :  
 
-![Fingerprint Diff](/docs/assets/images/BRUTERATEL_DIFF/sample2_fingerprint.jpg)  
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/sample2_fingerprint.jpg">
+<img src="/docs/assets/images/BRUTERATEL_DIFF/sample2_fingerprint.jpg" alt="Fingerprint Diff">
+</a></p> 
 
 We can see that some instructions were added (orange) before the start of the fingerprinting (green)  
 
 This change is related to the HTTP Header :  
 
-![Fingerprint Diff](/docs/assets/images/BRUTERATEL_DIFF/new_header.jpg)  
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/new_header.jpg">
+<img src="/docs/assets/images/BRUTERATEL_DIFF/new_header.jpg" alt="New HTTP Header">
+</a></p> 
 
 BruteRatel was updated to include this new header (unclear for which purpose at this point)  
 
@@ -134,13 +145,17 @@ BruteRatel was updated to include this new header (unclear for which purpose at 
 
 Unsuprisingly the RC4 Key used to encrypt communication with C2 was also changed :  
 
-![RC4](/docs/assets/images/BRUTERATEL_DIFF/Rc4.jpg)
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/Rc4.jpg">
+<img src="/docs/assets/images/BRUTERATEL_DIFF/Rc4.jpg" alt="RC4 Key">
+</a></p> 
 
 # ExitProcess  
 
 The execution between the 2 samples then goes on until executing the 'ExitProcess' Order :  
 
-![RC4](/docs/assets/images/BRUTERATEL_DIFF/exit.jpg)  
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/exit.jpg">
+<img src="/docs/assets/images/BRUTERATEL_DIFF/exit.jpg" alt="ExitProcess Command">
+</a></p> 
 
 # Conclusion :  
 
