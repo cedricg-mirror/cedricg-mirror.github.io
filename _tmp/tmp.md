@@ -34,11 +34,11 @@ Samples were supervised by the Reflexions Sandbox, results are available [here](
 
 # Loader  
 
-Manually comparing the excution trace clearly indicates that the two samples used a different 1st stage loader :  
+Manually comparing the excution trace clearly indicates that the two samples used a different 1st stage loader.  
+Early execution stage shows for instance that the 1st sample is resolving dynamic imports while the 2nd one is busy pretending to rely on a graphical user interface :  
 
 ![1st Loader](/docs/assets/images/BRUTERATEL_DIFF/loader1.jpg)  
 
-Early execution stage shows for instance that the 1st sample is resolving dynamic imports while the 2nd one is busy pretending to rely on a graphical user interface...   
 
 The traces then start to converge around API call 150 for the 1st sample and API call 302 for the second sample with some differences however :  
 
