@@ -59,7 +59,90 @@ A logical shift happens between the two samples at API call 212 and 414 for the 
 
 ![BruteRatel Payload](/docs/assets/images/BRUTERATEL_DIFF/C2.jpg)  
 
+# User-Agent  
+
+Result from _vsnwprintf call 275 (1st sample) and 415 (2nd sample) shows that the harcoded user-agent was changed : 
+
+Sample 1 :  
+```html
+[CNT] [275]
+[PTP] [0xff8] [0x7dc] [c:\windows\system32\rundll32.exe]
+[API] <_vsnwprintf> in [ntdll.dll] 
+[PAR] wchar_t  *buffer : 0x000000097830CE10
+[PAR] size_t   size    : 0x72
+[PAR] wchar_t  *format : 0x000000097A278444
+[PAR] va_list  argptr  : 0x000000097A2FEA50
+[RET] [0x97a273d41]
+
+[ * ] [pid 0xff8][tid 0x7dc] c:\windows\system32\rundll32.exe
+[API] <_vsnwprintf>
+[PAR] wchar_t  *buffer : 0x000000097830CE10
+[STR]          -> "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
+[RES] int 114
+```
+
+Sample 2 :  
+```html
+[CNT] [415]
+[PTP] [0x3e8] [0xe10] [c:\windows\system32\rundll32.exe]
+[API] <_vsnwprintf> in [ntdll.dll] 
+[PAR] wchar_t  *buffer : 0x000000CFD9B7A2A0
+[PAR] size_t   size    : 0x6b
+[PAR] wchar_t  *format : 0x000000CFDBD68444
+[PAR] va_list  argptr  : 0x000000CFDBDEE820
+[RET] [0xcfdbd63d41]
+
+[ * ] [pid 0x3e8][tid 0xe10] c:\windows\system32\rundll32.exe
+[API] <_vsnwprintf>
+[PAR] wchar_t  *buffer : 0x000000CFD9B7A2A0
+[STR]          -> "Mozilla/5.0 (X11; U; Linux i686; pt-BR) AppleWebKit/533.3 (KHTML, like Gecko) Navscape/Pre-0.2 Safari/533.3"
+[RES] int 107
+```
+
+# Authorization-Token  
+
+So did the Token :  
+
+![Auth Token](/main/docs/assets/images/BRUTERATEL_DIFF/Auth.jpg)  
 
 
+# Update in sample 2  
 
+At this point in its loading procedure, BruteRatel normally start a simple fingerprinting of the infected host to send to the C2 upon its first beaconing.  
+
+![Fingerprint Diff](/main/docs/assets/images/BRUTERATEL_DIFF/fingerprint.jpg)  
+
+This fingerprint phase is visible in green for sample1, sample 2 however is doing something else :  
+
+![Fingerprint Diff](/main/docs/assets/images/BRUTERATEL_DIFF/sample2_fingerprint.jpg)  
+
+We can see that some instructions were added (orange) before the start of the fingerprinting (green)  
+
+This change is related to the HTTP Header :  
+
+![Fingerprint Diff](/docs/assets/images/BRUTERATEL_DIFF/new_header.jpg)  
+
+BruteRatel was updated to include this new header (unclear for which purpose at this point)  
+
+# RC4 Key  
+
+Unsuprisingly the RC4 Key used to encrypt communication with C2 was also changed :  
+
+![RC4](/docs/assets/images/BRUTERATEL_DIFF/Rc4.jpg)
+
+# ExitProcess  
+
+The execution between the 2 samples then goes on until executing the 'ExitProcess' Order :  
+
+![RC4](/main/docs/assets/images/BRUTERATEL_DIFF/exit.jpg)  
+
+# Conclusion :  
+
+This short article illustrate a few keypoint :  
+
+- It's much easier to change the packaging (loader) than the payload
+- Changes to the loader, or changing the loader altogether, doesn't make much difference from a dynamic analysis point of view
+- Behavior based signatures still prove to be a very efficient and reliable way not only to identify a specific malware but also to spot potentieal updates
+
+Nonetheless, statical analysis remains the only option to get to specific changes, for instance if the 'ExitProcess' command ID was changed between the two samples generation it would have made my job much more tedious.  
 
