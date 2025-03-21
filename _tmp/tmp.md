@@ -105,18 +105,18 @@ Sample 2 :
 
 So did the Token :  
 
-![Auth Token](/main/docs/assets/images/BRUTERATEL_DIFF/Auth.jpg)  
+![Auth Token](/docs/assets/images/BRUTERATEL_DIFF/Auth.jpg)  
 
 
 # Update in sample 2  
 
 At this point in its loading procedure, BruteRatel normally start a simple fingerprinting of the infected host to send to the C2 upon its first beaconing.  
 
-![Fingerprint Diff](/main/docs/assets/images/BRUTERATEL_DIFF/fingerprint.jpg)  
+![Fingerprint Diff](/docs/assets/images/BRUTERATEL_DIFF/fingerprint.jpg)  
 
 This fingerprint phase is visible in green for sample1, sample 2 however is doing something else :  
 
-![Fingerprint Diff](/main/docs/assets/images/BRUTERATEL_DIFF/sample2_fingerprint.jpg)  
+![Fingerprint Diff](/docs/assets/images/BRUTERATEL_DIFF/sample2_fingerprint.jpg)  
 
 We can see that some instructions were added (orange) before the start of the fingerprinting (green)  
 
@@ -136,7 +136,7 @@ Unsuprisingly the RC4 Key used to encrypt communication with C2 was also changed
 
 The execution between the 2 samples then goes on until executing the 'ExitProcess' Order :  
 
-![RC4](/main/docs/assets/images/BRUTERATEL_DIFF/exit.jpg)  
+![RC4](/docs/assets/images/BRUTERATEL_DIFF/exit.jpg)  
 
 # Conclusion :  
 
