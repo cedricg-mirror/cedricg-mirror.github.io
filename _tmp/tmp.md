@@ -36,7 +36,7 @@ Samples were supervised by the Reflexions Sandbox, results are available [here](
 
 Manually comparing the excution trace clearly indicates that the two samples used a different 1st stage loader :  
 
-![1st Loader](/main/docs/assets/images/BRUTERATEL_DIFF/loader1.jpg)  
+![1st Loader](/docs/assets/images/BRUTERATEL_DIFF/loader1.jpg)  
 
 Early execution stage shows for instance that the 1st sample is resolving dynamic imports while the 2nd one is busy pretending to rely on a graphical user interface...   
 
