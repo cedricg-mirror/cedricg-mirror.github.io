@@ -51,11 +51,11 @@ The traces then start to converge around API call 150 for the 1st sample and API
 <img src="/docs/assets/images/BRUTERATEL_DIFF/diff_loader2.jpg" alt="2nd Loader">
 </a></p>
 
-This indicate that the two samples used the same 2nd stage loader which was modified between the generation of sample 1 and 2.  
+This indicates that the two samples used the same 2nd stage loader which was modified between the generation of sample 1 and 2.  
 
 # BruteRatel Main Payload  
 
-The excution traces then merge completly at API call 213 for the first sample and 355 for the second sample :  
+The execution traces then merge completly at API call 213 for the first sample and 355 for the second sample :  
 
 <p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/bruteratel_start.jpg">
 <img src="/docs/assets/images/BRUTERATEL_DIFF/bruteratel_start.jpg" alt="BruteRatel Payload">
@@ -66,7 +66,7 @@ Notice how the Region size of each NtProtectVirtualMemory call is strictly ident
 
 # C2  
 
-A logical shift happens between the two samples at API call 212 and 414 for the simple reason that the 1st sample is relying on 3 different C2 while the 2nd sample on uses 2 :  
+A logical shift happens between the two samples at API call 212 and 414 for the simple reason that the 1st sample is relying on 3 different C2 while the 2nd sample only uses 2 :  
 
 <p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/C2.jpg">
 <img src="/docs/assets/images/BRUTERATEL_DIFF/C2.jpg" alt="C2">
@@ -122,7 +122,7 @@ So did the Token :
 
 # Update in sample 2  
 
-At this point in its loading procedure, BruteRatel normally start a simple fingerprinting of the infected host to send to the C2 upon its first beaconing.  
+At this point in its loading procedure, BruteRatel normaly starts a simple fingerprinting of the infected host sent to the C2 upon its first beaconing.  
 
 <p><a href="https://cedricg-mirror.github.io/docs/assets/images/BRUTERATEL_DIFF/fingerprint.jpg">
 <img src="/docs/assets/images/BRUTERATEL_DIFF/fingerprint.jpg" alt="Fingerprint Diff">
@@ -162,7 +162,7 @@ The execution between the 2 samples then goes on until executing the 'ExitProces
 
 # Conclusion :  
 
-This short article illustrate a few keypoint :  
+This short article illustrates a few keypoint :  
 
 - It's much easier to change the packaging (loader) than the payload
 - Changes to the loader, or changing the loader altogether, doesn't make much difference from a dynamic analysis point of view
