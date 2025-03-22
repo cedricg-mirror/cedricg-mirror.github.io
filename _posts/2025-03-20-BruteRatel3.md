@@ -1175,8 +1175,8 @@ function listen($label, $port)
 }
 ```
 
-This command is opening a litening for incoming connection on the specified port.  
-Here, I ordered the malware to listen from incocoming connection on the 80 port and just poped a firefox on 127.0.0.1:80 as a POC.  
+This command is opening a socket litening for incoming connection on the specified port.  
+Here, I ordered the malware to listen from incoming connection on the 80 port and just poped a firefox on 127.0.0.1:80 as a POC.  
 
 **I. Fetching the order**  
 
