@@ -35,6 +35,8 @@ This detailed analysis will be split into several parts, I will be presenting in
 
 Here is a short description of the next 20 command codes and purpose :  
 
+| Command ID   | Description             | Parameter         |
+| :----------- | :---------------------- | :----------------:|
 | "\x81\x98"  | [ASN1_unknown](#ASN1_unknown) | $p1 $p2 |
 | "\x53\x49"   | [netshareenum](#netshareenum) | $servername, $level |
 | "\x13\x52"  | [ExecWQLQuery](#ExecWQLQuery) | $query |
