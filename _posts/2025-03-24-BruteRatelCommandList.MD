@@ -5,7 +5,7 @@ date: 2025-03-24
 
 <link rel="stylesheet" href="/css/main.css">
 
-## BazaarLoader / BRUTERATEL  
+## BRUTERATEL AVAILABLE COMMANDS 
 
 ## Context  
 
