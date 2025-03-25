@@ -5,7 +5,7 @@ date: 2025-03-20
 
 <link rel="stylesheet" href="/css/main.css">
 
-## BRUTERATEL  
+## BRUTERATEL COMMAND LIST PART 3
 
 ## Context  
 
