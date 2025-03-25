@@ -5,7 +5,7 @@ date: 2025-03-25
 
 <link rel="stylesheet" href="/css/main.css">
 
-## BRUTERATEL  
+## BRUTERATEL COMMAND LIST PART 4 
 
 ## Context  
 
@@ -58,3 +58,504 @@ Here is a short description of the next 20 command codes and purpose :
 | "\xbf\xb"   | [UpdateConfig](#UpdateConfig) | $config |
 | "\xa9\xb3"   | [count_exec_cmd](#count_exec_cmd) | $count, $sleep, $cmd |
 
+In the following section, I share some dynamic analysis results from the aforementioned commands :  
+
+<a id="ASN1_unknown"></a>
+# ASN1_unknown
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="netshareenum"></a>
+# netshareenum  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="ExecWQLQuery"></a>
+# ExecWQLQuery  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="GetAccountSidFromPid"></a>
+# GetAccountSidFromPid  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="unknown"></a>
+# unknown  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="unknown2"></a>
+# unknown2  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="unknown3"></a>
+# unknown3  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="EnumProcessModules"></a>
+# EnumProcessModules  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="CreateProcessSuspended"></a>
+# CreateProcessSuspended  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="LoadManagedCode64"></a>
+# LoadManagedCode64  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="StartService"></a>
+# StartService  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="NetSessionEnum"></a>
+# NetSessionEnum  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="AD_Object_unknown"></a>
+# AD_Object_unknown  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="NetUserModalsGet"></a>
+# NetUserModalsGet  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="GetScheduledTask"></a>
+# GetScheduledTask  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="netshareenum2"></a>
+# netshareenum2  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="InjectProcessShellcode"></a>
+# InjectProcessShellcode  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="WtsEnumProcessA"></a>
+# WtsEnumProcessA  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="UpdateConfig"></a>
+# UpdateConfig  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="count_exec_cmd"></a>
+# count_exec_cmd  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
