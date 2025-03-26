@@ -1,6 +1,6 @@
 ---
 title: "BruteRatel full command analysis (4/X)"
-date: 2025-03-25 
+date: 2025-03-26 
 ---
 
 <link rel="stylesheet" href="/css/main.css">
@@ -641,6 +641,7 @@ function CreateProcessSuspended($processPath)
 # LoadManagedCode  
 
 ```php
+// ex: 
 function LoadManagedCode($filename)
 {
 	$file = file_get_contents($filename);
@@ -663,13 +664,135 @@ function LoadManagedCode($filename)
 **II. Execution**   
 
 ```html
+[CNT] [459]
+[PTP] [0x478] [0x9a0] [c:\windows\system32\rundll32.exe]
+[INF] [ Thread is from a Worker Pool ]
+[API] <LoadLibraryExA> in [KERNEL32.DLL] 
+[PAR] LPCTSTR lpFileName : 0x0000001E6091EEC4 ("mscoree.dll")
+[PAR] DWORD   dwFlags    : 0x0 (Same behavior as LoadLibrary)
+[RET] 0x7fff820453c7
 
+[CNT] [469]
+[PTP] [0x478] [0x9a0] [c:\windows\system32\rundll32.exe]
+[INF] [ Thread is from a Worker Pool ]
+[API] <LoadLibraryExA> in [KERNEL32.DLL] 
+[PAR] LPCTSTR lpFileName : 0x0000001E6091EEB3 ("mscoreei.dll")
+[PAR] DWORD   dwFlags    : 0x0 (Same behavior as LoadLibrary)
+[RET] 0x7fff820453c7
+
+[CNT] [479]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <GetConsoleWindow> in [KERNEL32.DLL] 
+[RET] [0x1e6030b0aa]
+
+[CNT] [480]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <AllocConsole> in [KERNEL32.DLL] 
+[RET] [0x1e602fa259]
+
+[CNT] [504]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <GetConsoleWindow> in [KERNEL32.DLL] 
+[RET] [0x1e602fa266]
+
+[CNT] [505]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <ShowWindow> in [USER32.dll] 
+[PAR] HWND hWnd     : 0x202b4
+[PAR] int  nCmdShow : 0x0
+[RET] [0x1e602fa26d]
+
+[CNT] [506]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <CreatePipe> in [KERNEL32.DLL] 
+[PAR] PHANDLE               hReadPipe        : 0x0000001E6091EF58
+[PAR] PHANDLE               hWritePipe       : 0x0000001E6091EF60
+[PAR] LPSECURITY_ATTRIBUTES lpPipeAttributes : 0x0000001E6091EE98
+[PAR] DWORD                 nSize            : 0x0
+[RET] [0x1e602fa2eb]
+
+[ * ] [pid 0x478][tid 0x838] c:\windows\system32\rundll32.exe
+[API] <CreatePipe>
+[PAR] HANDLE  hReadPipe  : 0x324
+[PAR] HANDLE  hWritePipe : 0x328
+[RES] BOOL 0x1
+
+[CNT] [662]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <SafeArrayCreate> in [OLEAUT32.dll] 
+[PAR] VARTYPE         vt         : 0x11
+[PAR] UINT            cDims      : 0x1
+[PAR] SAFEARRAYBOUND  *rgsabound : 0x0000001E6091EE1C
+[FLD]                 rgsabound[0]
+[FLD]                 -> cElements = 0x1c00
+[FLD]                 -> lLbound   = 0x0
+[RET] [0x1e6030cebc]
+
+[CNT] [663]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <SafeArrayLock> in [OLEAUT32.dll] 
+[PAR] SAFEARRAY* psa : 0x0000001E5E499DE0
+[RET] [0x1e6030cec8]
+
+[CNT] [673]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <CLRCreateInstance> in [mscoree.dll] 
+[PAR] REFCLSID  clsid       : 0x0000001E60327B60 ({9280188D-0E8E-4867-B30C-7FA83884E8DE})
+[PAR] REFIID    riid         : 0x0000001E60327C40 (ICLRMetaHost)
+[PAR] LPVOID    *ppInterface : 0x0000001E6091EDF0
+[RET] [0x1e6030b46d]
+
+[CNT] [674]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <ICLRMetaHost::GetRuntime> in [mscoreei.dll] 
+[PAR] LPCWSTR pwzVersion : 0x0000001E5E4A0CB0 ("v4.0.30319")
+[PAR] REFIID  riid       : 0x0000001E60327C50 (ICLRRuntimeInfo)
+[PAR] LPVOID  *ppRuntime : 0x0000001E6091EDE8
+[RET] [0x1e6030b489]
+
+[CNT] [675]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <ICLRRuntimeInfo::IsLoadable> in [mscoreei.dll] 
+[PAR] BOOL* pbLoadable : 0x0000001E6091ED04
+[RET] [0x1e6030b49b]
+
+[CNT] [676]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <ICLRRuntimeInfo::GetInterface> in [mscoreei.dll] 
+[PAR] REFCLSID  clsid    : 0x0000001E60327B70 ({76833450-7FFF-0000-A075-8376FF7F0000})
+[PAR] REFIID    riid     : 0x0000001E60327C60 (ICorRuntimeHost)
+[PAR] LPVOID     *ppUnk  : 0x0000001E6091EDC0
+[RET] [0x1e6030b4c0]
+
+[CNT] [685]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <ICorRuntimeHost::Start> in [clr.dll] 
+[RET] [0x1e6030d112]
+
+[CNT] [687]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <ICorRuntimeHost::CreateDomain> in [clr.dll] 
+[PAR] LPCWSTR    pwzFriendlyName : 0x0000001E6091EE32
+[STR]            -> "f09er35s9u"
+[PAR] IUnknown*  pIdentityArray  : 0x0
+[PAR] IUnknown** pAppDomain      : 0x0000001E6091EDD0
+[RET] [0x1e6030d182]
 ```
 
 **III. Result**   
 
 ```html
-
+[CNT] [735]
+[PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000001E5E5326F0
+[STR]        -> "9999"
+[STR]           "80070002"
+[PAR] DWORD  cbBinary   : 0x1a
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000001E5E4FAB30
+[PAR] DWORD* pcchString : 0x0000001E6091EC5C
+[RET] [0x1e6030e028]
 ```
 
 <a id="StartService"></a>
@@ -735,82 +858,165 @@ function StartService($MachineName, $ServiceName)
 **III. Result**   
 
 ```html
-
+[CNT] [349]
+[PTP] [0x410] [0x81c] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000C96B1EFE10
+[STR]        -> "9999"
+[STR]           "2"
+[PAR] DWORD  cbBinary   : 0xc
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000000C96B201A50
+[PAR] DWORD* pcchString : 0x000000C96D09E8DC
+[RET] [0xc96cffe028]
 ```
 
 <a id="NetSessionEnum"></a>
 # NetSessionEnum  
 
 ```php
-
+function NetSessionEnum($ServerName)
+{
+	$cmd_id = "\x8E\xB9 $ServerName";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [361]
+[PTP] [0x7d0] [0xb30] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000227DD51170
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+fvn+SPwfZxLiwC6kHD5hsh9udygI3A=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000227DD5B230
+[PAR] DWORD   *pcbBinary : 0x000000227FC7E9AC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x227fbdbea1]
 ```
 
 **II. Execution**   
 
 ```html
-
+[CNT] [405]
+[PTP] [0x7d0] [0xb30] [c:\windows\system32\rundll32.exe]
+[API] <NetSessionEnum> in [srvcli.dll] 
+[PAR] LMSTR   servername    : 0x000000227DD600A0
+[STR]         -> "localhost"
+[PAR] LMSTR   UncClientName : 0x0 (null)
+[PAR] LMSTR   username      : 0x0 (null)
+[PAR] DWORD   level         : 10
+[PAR] LPBYTE  *bufptr       : 0x000000227FC7E8B8
+[PAR] DWORD   prefmaxlen    : 0xffffffff
+[PAR] LPDWORD entriesread   : 0x000000227FC7E89C
+[PAR] LPDWORD totalentries  : 0x000000227FC7E8A0
+[PAR] LPDWORD resume_handle : 0x000000227FC7E8A4
+[RET] [0x227fbe9826]
 ```
 
 **III. Result**   
 
 ```html
-
+[CNT] [416]
+[PTP] [0x7d0] [0xb30] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000227DD7E060
+[STR]        -> "8EB9"
+[STR]           "localhost"
+[STR]           "\\[::1] user 0 0"
+[PAR] DWORD  cbBinary   : 0x40
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000000227DD68120
+[PAR] DWORD* pcchString : 0x000000227FC7E7BC
+[RET] [0x227fbde028]
 ```
 
 <a id="AD_Object_unknown"></a>
 # AD_Object_unknown  
 
+TODO, no domain controler for dynamic suepervision
+
 ```php
-
-```
-
-**I. Fetching the order**  
-
-```html
-
-```
-
-**II. Execution**   
-
-```html
-
-```
-
-**III. Result**   
-
-```html
-
+function AD_Object_todo($p1, $p2, $p3)
+{
+	$cmd_id = "\x79\x75 $p1 $p2 $p3";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
 <a id="NetUserModalsGet"></a>
 # NetUserModalsGet  
 
 ```php
-
+function NetUserModalsGet($ServerName)
+{
+	$cmd_id = "\x9a\xb9 $ServerName";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [327]
+[PTP] [0xb2c] [0xb70] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000002599684690
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+efn+SPwfZxLiwC6kHD5hsh9udygI3A=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000002599689DD0
+[PAR] DWORD   *pcbBinary : 0x000000259B56ECDC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x259b4cbea1]
 ```
 
 **II. Execution**   
 
 ```html
-
+[CNT] [366]
+[PTP] [0xb2c] [0xb70] [c:\windows\system32\rundll32.exe]
+[API] <NetUserModalsGet> in [SAMCLI.DLL] 
+[PAR] LMSTR   servername    : 0x0000002599690150
+[STR]         -> "localhost"
+[PAR] DWORD   level         : 0
+[PAR] LPBYTE* bufptr        : 0x000000259B56EBF8
+[RET] [0x259b4d56a8]
 ```
 
 **III. Result**   
 
 ```html
-
+[CNT] [450]
+[PTP] [0xb2c] [0xb70] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000259968AD00
+[STR]        -> "9AB9"
+[STR]           "localhost"
+[STR]           "AA 0"
+[STR]           "AB 42"
+[STR]           "AC 0"
+[STR]           "AD 4294967295"
+[STR]           "AE 0"
+[STR]           "BA 30"
+[STR]           "BB 30"
+[STR]           "BC 0"
+[PAR] DWORD  cbBinary   : 0x86
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x00000025996A3B30
+[PAR] DWORD* pcchString : 0x000000259B56EB1C
+[RET] [0x259b4ce028]
 ```
 
 <a id="GetScheduledTask"></a>
