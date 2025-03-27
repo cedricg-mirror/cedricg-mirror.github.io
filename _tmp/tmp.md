@@ -1,6 +1,6 @@
 ---
 title: "BruteRatel full command analysis (4/X)"
-date: 2025-03-26 
+date: 2025-03-27 
 ---
 
 <link rel="stylesheet" href="/css/main.css">
