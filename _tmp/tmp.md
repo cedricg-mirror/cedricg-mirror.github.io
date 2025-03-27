@@ -1543,7 +1543,7 @@ This command is 'supposed' to execute n times a given command with a timer betwe
 
 ![exec_loop](/docs/assets/images/bruteratel/command_exec_loop.jpg)
 
-There is fowever a deisgn flaw here since the function executing the command ends with an ExitThread :  
+There is however a deisgn flaw here since the function executing the command ends with an ExitThread :  
 
 ![ExitThread](/docs/assets/images/bruteratel/exit_thread.jpg)
 
