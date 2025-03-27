@@ -1586,20 +1586,102 @@ function count_exec_cmd($count, $sleep, $cmd)
 **II. Execution**   
 
 ```html
-[CNT] [433]
-[PTP] [0x8d8] [0xac0] [c:\windows\system32\rundll32.exe]
-[API] <GetTickCount> in [KERNEL32.DLL] 
-[RET] [0x248aa7099c]
+[CNT] [4959]
+[PTP] [0x7ec] [0xac0] [c:\windows\system32\rundll32.exe]
+[API] <GetLogicalDrives> in [KERNEL32.DLL] 
+[RET] [0xd253174125]
 
-[CNT] [434]
-[PTP] [0x8d8] [0xac0] [c:\windows\system32\rundll32.exe]
-[API] <GetLastInputInfo> in [USER32.dll] 
-[PAR] PLASTINPUTINFO plii : 0x000000248B0DEC38
-[RET] [0x248aa709bb]
+[CNT] [4961]
+[PTP] [0x7ec] [0xac0] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000D2512D7F60
+[STR]        -> "0906"
+[STR]           "C:\"
+[STR]           "D:\"
+[STR]           "X:\"
+[STR]           "Y:\"
+[STR]           "Z:\"
+[PAR] DWORD  cbBinary   : 0x32
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000000D2512E44C0
+[PAR] DWORD* pcchString : 0x000000D25329EF0C
+[RET] [0xd25316e028]
+
+[CNT] [4962]
+[PTP] [0x7ec] [0xac0] [c:\windows\system32\rundll32.exe]
+[API] <WaitForSingleObjectEx> in [KERNEL32.DLL] 
+[PAR] HANDLE hHandle        : 0xffffffff
+[PAR] DWORD  dwMilliseconds : 0xbb8  // 3s
+[PAR] BOOL   bAlertable     : 0x0
+[RET] [0xd253181c8b]
+
+[CNT] [5026]
+[PTP] [0x7ec] [0xac0] [c:\windows\system32\rundll32.exe]
+[API] <GetLogicalDrives> in [KERNEL32.DLL] 
+[RET] [0xd253174125]
+
+[CNT] [5028]
+[PTP] [0x7ec] [0xac0] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000D2512D7F60
+[STR]        -> "0906"
+[STR]           "C:\"
+[STR]           "D:\"
+[STR]           "X:\"
+[STR]           "Y:\"
+[STR]           "Z:\"
+[PAR] DWORD  cbBinary   : 0x32
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000000D2512E4100
+[PAR] DWORD* pcchString : 0x000000D25329EF0C
+[RET] [0xd25316e028]
+
+[CNT] [5029]
+[PTP] [0x7ec] [0xac0] [c:\windows\system32\rundll32.exe]
+[API] <WaitForSingleObjectEx> in [KERNEL32.DLL] 
+[PAR] HANDLE hHandle        : 0xffffffff
+[PAR] DWORD  dwMilliseconds : 0xbb8 
+[PAR] BOOL   bAlertable     : 0x0
+[RET] [0xd253181c8b]
+
+[CNT] [5077]
+[PTP] [0x7ec] [0xac0] [c:\windows\system32\rundll32.exe]
+[API] <GetLogicalDrives> in [KERNEL32.DLL] 
+[RET] [0xd253174125]
+
+[CNT] [5079]
+[PTP] [0x7ec] [0xac0] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000D2512D7AE0
+[STR]        -> "0906"
+[STR]           "C:\"
+[STR]           "D:\"
+[STR]           "X:\"
+[STR]           "Y:\"
+[STR]           "Z:\"
+[PAR] DWORD  cbBinary   : 0x32
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000000D2512E47E0
+[PAR] DWORD* pcchString : 0x000000D25329EF0C
+[RET] [0xd25316e028]
+
+[CNT] [5080]
+[PTP] [0x7ec] [0xac0] [c:\windows\system32\rundll32.exe]
+[API] <WaitForSingleObjectEx> in [KERNEL32.DLL] 
+[PAR] HANDLE hHandle        : 0xffffffff
+[PAR] DWORD  dwMilliseconds : 0xbb8 
+[PAR] BOOL   bAlertable     : 0x0
+[RET] [0xd253181c8b]
 ```
 
 **III. Result**   
 
-```html
-
+```
+A6D4
+2 27520906
+C:\
+D:\
+X:\
+Y:\
+Z:\
 ```
