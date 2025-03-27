@@ -1539,12 +1539,24 @@ function UpdateConfig($config)
 <a id="count_exec_cmd"></a>
 # count_exec_cmd  
 
+This command is 'supposed' to execute n times a given command with a timer between each execution :
+
+![exec_loop](/docs/assets/images/bruteratel/command_exec_loop.jpg)
+
+There is fowever a deisgn flaw here since the function executing the command ends with an ExitThread :  
+
+![ExitThread](/docs/assets/images/bruteratel/exit_thread.jpg)
+
+The loop is broken by the ExitThread, invalidating the purpose of this command...  
+Below a run exemple after removing the unnecessary Exit Thread :
+
 ```php
 /*
 	$p1 "int" cmd exec count
 	$p2 "int" Sleep in sec
 	$p3 "sring" 
 */
+// ex : count_exec_cmd("3", "3", "\x09\x06")
 function count_exec_cmd($count, $sleep, $cmd)
 {
 	$cmd_id = "\xa9\xb3 $count $sleep $cmd";
