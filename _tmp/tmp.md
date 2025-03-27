@@ -1537,6 +1537,20 @@ function UpdateConfig($config)
 }
 ```
 
+This is the unencrypted default configuration from the analysed sample :  
+
+```
+||0|5|5|100||||||||||||0|1
+|greshunka.com,bazarunet.com,tiguanin.com
+|8041
+|Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36
+|OV1T557KBIUECUM5
+|S47EFEUO3D2O6641
+|/bazar.php,/admin.php
+|
+|d0cf9d2be1473579e729382f5c2e22c6713503a7a74fecf866732f59399132fe
+```
+
 
 <a id="count_exec_cmd"></a>
 # count_exec_cmd  
