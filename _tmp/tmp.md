@@ -781,6 +781,8 @@ function LoadManagedCode($filename)
 
 **III. Result**   
 
+I unfortunatly always get an error 0x80070002 (file not found) when reaching the CreateDomain Call, not sure why :  
+
 ```html
 [CNT] [735]
 [PTP] [0x478] [0x838] [c:\windows\system32\rundll32.exe]
