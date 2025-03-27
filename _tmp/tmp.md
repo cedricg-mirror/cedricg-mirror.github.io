@@ -1585,18 +1585,18 @@ function count_exec_cmd($count, $sleep, $cmd)
 **I. Fetching the order**  
 
 ```html
-[CNT] [395]
-[PTP] [0x8d8] [0x6e4] [c:\windows\system32\rundll32.exe]
+[CNT] [4916]
+[PTP] [0x7ec] [0x9cc] [c:\windows\system32\rundll32.exe]
 [API] <CryptStringToBinaryA> in [crypt32.dll] 
-[PAR] LPCTSTR pszString  : 0x0000002488B57FC0
-[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+ZenYSNALHwLy1g+H"
+[PAR] LPCTSTR pszString  : 0x000000D2512D7D20
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+ZenYSNMhHwLy1j2M"
 [PAR] DWORD   cchString  : 0x0
 [PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
-[PAR] BYTE    *pbBinary  : 0x0000002488B6F060
-[PAR] DWORD   *pcbBinary : 0x000000248AB0EB3C
+[PAR] BYTE    *pbBinary  : 0x000000D2512EBB10
+[PAR] DWORD   *pcbBinary : 0x000000D25320EC5C
 [PAR] DWORD   *pdwSkip   : 0x0
 [PAR] DWORD   *pdwFlags  : 0x0
-[RET] [0x248aa6bea1]
+[RET] [0xd25316bea1]
 ```
 
 **II. Execution**   
