@@ -34,7 +34,7 @@ Working on this unpacked payload made the sample analysis much more straightforw
 
 This detailed analysis will be split into several parts, I will be presenting in this post the 'first' 20 commands that BruteRatel can respond to.  
 
-[Second Part](https://cedricg-mirror.github.io/2025/03/17/BruteRatel2.html)  
+[Second Part](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html)  
 
 # COMMAND LIST
 
