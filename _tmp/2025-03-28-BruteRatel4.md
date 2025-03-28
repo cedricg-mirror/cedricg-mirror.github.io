@@ -1,6 +1,6 @@
 ---
 title: "BruteRatel full command analysis (4/X)"
-date: 2025-03-27 
+date: 2025-03-28 
 ---
 
 <link rel="stylesheet" href="/css/main.css">
@@ -478,7 +478,7 @@ function GetAccountSidFromPid($pid)
 <a id="unknown"></a>
 # unknown  
 
-No direct interation with the infected Host  
+No direct interaction with the infected Host  
 Some internal operation with the malware's configuration, related to the HTTP access Token.
 I'll update later on after some more static analysis.  
 
@@ -486,7 +486,7 @@ I'll update later on after some more static analysis.
 <a id="unknown2"></a>
 # unknown2  
 
-No direct interation with the infected Host  
+No direct interaction with the infected Host  
 Samme, this command free some memory allocated within the malware's global structure, todo..  
 
 <a id="unknown3"></a>
