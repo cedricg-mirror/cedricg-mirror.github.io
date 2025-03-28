@@ -27,7 +27,7 @@ http://greshunka[.]com/admin.php:8041
 
 # INTRO  
 
-This article is the 4th part of my full analysis of BruteRatel commands : [Previous Part](https://cedricg-mirror.github.io/2025/03/19/BruteRatel3.html)  
+This article is the 4th part of my full analysis of BruteRatel commands : [Previous Part](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html)  
 
 This detailed analysis will be split into several parts, I will be presenting in this post the next 20 commands that BruteRatel can respond to.  
 
