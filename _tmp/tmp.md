@@ -64,7 +64,8 @@ In the following section, I share some dynamic analysis results from the aforeme
 # ASN1_unknown
 
 This function would require some reverse-engineering to maybe enable a runtime execution.  
-It requires tow parameters of fixed size that are used to create an ASN.1 Decoder and Encoder.  
+It requires two parameters of fixed size that are used to create an ASN.1 Decoder and Encoder and 14 unknown parameters    
+Without a domain controler, I cannot run past the LsaQueryInformationPolicy call in dynamic analysis
 
 ```php
 /*
@@ -73,16 +74,85 @@ It requires tow parameters of fixed size that are used to create an ASN.1 Decode
 */
 function ASN1_unknown($p1, $p2)
 {
+	$p1 = "";
+	for ($i = 0; $i < 0x6dd; $i++)
+		$p1 = $p1 . "A";
+		
+	$p2 = "";
+	for ($i = 0; $i < 0x355; $i++)
+		$p2 = $p2 . "B";
+	
 	$p1_b64 = base64_encode($p1);
 	$p2_b64 = base64_encode($p2);
 	
-	$cmd_id = "\x81\x98 $p1_b64 $p2_b64";
+	$cmd_id = "\x81\x98 $p1_b64 $p2_b64 AA BB CC DD EE FF GG HH II JJ KK LL MM NN";
 	$cmd_id_b64 = base64_encode($cmd_id);
 	
 	return $cmd_id_b64;
 }
 ```
+**II. Execution**   
 
+```html
+[CNT] [394]
+[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[API] <ASN1_CreateModule> in [MSASN1.dll] 
+[INF] [ Undocumented ]
+[PAR] ASN1uint32_t       nVersion       : 0x10000
+[PAR] ASN1encodingrule_e eRule          : 0x400
+[PAR] ASN1uint32_t       dwFlags        : 0x1000
+[PAR] ASN1uint32_t       cPDU           : 0x1
+[PAR] ASN1GenericFun_t   apfnEncoder    : 0x000000CFB02390A0
+[PAR] ASN1GenericFun_t   apfnDecoder    : 0x000000CFB02390A0
+[PAR] ASN1FreeFun_t      apfnFreeMemory : 0x000000CFB02390A0
+[PAR] ASN1uint32_t*      acbStructSize  : 0x000000CFB0239760
+[PAR] ASN1magic_t        nModuleName    : 0x0
+[RET] [0xcfb020b54c]
+
+[CNT] [395]
+[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[API] <ASN1_CreateEncoder> in [MSASN1.dll] 
+[INF] [ Undocumented ]
+[PAR] ASN1module_t    pModule       : 0x000000CFAE35DAB0
+[PAR] ASN1encoding_t* ppEncoderInfo : 0x000000CFB0236240
+[PAR] ASN1octet_t*    pbBuff        : 0x0
+[PAR] ASN1uint32_t    cbBuffSize    : 0x0
+[PAR] ASN1encoding_t  pParent       : 0x0
+[RET] [0xcfb020b57b]
+
+[CNT] [396]
+[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[API] <ASN1_CreateDecoder> in [MSASN1.dll] 
+[INF] [ Undocumented ]
+[PAR] ASN1module_t    pModule       : 0x000000CFAE35DAB0
+[PAR] ASN1decoding_t* ppDecoderInfo : 0x000000CFB0236230
+[PAR] ASN1octet_t*    pbBuff        : 0x0
+[PAR] ASN1uint32_t    cbBuffSize    : 0x0
+[PAR] ASN1decoding_t  pParent       : 0x0
+[RET] [0xcfb020b5bc]
+
+[CNT] [403]
+[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[API] <LsaOpenPolicy> in [ADVAPI32.dll] 
+[PAR] PLSA_UNICODE_STRING    SystemName       : 0x0
+[PAR] PLSA_OBJECT_ATTRIBUTES ObjectAttributes : 0x000000CFB082EAE0
+[PAR] ACCESS_MASK            DesiredAccess    : 0x1
+[PAR] PLSA_HANDLE            PolicyHandle     : 0x000000CFB082EAD8
+[RET] [0xcfb020d2e2]
+
+[CNT] [404]
+[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[API] <LsaQueryInformationPolicy> in [ADVAPI32.dll] 
+[PAR] LSA_HANDLE               PolicyHandle     : 0x000000CFAE35DB30
+[PAR] POLICY_INFORMATION_CLASS InformationClass : 0xc (PolicyDnsDomainInformation)
+[PAR] PVOID*                   Buffer           : 0x000000CFB082EBE0
+[RET] [0xcfb020d2f9]
+
+[CNT] [405]
+[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[API] <LsaClose> in [ADVAPI32.dll] 
+[RET] [0xcfb020d30d]
+```
 
 <a id="netshareenum"></a>
 # netshareenum  
