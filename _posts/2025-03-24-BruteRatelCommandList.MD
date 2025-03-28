@@ -43,7 +43,7 @@ http://greshunka[.]com/admin.php:8041
 | "\xcb\xe3"   | [GetDomainControlerInfo](#GetDomainControlerInfo) | NA                |
 | "\x16\xf6"   | [GetNetworkAdaptersInfo](#GetNetworkAdaptersInfo) | NA                |
 | "\x03\x08"   | [ExitThread](#ExitThread) | NA                |
-| "\x34\x49"   | [GetMemoryDump](#GetMemoryDump) | $processname" |
+| "\x34\x49"   | [GetMemoryDump](#GetMemoryDump) | $processname |
 | "\x39\xb3"   | [GetTcpUdpTables](#GetTcpUdpTables) | NA                | 
 | "\x1a\xd4"   | [GetIpForwardTable](#GetIpForwardTable) | NA                | 
 | "\x9a\xbe"   | [QuerySessionInformation](#QuerySessionInformation) | NA                | 
