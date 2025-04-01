@@ -521,7 +521,8 @@ Self-explanatory. It may be worth mentionning that the malware will shutdown wit
 <a id="RevertToSelf"></a>
 # RevertToSelf  
 
-TODO  
+This function is just a wrapper around the RevertToSelf function from ADVAPI32.  
+It is likely to be called when done impersonating another user, for instance after using the command ImpersonateSystem described in [Part 3](https://github.com/cedricg-mirror/cedricg-mirror.github.io/blob/main/_posts/2025-03-20-BruteRatel3.md)  
 
 <a id="GetClipBoardData"></a>
 # GetClipBoardData  
