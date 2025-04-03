@@ -48,26 +48,26 @@ http://greshunka[.]com/admin.php:8041
 | "\x1a\xd4"   | [GetIpForwardTable](https://cedricg-mirror.github.io/2025/03/17/BruteRatel.html#GetIpForwardTable) | NA                | 
 | "\x9a\xbe"   | [QuerySessionInformation](https://cedricg-mirror.github.io/2025/03/17/BruteRatel.html#QuerySessionInformation) | NA                | 
 | "\xb7\x38"   | [GetDnsCacheDataTable](https://cedricg-mirror.github.io/2025/03/17/BruteRatel.html#GetDnsCacheDataTable) | NA                |
-| "\x48\x52"   | [Fingerprint](#Fingerprint) | NA                |
-| "\x35\x61"   | [EnumWindows](#EnumWindows) | NA                |
-| "\xe8\x73"   | [GetInstalledProgramsList](#GetInstalledProgramsList) | NA                |
-| "\xa3\xd9"   | [RegisterSessionPowerSettingNotification](#RegisterSessionPowerSettingNotification) | NA                |
-| "\x59\xd3"   | [recv](#recv) | $label $hostname $port |
-| "\x59\xd4"   | [sendto](#sendto) | $label $hostname $port $b64_data |
-| "\x60\xd4"   | [send](#send) | $socket, $b64_data |
-| "\x59\xd9"   | [closesocket](#closesocket) | $socket          |
-| "\xa1\x2d"   | [start_keylogging](#start_keylogging) | NA                |
-| "\x29\x21"   | [update_sleep_conf](#update_sleep_conf) | $int1, $int2       |
-| "\x39\x11"   | [SetCurrentDirectory](#SetCurrentDirectory) | $dir_path             |
-| "\x05\xa9"   | [CopyFileW](#CopyFileW) | $src, $dst          |
-| "\x05\xa9"   | [MoveFileW](#MoveFileW) | $src, $dst    |
+| "\x48\x52"   | [Fingerprint](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#Fingerprint) | NA                |
+| "\x35\x61"   | [EnumWindows](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#EnumWindows) | NA                |
+| "\xe8\x73"   | [GetInstalledProgramsList](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#GetInstalledProgramsList) | NA                |
+| "\xa3\xd9"   | [RegisterSessionPowerSettingNotification](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#RegisterSessionPowerSettingNotification) | NA                |
+| "\x59\xd3"   | [recv](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#recv) | $label $hostname $port |
+| "\x59\xd4"   | [sendto](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#sendto) | $label $hostname $port $b64_data |
+| "\x60\xd4"   | [send](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#send) | $socket, $b64_data |
+| "\x59\xd9"   | [closesocket](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#closesocket) | $socket          |
+| "\xa1\x2d"   | [start_keylogging](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#start_keylogging) | NA                |
+| "\x29\x21"   | [update_sleep_conf](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#update_sleep_conf) | $int1, $int2       |
+| "\x39\x11"   | [SetCurrentDirectory](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#SetCurrentDirectory) | $dir_path             |
+| "\x05\xa9"   | [CopyFileW](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#CopyFileW) | $src, $dst          |
+| "\x05\xa9"   | [MoveFileW](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#MoveFileW) | $src, $dst    |
 | "\x93\xe9"   | [DeleteFileSecure](#DeleteFileSecure) | $dos_path, $secure_erase        |
 | "\x61\x3f"   | [CreateDirectoryW](#CreateDirectoryW) | $dir_path         |
 | "\x40\x8f"   | [RemoveDirectoryW](#RemoveDirectoryW) | $dir_path |
-| "\x32\x0a"   | [listdir](#listdir) | $dir_path        | 
-| "\x59\xa9"   | [NetInfo](#NetInfo) | $option, $unknown | 
-| "\x84\xf5"   | [CreateProcessWithLogon](#CreateProcessWithLogon) | $domain $username $password $AppName $CommandLine | 
-| "\x99\xf9"   | [LogonUserW](#LogonUserW) | $type, $domain, $username, $password |
+| "\x32\x0a"   | [listdir](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#listdir) | $dir_path        | 
+| "\x59\xa9"   | [NetInfo](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#NetInfo) | $option, $unknown | 
+| "\x84\xf5"   | [CreateProcessWithLogon](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#CreateProcessWithLogon) | $domain $username $password $AppName $CommandLine | 
+| "\x99\xf9"   | [LogonUserW](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#LogonUserW) | $type, $domain, $username, $password |
 | "\xb0\xe9"   | [CreateProcessA](#CreateProcessA) | $process_path              |
 | "\xc0\xeb"   | [TerminateProcess](#TerminateProcess) | $pid            |
 | "\xd0\xbe"   | [ShellExecuteExA](#ShellExecuteExA) | $verb, $file, $parameters            |
