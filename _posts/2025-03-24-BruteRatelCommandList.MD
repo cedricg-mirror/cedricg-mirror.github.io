@@ -68,27 +68,27 @@ http://greshunka[.]com/admin.php:8041
 | "\x59\xa9"   | [NetInfo](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#NetInfo) | $option, $unknown | 
 | "\x84\xf5"   | [CreateProcessWithLogon](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#CreateProcessWithLogon) | $domain $username $password $AppName $CommandLine | 
 | "\x99\xf9"   | [LogonUserW](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#LogonUserW) | $type, $domain, $username, $password |
-| "\xb0\xe9"   | [CreateProcessA](#CreateProcessA) | $process_path              |
-| "\xc0\xeb"   | [TerminateProcess](#TerminateProcess) | $pid            |
-| "\xd0\xbe"   | [ShellExecuteExA](#ShellExecuteExA) | $verb, $file, $parameters            |
-| "\xe0\x9d"   | [ListActiveProcess](#ListActiveProcess) | NA                |
-| "\xae\x6b"   | [ImpersonateSystem](#ImpersonateSystem) | NA |
-| "\x39\x6f"   | [ImpersonateSystem2](#ImpersonateSystem2) | NA  |
-| "\xd9\xf3"   | [unknown](#unknown) | $p1, $p2 |
-| "\xd4\x3f"   | [unknown2](#unknown2) | $p1, $p2          |
-| "\x74\x2c"   | [ReadFileW](#ReadFileW) | $filename, $size_in_KB              |
-| "\x36\x6c"   | [RegEnumKeyA](#RegEnumKeyA) | $hKey, $SubKey       |
-| "\x58\xb4"   | [QueryServiceConfig](#QueryServiceConfig) | $MachineName, $p2, $ServiceName       |
-| "\xea\xe2"   | [unknown3](#unknown3) | $p1         |
-| "\xa1\x13"   | [WriteFile](#WriteFile) | $filename, $data   |
-| "\x9a\x69"   | [listen](#listen) | $label, $port        |
-| "\x4d\x3c"   | [pipe_com_todo](#pipe_com_todo) | $PipeName   $p2     |
-| "\x37\xfe"   | [install_as_service](#install_as_service) | $MachineName, $serviceName, $payload |
-| "\xe9\x97"   | [createService](#createService) | $MachineName, $serviceName, $path     | 
-| "\x73\xfa"   | [deleteService](#deleteService) | $MachineName, $serviceName | 
-| "\x3e\x3b"   | [changeServiceConfig](#changeServiceConfig) | $MachineName, $serviceName, $BinaryPathName | 
-| "\x62\xc6"   | [GetProcessInfo](#GetProcessInfo) | $processName |
-| "\x91\xe5"   | [port_scan](#port_scan) | $hostname, $ports |
+| "\xb0\xe9"   | [CreateProcessA](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#CreateProcessA) | $process_path              |
+| "\xc0\xeb"   | [TerminateProcess](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#TerminateProcess) | $pid            |
+| "\xd0\xbe"   | [ShellExecuteExA](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ShellExecuteExA) | $verb, $file, $parameters            |
+| "\xe0\x9d"   | [ListActiveProcess](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ListActiveProcess) | NA                |
+| "\xae\x6b"   | [ImpersonateSystem](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ImpersonateSystem) | NA |
+| "\x39\x6f"   | [ImpersonateSystem2](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ImpersonateSystem2) | NA  |
+| "\xd9\xf3"   | [unknown](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#unknown) | $p1, $p2 |
+| "\xd4\x3f"   | [unknown2](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#unknown2) | $p1, $p2          |
+| "\x74\x2c"   | [ReadFileW](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ReadFileW) | $filename, $size_in_KB              |
+| "\x36\x6c"   | [RegEnumKeyA](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#RegEnumKeyA) | $hKey, $SubKey       |
+| "\x58\xb4"   | [QueryServiceConfig](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#QueryServiceConfig) | $MachineName, $p2, $ServiceName       |
+| "\xea\xe2"   | [unknown3](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#unknown3) | $p1         |
+| "\xa1\x13"   | [WriteFile](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#WriteFile) | $filename, $data   |
+| "\x9a\x69"   | [listen](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#listen) | $label, $port        |
+| "\x4d\x3c"   | [pipe_com_todo](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#pipe_com_todo) | $PipeName   $p2     |
+| "\x37\xfe"   | [install_as_service](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#install_as_service) | $MachineName, $serviceName, $payload |
+| "\xe9\x97"   | [createService](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#createService) | $MachineName, $serviceName, $path     | 
+| "\x73\xfa"   | [deleteService](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#deleteService) | $MachineName, $serviceName | 
+| "\x3e\x3b"   | [changeServiceConfig](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#changeServiceConfig) | $MachineName, $serviceName, $BinaryPathName | 
+| "\x62\xc6"   | [GetProcessInfo](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#GetProcessInfo) | $processName |
+| "\x91\xe5"   | [port_scan](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#port_scan) | $hostname, $ports |
 | "\x81\x98"  | [ASN1_unknown](#ASN1_unknown) | $p1 $p2 |
 | "\x53\x49"   | [netshareenum](#netshareenum) | $servername, $level |
 | "\x13\x52"  | [ExecWQLQuery](#ExecWQLQuery) | $query |
