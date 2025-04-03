@@ -89,24 +89,24 @@ http://greshunka[.]com/admin.php:8041
 | "\x3e\x3b"   | [changeServiceConfig](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#changeServiceConfig) | $MachineName, $serviceName, $BinaryPathName | 
 | "\x62\xc6"   | [GetProcessInfo](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#GetProcessInfo) | $processName |
 | "\x91\xe5"   | [port_scan](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#port_scan) | $hostname, $ports |
-| "\x81\x98"  | [ASN1_unknown](#ASN1_unknown) | $p1 $p2 |
-| "\x53\x49"   | [netshareenum](#netshareenum) | $servername, $level |
-| "\x13\x52"  | [ExecWQLQuery](#ExecWQLQuery) | $query |
-| "\xe7\x81"   | [GetAccountSidFromPid](#GetAccountSidFromPid) | $pid |
-| "\x56\xf8   | [unknown](#unknown) | $p1 |
-| "\x46\xcb"   | [unknown2](#unknown2) | $p1 |
-| "\x32\x49"   | [unknown3](#unknown3) | NA |
-| "\x92\x64"   | [EnumProcessModules](#EnumProcessModules) | $pid |
-| "\x48\x73"   | [CreateProcessSuspended](#CreateProcessSuspended) | $processPath |
-| "\x44\x80"   | [LoadManagedCode64](#LoadManagedCode64) | $binary |
-| "\x56\x34   | [StartService](#StartService) | $MachineName, $ServiceName |
-| "\x8E\xB9   | [NetSessionEnum](#NetSessionEnum) | $ServerName |
-| "\x79\x75"   | [AD_Object_unknown](#AD_Object_unknown) | $p1, $p2, $p3 |
-| "\x9a\xb9"   | [NetUserModalsGet](#NetUserModalsGet) | $ServerName |
-| "\x9a\xb6"   | [GetScheduledTask](#GetScheduledTask) | $serverName |
-| "\xb3\x29"   | [netshareenum2](#netshareenum2) | $servername |
-| "\xa9\xe4"   | [InjectProcessShellcode](#InjectProcessShellcode) | $pid |
-| "\xf3\xd8"   | [WtsEnumProcessA](#WtsEnumProcessA) | $RDServerName |
-| "\xbf\xb"   | [UpdateConfig](#UpdateConfig) | $config |
-| "\xa9\xb3"   | [count_exec_cmd](#count_exec_cmd) | $count, $sleep, $cmd |
+| "\x81\x98"  | [ASN1_unknown](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#ASN1_unknown) | $p1 $p2 |
+| "\x53\x49"   | [netshareenum](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#netshareenum) | $servername, $level |
+| "\x13\x52"  | [ExecWQLQuery](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#ExecWQLQuery) | $query |
+| "\xe7\x81"   | [GetAccountSidFromPid](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#GetAccountSidFromPid) | $pid |
+| "\x56\xf8   | [unknown](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#unknown) | $p1 |
+| "\x46\xcb"   | [unknown2](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#unknown2) | $p1 |
+| "\x32\x49"   | [unknown3](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#unknown3) | NA |
+| "\x92\x64"   | [EnumProcessModules](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#EnumProcessModules) | $pid |
+| "\x48\x73"   | [CreateProcessSuspended](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#CreateProcessSuspended) | $processPath |
+| "\x44\x80"   | [LoadManagedCode64](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#LoadManagedCode64) | $binary |
+| "\x56\x34   | [StartService](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#StartService) | $MachineName, $ServiceName |
+| "\x8E\xB9   | [NetSessionEnum](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#NetSessionEnum) | $ServerName |
+| "\x79\x75"   | [AD_Object_unknown](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#AD_Object_unknown) | $p1, $p2, $p3 |
+| "\x9a\xb9"   | [NetUserModalsGet](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#NetUserModalsGet) | $ServerName |
+| "\x9a\xb6"   | [GetScheduledTask](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#GetScheduledTask) | $serverName |
+| "\xb3\x29"   | [netshareenum2](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#netshareenum2) | $servername |
+| "\xa9\xe4"   | [InjectProcessShellcode](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#InjectProcessShellcode) | $pid |
+| "\xf3\xd8"   | [WtsEnumProcessA](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#WtsEnumProcessA) | $RDServerName |
+| "\xbf\xb"   | [UpdateConfig](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#UpdateConfig) | $config |
+| "\xa9\xb3"   | [count_exec_cmd](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#count_exec_cmd) | $count, $sleep, $cmd |
 
