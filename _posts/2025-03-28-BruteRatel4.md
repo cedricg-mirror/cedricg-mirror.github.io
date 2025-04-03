@@ -1640,7 +1640,7 @@ Below a run exemple after removing the unnecessary Exit Thread :
 /*
 	$p1 "int" cmd exec count
 	$p2 "int" Sleep in sec
-	$p3 "sring" 
+	$p3 "command id" 
 */
 // ex : count_exec_cmd("3", "3", "\x09\x06")
 function count_exec_cmd($count, $sleep, $cmd)
