@@ -28,7 +28,7 @@ http://greshunka[.]com/admin.php:8041
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
-| "\x9f\x3c"   | [GetCurrentDirectory](#GetCurrentDirectory) | NA                |
+| "\x9f\x3c"   | [GetCurrentDirectory](https://cedricg-mirror.github.io/2025/03/17/BruteRatel.html#GetCurrentDirectory) | NA                |
 | "\x3f\xd5"   | [GetIpTable](#GetIpTable) | NA                |
 | "\xfe\x4f"   | [GetAccountPrivileges](#GetAccountPrivileges) | NA                |
 | "\x91\x03"   | [LockWorkStation](#LockWorkStation) | NA                |
