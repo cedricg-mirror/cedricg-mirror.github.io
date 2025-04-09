@@ -7,6 +7,8 @@ date: 2025-03-17
 
 ## BRUTERATEL COMMAND LIST PART 1  
 
+updated : 09/04/2025  
+
 ## Context  
 
 BruteRatel SHA256 : d8080b4f7a238f28435649f74fdd5679f7f7133ea81d12d9f10b05017b0897b1  
@@ -676,6 +678,16 @@ Unfortunatly this sample is relying on an API not available for this version of 
 <a id="GetDomainControlerInfo"></a>
 # GetDomainControlerInfo  
 
+```php
+function GetDomainControlerInfo()
+{
+	$cmd_id = "\xcb\xe3;
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
+```
+
 **I. Order**  
 
 ```html
@@ -696,33 +708,75 @@ Unfortunatly this sample is relying on an API not available for this version of 
 **II. Execution**  
 
 ```html
-[CNT] [370]
-[PTP] [0x930] [0x334] [c:\windows\system32\rundll32.exe]
+[CNT] [432]
+[PTP] [0xd3c] [0xd48] [c:\windows\system32\rundll32.exe]
 [API] <DsGetDcNameW> in [LOGONCLI.DLL] 
-[PAR] LPCWSTR                  ComputerName         : 0x0 (null)
-[PAR] LPCWSTR                  DomainName           : 0x0 (null)
+[PAR] LPCWSTR                   ComputerName         : 0x0 (null)
+[PAR] LPCWSTR                   DomainName           : 0x0 (null)
 [PAR] GUID*                     DomainGuid           : 0x0
-[PAR] LPWCSTR                  SiteName             : 0x0 (null)
+[PAR] LPWCSTR                   SiteName             : 0x0 (null)
 [PAR] ULONG                     Flags                : 0x0
-[PAR] PDOMAIN_CONTROLLER_INFOW* DomainControllerInfo : 0x000000735315EA58
-[RET] [0x73530bbf68]
+[PAR] PDOMAIN_CONTROLLER_INFOW* DomainControllerInfo : 0x00000003D557EC48
+[RET] [0x3d54dbf68]
+
+[CNT] [433]
+[PTP] [0xd3c] [0xd48] [c:\windows\system32\rundll32.exe]
+[API] <DsGetDcOpenW> in [LOGONCLI.DLL] 
+[PAR] LPCWSTR DnsName         : 0x00000003D359DD88
+[STR]         -> "mylab.local"
+[PAR] ULONG   OptionFlags     : 0x2 (DS_NOTIFY_AFTER_SITE_RECORDS)
+[PAR] LPCWSTR SiteName        : 0x0 (null)
+[PAR] GUID*   DomainGuid      : 0x0
+[PAR] LPCWSTR DnsForestName   : 0x0
+[PAR] ULONG   DcFlags         : 0x0 
+[PAR] PHANDLE RetGetDcContext : 0x00000003D557EC50
+[RET] [0x3d54dbfab]
+
+[CNT] [434]
+[PTP] [0xd3c] [0xd48] [c:\windows\system32\rundll32.exe]
+[API] <NetUserModalsGet> in [SAMCLI.DLL] 
+[PAR] LMSTR   servername    : 0x00000003D359DD40
+[STR]         -> "\\MYDC.mylab.local"
+[PAR] DWORD   level         : 0
+[PAR] LPBYTE* bufptr        : 0x00000003D557EC60
+[RET] [0x3d54dc046]
+
+[CNT] [451]
+[PTP] [0xd3c] [0xd48] [c:\windows\system32\rundll32.exe]
+[API] <NetUserModalsGet> in [SAMCLI.DLL] 
+[PAR] LMSTR   servername    : 0x00000003D359DD40
+[STR]         -> "\\MYDC.mylab.local"
+[PAR] DWORD   level         : 3
+[PAR] LPBYTE* bufptr        : 0x00000003D557EC68
+[RET] [0x3d54dc13d]
+
+[CNT] [468]
+[PTP] [0xd3c] [0xd48] [c:\windows\system32\rundll32.exe]
+[API] <DsGetDcNextW> in [LOGONCLI.DLL] 
+[PAR] HANDLE            GetDcContextHandle : 0x00000003D357FE70
+[PAR] PULONG            SockAddressCount   : 0x00000003D557EC3C
+[PAR] LPSOCKET_ADDRESS* SockAddresses      : 0x00000003D557EC78
+[PAR] LPWSTR*           DnsHostName        : 0x00000003D557EC70
+[RET] [0x3d54dc252]
+
 ```
 
 **III. Result**  
 
-Empty result because of a lack of a domain controler in my lab, I'll update the results later  
-
 ```html
-[CNT] [377]
-[PTP] [0x930] [0x334] [c:\windows\system32\rundll32.exe]
+[CNT] [483]
+[PTP] [0xd3c] [0xd48] [c:\windows\system32\rundll32.exe]
 [API] <CryptBinaryToStringW> in [crypt32.dll] 
-[PAR] BYTE*  pbBinary   : 0x00000073511009E0
+[PAR] BYTE*  pbBinary   : 0x00000003D35A4F50
 [STR]        -> "CBE3"
-[PAR] DWORD  cbBinary   : 0xa
+[STR]           "mylab.local mylab.local Default-First-Site-Name Default-First-Site-Name \\MYDC.mylab.local \\192.168.30.5 24 42 1 7 0 30"
+[STR]           " 30"
+[STR]           "mydc.mylab.local"
+[PAR] DWORD  cbBinary   : 0x124
 [PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
-[PAR] LPWSTR pszString  : 0x0000007351114A50
-[PAR] DWORD* pcchString : 0x000000735315E94C
-[RET] [0x73530be028]
+[PAR] LPWSTR pszString  : 0x00000003D357DD60
+[PAR] DWORD* pcchString : 0x00000003D557EB3C
+[RET] [0x3d54de028]
 ```
 
 <a id="GetNetworkAdaptersInfo"></a>
