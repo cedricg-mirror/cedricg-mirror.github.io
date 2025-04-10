@@ -102,6 +102,17 @@ typedef struct _ms2Ddrsr_MIDL_PROC_FORMAT_STRING {
 } ms2Ddrsr_MIDL_PROC_FORMAT_STRING;
 ```
 
+The NdrClientCall2 call sequence is the following :  
+
+```
+IDL_DRSBind
+IDL_DRSDomainControlerInfo
+IDL_DRSCrackNames
+IDL_DRSBind
+IDL_DRSGetNCChanges
+IDL_DRSUnbind
+```
+
 **II. Execution**   
 
 ```html
