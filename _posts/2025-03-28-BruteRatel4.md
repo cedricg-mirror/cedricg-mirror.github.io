@@ -66,21 +66,23 @@ In the following section, I share some dynamic analysis results from the aforeme
 update : 10/04/2025  
 
 This function would require some more reverse-engineering to enable a full runtime execution.  
-It's a very likely implementation of Vicent Le Toux [MakeMeEntrepriseAdmin](https://github.com/vletoux/MakeMeEnterpriseAdmin/blob/master/MakeMeEnterpriseAdmin.ps1)  
+It's a very likely implementation based from the work of   
+Vicent Le Toux [MakeMeEntrepriseAdmin](https://github.com/vletoux/MakeMeEnterpriseAdmin/blob/master/MakeMeEnterpriseAdmin.ps1)  
+and Benjamin Delpy [MimiKatz](https://github.com/gentilkiwi/mimikatz/)  
 
 ```php
 /*
-	$p1 : sizeof = 0x6DD
-	$p2 : sizeof = 0x355
+	$p1 : sizeof = 1757
+	$p2 : sizeof = 853
 */
 function ASN1_unknown($p1, $p2)
 {
 	$p1 = "";
-	for ($i = 0; $i < 0x6dd; $i++)
+	for ($i = 0; $i < 1757; $i++)
 		$p1 = $p1 . "A";
 		
 	$p2 = "";
-	for ($i = 0; $i < 0x355; $i++)
+	for ($i = 0; $i < 853; $i++)
 		$p2 = $p2 . "B";
 	
 	$p1_b64 = base64_encode($p1);
@@ -92,6 +94,25 @@ function ASN1_unknown($p1, $p2)
 	return $cmd_id_b64;
 }
 ```
+
+The first parameter of 1757 bytes matches the following FORMAT_STRING as definied in [MimiKatz](https://github.com/gentilkiwi/mimikatz/blob/0c611b1445b22327fcc7defab2c09b63b4f59804/modules/rpc/kull_m_rpc_ms-drsr_c.c#L23):  
+
+```C
+typedef struct _ms2Ddrsr_MIDL_TYPE_FORMAT_STRING {
+	SHORT Pad;
+	UCHAR Format[1757];
+} ms2Ddrsr_MIDL_TYPE_FORMAT_STRING;
+```
+
+The second parameter of 853 bytes matches [MimiKatz](https://github.com/gentilkiwi/mimikatz/blob/0c611b1445b22327fcc7defab2c09b63b4f59804/modules/rpc/kull_m_rpc_ms-drsr_c.c#L23):  
+
+```C
+typedef struct _ms2Ddrsr_MIDL_PROC_FORMAT_STRING {
+	SHORT Pad;
+	UCHAR Format[853];
+} ms2Ddrsr_MIDL_PROC_FORMAT_STRING;
+```
+
 **II. Execution**   
 
 ```html
