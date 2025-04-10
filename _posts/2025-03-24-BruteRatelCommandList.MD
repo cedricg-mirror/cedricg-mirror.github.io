@@ -89,7 +89,7 @@ http://greshunka[.]com/admin.php:8041
 | "\x3e\x3b"   | [changeServiceConfig](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#changeServiceConfig) | $MachineName, $serviceName, $BinaryPathName | 
 | "\x62\xc6"   | [GetProcessInfo](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#GetProcessInfo) | $processName |
 | "\x91\xe5"   | [port_scan](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#port_scan) | $hostname, $ports |
-| "\x81\x98"  | [ASN1_unknown](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#ASN1_unknown) | $p1 $p2 |
+| "\x81\x98"  | [DCSync](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#DCSync) | $TypeFormatString $ProcFormatString |
 | "\x53\x49"   | [netshareenum](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#netshareenum) | $servername, $level |
 | "\x13\x52"  | [ExecWQLQuery](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#ExecWQLQuery) | $query |
 | "\xe7\x81"   | [GetAccountSidFromPid](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#GetAccountSidFromPid) | $pid |
