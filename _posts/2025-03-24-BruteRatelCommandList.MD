@@ -101,7 +101,7 @@ http://greshunka[.]com/admin.php:8041
 | "\x44\x80"   | [LoadManagedCode64](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#LoadManagedCode64) | $binary |
 | "\x56\x34   | [StartService](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#StartService) | $MachineName, $ServiceName |
 | "\x8E\xB9   | [NetSessionEnum](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#NetSessionEnum) | $ServerName |
-| "\x79\x75"   | [AD_Object_unknown](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#AD_Object_unknown) | $p1, $p2, $p3 |
+| "\x79\x75"   | [IDirectorySearch](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#IDirectorySearch) | $HostName, $SearchFilter, $AttributeNames |
 | "\x9a\xb9"   | [NetUserModalsGet](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#NetUserModalsGet) | $ServerName |
 | "\x9a\xb6"   | [GetScheduledTask](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#GetScheduledTask) | $serverName |
 | "\xb3\x29"   | [netshareenum2](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#netshareenum2) | $servername |
