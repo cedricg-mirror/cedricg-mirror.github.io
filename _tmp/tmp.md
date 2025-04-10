@@ -37,3 +37,10 @@ Here is a short description of the next 20 command codes and purpose :
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
+|"\x9a\xe1"    | [GetFullPathNameW](#GetFullPathNameW) | $filename |
+|"\x57\xa6"    | [inet_ntoa](#inet_ntoa) | $host |
+|"\xf1\xa5"    | [dump_process_from_pid](#dump_process_from_pid) | $pid |
+|"\x63\xd1"    | [adjustTokenPrivilege](#adjustTokenPrivilege) | $privilege |
+|"\x3a\xe5"    | [GetFileTimeStamp](#GetFileTimeStamp) | $filename |
+|"\xd3\xb1"    | [WbemCreateProcess](#WbemCreateProcess) | $CommandLine |
+|"\x3e\xf8"    | [listdir2](#listdir2) | $dir_path |
