@@ -1448,6 +1448,35 @@ function IDirectorySearch($HostName, $SearchFilter, $AttributeNames)
 [API] <IDirectorySearch::GetFirstRow> in [adsldp.dll] 
 [PAR] ADS_SEARCH_HANDLE hSearchResult : 0x000000985AD8FFE0
 [RET] [0x985cc37ef9]
+
+[CNT] [749]
+[PTP] [0xb40] [0xbdc] [c:\windows\system32\rundll32.exe]
+[API] <IDirectorySearch::GetNextColumnName> in [adsldp.dll] 
+[PAR] ADS_SEARCH_HANDLE hSearchHandle  : 0x0000006EBD98DDB0
+[PAR] LPWSTR*           ppszColumnName : 0x0000006EBF9CEFB0
+[RET] [0x6ebf897f68]
+
+[CNT] [750]
+[PTP] [0xb40] [0xbdc] [c:\windows\system32\rundll32.exe]
+[API] <IDirectorySearch::GetColumn> in [adsldp.dll] 
+[PAR] ADS_SEARCH_HANDLE  hSearchResult : 0x0000006EBD98DDB0
+[PAR] LPWSTR             szColumnName  : 0x0000006EBD985810
+[STR]                    -> "sAMAccountName"
+[PAR] PADS_SEARCH_COLUMN pSearchColumn : 0x0000006EBF9CEFE8
+[RET] [0x6ebf897f8b]
+
+[CNT] [755]
+[PTP] [0xb40] [0xbdc] [c:\windows\system32\rundll32.exe]
+[API] <IDirectorySearch::FreeColumn> in [adsldp.dll] 
+[PAR] PADS_SEARCH_COLUMN pSearchColumn : 0x0000006EBF9CEFE8
+[RET] [0x6ebf897fb5]
+
+[CNT] [756]
+[PTP] [0xb40] [0xbdc] [c:\windows\system32\rundll32.exe]
+[API] <CoTaskMemFree> in [combase.dll] 
+[RET] [0x6ebf897fc3]
+
+[...]
 ```
 
 **III. Result**   
