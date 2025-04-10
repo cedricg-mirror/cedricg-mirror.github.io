@@ -39,7 +39,7 @@ Here is a short description of the next 20 command codes and purpose :
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
-| "\x81\x98"  | [DCSync](#DCSync) | $TypeFormatString $ProcFormatString |
+| "\x81\x98"  | [DCSync](#DCSync) | $TypeFormatString, $ProcFormatString |
 | "\x53\x49"   | [netshareenum](#netshareenum) | $servername, $level |
 | "\x13\x52"  | [ExecWQLQuery](#ExecWQLQuery) | $query |
 | "\xe7\x81"   | [GetAccountSidFromPid](#GetAccountSidFromPid) | $pid |
@@ -67,7 +67,7 @@ In the following section, I share some dynamic analysis results from the aforeme
 
 updated : 10/04/2025  
 
-It's a very likely implementation on the DCSync attack based from the work of   
+It's a very likely implementation of the DCSync attack based from the work of   
 Vicent Le Toux [MakeMeEntrepriseAdmin](https://github.com/vletoux/MakeMeEnterpriseAdmin/blob/master/MakeMeEnterpriseAdmin.ps1)  
 and Benjamin Delpy [MimiKatz](https://github.com/gentilkiwi/mimikatz/)  
 
