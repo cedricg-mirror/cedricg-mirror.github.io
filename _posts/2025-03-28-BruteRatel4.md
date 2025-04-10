@@ -105,134 +105,134 @@ typedef struct _ms2Ddrsr_MIDL_PROC_FORMAT_STRING {
 **II. Execution**   
 
 ```html
-[CNT] [492]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [750]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <ASN1_CreateModule> in [MSASN1.dll] 
 [INF] [ Undocumented ]
 [PAR] ASN1uint32_t       nVersion       : 0x10000
 [PAR] ASN1encodingrule_e eRule          : 0x400
 [PAR] ASN1uint32_t       dwFlags        : 0x1000
 [PAR] ASN1uint32_t       cPDU           : 0x1
-[PAR] ASN1GenericFun_t   apfnEncoder    : 0x000000D40B7390A0
-[PAR] ASN1GenericFun_t   apfnDecoder    : 0x000000D40B7390A0
-[PAR] ASN1FreeFun_t      apfnFreeMemory : 0x000000D40B7390A0
-[PAR] ASN1uint32_t*      acbStructSize  : 0x000000D40B739760
+[PAR] ASN1GenericFun_t   apfnEncoder    : 0x0000007007E090A0
+[PAR] ASN1GenericFun_t   apfnDecoder    : 0x0000007007E090A0
+[PAR] ASN1FreeFun_t      apfnFreeMemory : 0x0000007007E090A0
+[PAR] ASN1uint32_t*      acbStructSize  : 0x0000007007E09760
 [PAR] ASN1magic_t        nModuleName    : 0x0
-[RET] [0xd40b70b54c]
+[RET] [0x7007ddb54c]
 
-[CNT] [493]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [751]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <ASN1_CreateEncoder> in [MSASN1.dll] 
 [INF] [ Undocumented ]
-[PAR] ASN1module_t    pModule       : 0x000000D4097D4240
-[PAR] ASN1encoding_t* ppEncoderInfo : 0x000000D40B736240
+[PAR] ASN1module_t    pModule       : 0x0000007005F7D6A0
+[PAR] ASN1encoding_t* ppEncoderInfo : 0x0000007007E06240
 [PAR] ASN1octet_t*    pbBuff        : 0x0
 [PAR] ASN1uint32_t    cbBuffSize    : 0x0
 [PAR] ASN1encoding_t  pParent       : 0x0
-[RET] [0xd40b70b57b]
+[RET] [0x7007ddb57b]
 
-[CNT] [494]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [752]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <ASN1_CreateDecoder> in [MSASN1.dll] 
 [INF] [ Undocumented ]
-[PAR] ASN1module_t    pModule       : 0x000000D4097D4240
-[PAR] ASN1decoding_t* ppDecoderInfo : 0x000000D40B736230
+[PAR] ASN1module_t    pModule       : 0x0000007005F7D6A0
+[PAR] ASN1decoding_t* ppDecoderInfo : 0x0000007007E06230
 [PAR] ASN1octet_t*    pbBuff        : 0x0
 [PAR] ASN1uint32_t    cbBuffSize    : 0x0
 [PAR] ASN1decoding_t  pParent       : 0x0
-[RET] [0xd40b70b5bc]
+[RET] [0x7007ddb5bc]
 
-[CNT] [501]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [759]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <LsaOpenPolicy> in [ADVAPI32.dll] 
 [PAR] PLSA_UNICODE_STRING    SystemName       : 0x0
-[PAR] PLSA_OBJECT_ATTRIBUTES ObjectAttributes : 0x000000D40BD2E710
+[PAR] PLSA_OBJECT_ATTRIBUTES ObjectAttributes : 0x000000700852E6E0
 [PAR] ACCESS_MASK            DesiredAccess    : 0x1
-[PAR] PLSA_HANDLE            PolicyHandle     : 0x000000D40BD2E708
-[RET] [0xd40b70d2e2]
+[PAR] PLSA_HANDLE            PolicyHandle     : 0x000000700852E6D8
+[RET] [0x7007ddd2e2]
 
-[CNT] [502]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [760]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <LsaQueryInformationPolicy> in [ADVAPI32.dll] 
-[PAR] LSA_HANDLE               PolicyHandle     : 0x000000D4097D4280
+[PAR] LSA_HANDLE               PolicyHandle     : 0x0000007005F7DE60
 [PAR] POLICY_INFORMATION_CLASS InformationClass : 0xc (PolicyDnsDomainInformation)
-[PAR] PVOID*                   Buffer           : 0x000000D40BD2E810
-[RET] [0xd40b70d2f9]
+[PAR] PVOID*                   Buffer           : 0x000000700852E7E0
+[RET] [0x7007ddd2f9]
 
-[CNT] [503]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [761]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <LsaClose> in [ADVAPI32.dll] 
-[PAR] LSA_HANDLE ObjectHandle : 0x000000D4097D4280
-[RET] [0xd40b70d30d]
+[PAR] LSA_HANDLE ObjectHandle : 0x0000007005F7DE60
+[RET] [0x7007ddd30d]
 
-[CNT] [504]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [762]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <DsGetDcNameW> in [LOGONCLI.DLL] 
 [PAR] LPCWSTR                   ComputerName         : 0x0 (null)
-[PAR] LPCWSTR                   DomainName           : 0x000000D4097ECC08
+[PAR] LPCWSTR                   DomainName           : 0x0000007005F73758
 [STR]                           -> "mylab.local"
 [PAR] GUID*                     DomainGuid           : 0x0
 [PAR] LPWCSTR                   SiteName             : 0x0 (null)
 [PAR] ULONG                     Flags                : 0x40020010 (DS_DIRECTORY_SERVICE_REQUIRED | DS_IS_DNS_NAME | DS_RETURN_DNS_NAME)
-[PAR] PDOMAIN_CONTROLLER_INFOW* DomainControllerInfo : 0x000000D40BD2E748
-[RET] [0xd40b70d479]
+[PAR] PDOMAIN_CONTROLLER_INFOW* DomainControllerInfo : 0x000000700852E718
+[RET] [0x7007ddd479]
 
-[CNT] [514]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [772]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <RtlGetNtVersionNumbers> in [ntdll.dll] 
 [INF] [ Undocumented Function ]
-[PAR] DWORD* MajorVersion : 0x000000D40BD2E7F8
-[PAR] DWORD* MinorVersion : 0x000000D40BD2E7FC
-[PAR] DWORD* BuildNumber  : 0x000000D40BD2E800
-[RET] [0xd40b70b117]
+[PAR] DWORD* MajorVersion : 0x000000700852E7C8
+[PAR] DWORD* MinorVersion : 0x000000700852E7CC
+[PAR] DWORD* BuildNumber  : 0x000000700852E7D0
+[RET] [0x7007ddb117]
 
-[CNT] [515]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [773]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <RpcStringBindingComposeW> in [RPCRT4.dll] 
 [PAR] RPC_WSTR  ObjUuid       : 0x0 (null)
-[PAR] RPC_WSTR  ProtSeq       : 0x000000D4097F0240
+[PAR] RPC_WSTR  ProtSeq       : 0x0000007005F2E850
 [STR]           -> "ncacn_ip_tcp"
-[PAR] RPC_WSTR  NetworkAddr   : 0x000000D4097EFFA0
+[PAR] RPC_WSTR  NetworkAddr   : 0x0000007005F2EE50
 [STR]           -> "MYDC.mylab.local"
 [PAR] RPC_WSTR  Endpoint      : 0x0 (null)
 [PAR] RPC_WSTR  Options       : 0x0 (null)
-[PAR] RPC_WSTR* StringBinding : 0x000000D40BD2E6F0
-[RET] [0xd40b70a470]
+[PAR] RPC_WSTR* StringBinding : 0x000000700852E6C0
+[RET] [0x7007dda470]
 
-[CNT] [516]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [774]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <RpcBindingFromStringBindingW> in [RPCRT4.dll] 
-[PAR] RPC_WSTR            StringBinding : 0x000000D4097E9540
+[PAR] RPC_WSTR            StringBinding : 0x0000007005F743C0
 [STR]                     -> "ncacn_ip_tcp:MYDC.mylab.local"
-[PAR] RPC_BINDING_HANDLE* Binding       : 0x000000D40BD2E818
-[RET] [0xd40b70a489]
+[PAR] RPC_BINDING_HANDLE* Binding       : 0x000000700852E7E8
+[RET] [0x7007dda489]
 
-[CNT] [517]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [775]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <RpcBindingSetAuthInfoExW> in [RPCRT4.dll] 
-[PAR] RPC_BINDING_HANDLE       Binding         : 0x000000D4097E8DB0
-[PAR] RPC_WSTR                 ServerPrincName : 0x000000D4097D42C0
+[PAR] RPC_BINDING_HANDLE       Binding         : 0x0000007005F3DA00
+[PAR] RPC_WSTR                 ServerPrincName : 0x0000007005F7DBA0
 [STR]                          -> "ldap/MYDC.mylab.local"
 [PAR] unsigned long            AuthnLevel      : 0x6 (RPC_C_AUTHN_LEVEL_PKT_PRIVACY)
 [PAR] unsigned long            AuthnSvc        : 0x9 (RPC_C_AUTHN_GSS_NEGOTIATE)
 [PAR] RPC_AUTH_IDENTITY_HANDLE AuthIdentity    : 0x0
 [PAR] unsigned long            AuthzSvc        : 0x0
-[PAR] RPC_SECURITY_QOS*        SecurityQOS     : 0x000000D40BD2E700
-[RET] [0xd40b70a586]
+[PAR] RPC_SECURITY_QOS*        SecurityQOS     : 0x000000700852E6D0
+[RET] [0x7007dda586]
 
-[CNT] [518]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [776]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <RpcBindingSetOption> in [RPCRT4.dll] 
-[PAR] RPC_BINDING_HANDLE hBinding    : 0x000000D4097E8DB0
+[PAR] RPC_BINDING_HANDLE hBinding    : 0x0000007005F3DA00
 [PAR] unsigned long      option      : 0xa (RPC_C_OPT_SECURITY_CALLBACK)
-[PAR] ULONG_PTR          optionValue : 0x000000D40B704C70
-[RET] [0xd40b70a5b5]
+[PAR] ULONG_PTR          optionValue : 0x0000007007DD4C70
+[RET] [0x7007dda5b5]
 
-[CNT] [520]
-[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[CNT] [778]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <NdrClientCall2> in [RPCRT4.dll] 
-[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000D40BD2ECA8
-[FLD]                 -> RpcInterfaceInformation      = 0x000000D40BD2EBD8
+[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000700852EC78
+[FLD]                 -> RpcInterfaceInformation      = 0x000000700852EBA8
 [FLD]                    -> Length             = 0x60
 [FLD]                    -> InterfaceId
 [FLD]                       -> SyntaxGUID    = ({E3514235-4B06-11D1-AB04-00C04FC2DCD2})
@@ -247,14 +247,14 @@ typedef struct _ms2Ddrsr_MIDL_PROC_FORMAT_STRING {
 [FLD]                    -> RpcProtseqEndpoint = NULL
 [FLD]                    -> InterpreterInfo    = 0x0000000000000000
 [FLD]                    -> Flags              = 0x0
-[FLD]                 -> pfnAllocate                  = 0x000000D40B703670
-[FLD]                 -> pfnFree                      = 0x000000D40B703680
-[FLD]                 -> pGenericBindingInfo          = 0x000000D40BD2EB40
+[FLD]                 -> pfnAllocate                  = 0x0000007007DD3670
+[FLD]                 -> pfnFree                      = 0x0000007007DD3680
+[FLD]                 -> pGenericBindingInfo          = 0x000000700852EB10
 [FLD]                 -> apfnNdrRundownRoutines       = 0x0000000000000000
 [FLD]                 -> aGenericBindingRoutinePairs  = 0x0000000000000000
 [FLD]                 -> apfnExprEval                 = 0x0000000000000000
 [FLD]                 -> aXmitQuintuple               = 0x0000000000000000
-[FLD]                 -> pFormatTypes                 = 0x000000D40B737482
+[FLD]                 -> pFormatTypes                 = 0x0000007007E07482
 [FLD]                 -> fCheckBounds                 = 0x1
 [FLD]                 -> Version                      = 0x60000
 [FLD]                 -> pMallocFreeStruct            = 0x0000000000000000
@@ -266,15 +266,239 @@ typedef struct _ms2Ddrsr_MIDL_PROC_FORMAT_STRING {
 [FLD]                 -> CsRoutineTables              = 0x0
 [FLD]                 -> ProxyServerInfo              = 0x0
 [FLD]                 -> pExprInfo                    = 0x0
-[PAR] PFORMAT_STRING  pFormat         : 0x000000D40B737122
-[STR]                 -> "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-[STR]                    [TRUNCATED]
-[RET] [0xd40b702af0]
+[PAR] PFORMAT_STRING  pFormat         : 0x0000007007E07122 (IDL_DRSBind)
+[RET] [0x7007dd2af0]
+
+[CNT] [779]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <I_RpcBindingInqSecurityContext> in [RPCRT4.dll] 
+[PAR] RPC_BINDING_HANDLE Binding               : 0x0000007005FA1350
+[PAR] void**             SecurityContextHandle : 0x000000700852DE08
+[RET] [0x7007dd4c88]
+
+[CNT] [780]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <QueryContextAttributesA> in [SspiCli.dll] 
+[PAR] PCtxtHandle    phContext     : 0x0000007005FA12F8
+[PAR] unsigned long  ulAttribute   : 0x9 (ISC_RET_DELEGATE | ISC_RET_SEQUENCE_DETECT)
+[PAR] void           *pBuffer      : 0x0000007007E07100
+[RET] [0x7007dd4cca]
+
+[CNT] [781]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <NdrClientCall2> in [RPCRT4.dll] 
+[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000700852EC78
+[FLD]                 -> RpcInterfaceInformation      = 0x000000700852EBA8
+[FLD]                    -> Length             = 0x60
+[FLD]                    -> InterfaceId
+[FLD]                       -> SyntaxGUID    = ({E3514235-4B06-11D1-AB04-00C04FC2DCD2})
+[FLD]                       -> MajorVersion  = 0x4
+[FLD]                       -> MinorVersion  = 0x0
+[FLD]                    -> TransferSyntax
+[FLD]                       -> SyntaxGUID    = ({8A885D04-1CEB-11C9-9FE8-08002B104860})
+[FLD]                       -> MajorVersion  = 0x2
+[FLD]                       -> MinorVersion  = 0x0
+[FLD]                    -> DispatchTable      = NULL
+[FLD]                    -> RpcProtseqEndpointCount = 0x0
+[FLD]                    -> RpcProtseqEndpoint = NULL
+[FLD]                    -> InterpreterInfo    = 0x0000000000000000
+[FLD]                    -> Flags              = 0x0
+[FLD]                 -> pfnAllocate                  = 0x0000007007DD3670
+[FLD]                 -> pfnFree                      = 0x0000007007DD3680
+[FLD]                 -> pGenericBindingInfo          = 0x000000700852EB10
+[FLD]                 -> apfnNdrRundownRoutines       = 0x0000000000000000
+[FLD]                 -> aGenericBindingRoutinePairs  = 0x0000000000000000
+[FLD]                 -> apfnExprEval                 = 0x0000000000000000
+[FLD]                 -> aXmitQuintuple               = 0x0000000000000000
+[FLD]                 -> pFormatTypes                 = 0x0000007007E07482
+[FLD]                 -> fCheckBounds                 = 0x1
+[FLD]                 -> Version                      = 0x60000
+[FLD]                 -> pMallocFreeStruct            = 0x0000000000000000
+[FLD]                 -> MIDLVersion                  = 0x8000253
+[FLD]                 -> CommFaultOffsets             = 0x0
+[FLD]                 -> aUserMarshalQuadruple        = 0x0
+[FLD]                 -> NotifyRoutineTable           = 0x0
+[FLD]                 -> mFlags                       = 0x1
+[FLD]                 -> CsRoutineTables              = 0x0
+[FLD]                 -> ProxyServerInfo              = 0x0
+[FLD]                 -> pExprInfo                    = 0x0
+[PAR] PFORMAT_STRING  pFormat         : 0x0000007007E073EE (IDL_DRSDomainControlerInfo)
+[RET] [0x7007dd2b70]
+
+[CNT] [782]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <I_RpcBindingInqSecurityContext> in [RPCRT4.dll] 
+[PAR] RPC_BINDING_HANDLE Binding               : 0x0000007005FA1350
+[PAR] void**             SecurityContextHandle : 0x000000700852DE78
+[RET] [0x7007dd4c88]
+
+[CNT] [783]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <FreeContextBuffer> in [SspiCli.dll] 
+[PAR] PVOID pvContextBuffer : 0x0000007005F21820
+[RET] [0x7007dd4c9e]
+
+[CNT] [784]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <QueryContextAttributesA> in [SspiCli.dll] 
+[PAR] PCtxtHandle    phContext     : 0x0000007005FA12F8
+[PAR] unsigned long  ulAttribute   : 0x9 (ISC_RET_DELEGATE | ISC_RET_SEQUENCE_DETECT)
+[PAR] void           *pBuffer      : 0x0000007007E07100
+[RET] [0x7007dd4cca]
+
+[CNT] [786]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <MesDecodeIncrementalHandleCreate> in [RPCRT4.dll] 
+[PAR] void*        UserState : 0x000000700852E600
+[PAR] MIDL_ES_READ ReadFn    : 0x0000007007DD4C40
+[PAR] handle_t*    pHandle   : 0x000000700852E5F8
+[RET] [0x7007dd265a]
+
+[CNT] [787]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <NdrMesTypeFree2> in [RPCRT4.dll] 
+[PAR] handle_t                 Handle        : 0x0000007005FA2070
+[PAR] MIDL_TYPE_PICKLING_INFO* pPicklingInfo : 0x0000007007E09060
+[PAR] MIDL_STUB_DESC*          pStubDesc     : 0x000000700852EC78
+[PAR] PFORMAT_STRING           pFormatString : 0x0000007007E0779A
+[PAR] void*                    pObject       : 0x000000700852E6C0
+[RET] [0x7007dd1d0d]
+
+[CNT] [788]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <LookupAccountNameW> in [ADVAPI32.dll] 
+[PAR] LPCWSTR       lpSystemName            : 0x0000007005F2EE50
+[STR]               -> "MYDC.mylab.local"
+[PAR] LPCWSTR       lpAccountName           : 0x0000007005F73758
+[STR]               -> "mylab.local"
+[PAR] PSID          Sid                     : 0x0
+[PAR] LPDWORD       cbSid                   : 0x000000700852E5E8
+[PAR] LPWSTR        ReferencedDomainName    : 0x0
+[PAR] LPDWORD       cchReferencedDomainName : 0x000000700852E5EC
+[PAR] PSID_NAME_USE peUse                   : 0x000000700852E5E4
+[RET] [0x7007dddfcc]
+
+[CNT] [789]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <LookupAccountNameW> in [ADVAPI32.dll] 
+[PAR] LPCWSTR       lpSystemName            : 0x0000007005F2EE50
+[STR]               -> "MYDC.mylab.local"
+[PAR] LPCWSTR       lpAccountName           : 0x0000007005F73758
+[STR]               -> "mylab.local"
+[PAR] PSID          Sid                     : 0x0000007005F7E120
+[PAR] LPDWORD       cbSid                   : 0x000000700852E5E8
+[PAR] LPWSTR        ReferencedDomainName    : 0x0000007005F72FE0
+[PAR] LPDWORD       cchReferencedDomainName : 0x000000700852E5EC
+[PAR] PSID_NAME_USE peUse                   : 0x000000700852E5E4
+[RET] [0x7007dde026]
+
+[CNT] [790]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <ConvertSidToStringSidW> in [ADVAPI32.dll] 
+[PAR] PSID    Sid       : 0x0000007005F7E120
+[PAR] LPWSTR* StringSid : 0x000000700852E698
+[RET] [0x7007ddda0e]
+
+[CNT] [791]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <NdrClientCall2> in [RPCRT4.dll] 
+[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000700852EC78
+[FLD]                 -> RpcInterfaceInformation      = 0x000000700852EBA8
+[FLD]                    -> Length             = 0x60
+[FLD]                    -> InterfaceId
+[FLD]                       -> SyntaxGUID    = ({E3514235-4B06-11D1-AB04-00C04FC2DCD2})
+[FLD]                       -> MajorVersion  = 0x4
+[FLD]                       -> MinorVersion  = 0x0
+[FLD]                    -> TransferSyntax
+[FLD]                       -> SyntaxGUID    = ({8A885D04-1CEB-11C9-9FE8-08002B104860})
+[FLD]                       -> MajorVersion  = 0x2
+[FLD]                       -> MinorVersion  = 0x0
+[FLD]                    -> DispatchTable      = NULL
+[FLD]                    -> RpcProtseqEndpointCount = 0x0
+[FLD]                    -> RpcProtseqEndpoint = NULL
+[FLD]                    -> InterpreterInfo    = 0x0000000000000000
+[FLD]                    -> Flags              = 0x0
+[FLD]                 -> pfnAllocate                  = 0x0000007007DD3670
+[FLD]                 -> pfnFree                      = 0x0000007007DD3680
+[FLD]                 -> pGenericBindingInfo          = 0x000000700852EB10
+[FLD]                 -> apfnNdrRundownRoutines       = 0x0000000000000000
+[FLD]                 -> aGenericBindingRoutinePairs  = 0x0000000000000000
+[FLD]                 -> apfnExprEval                 = 0x0000000000000000
+[FLD]                 -> aXmitQuintuple               = 0x0000000000000000
+[FLD]                 -> pFormatTypes                 = 0x0000007007E07482
+[FLD]                 -> fCheckBounds                 = 0x1
+[FLD]                 -> Version                      = 0x60000
+[FLD]                 -> pMallocFreeStruct            = 0x0000000000000000
+[FLD]                 -> MIDLVersion                  = 0x8000253
+[FLD]                 -> CommFaultOffsets             = 0x0
+[FLD]                 -> aUserMarshalQuadruple        = 0x0
+[FLD]                 -> NotifyRoutineTable           = 0x0
+[FLD]                 -> mFlags                       = 0x1
+[FLD]                 -> CsRoutineTables              = 0x0
+[FLD]                 -> ProxyServerInfo              = 0x0
+[FLD]                 -> pExprInfo                    = 0x0
+[PAR] PFORMAT_STRING  pFormat         : 0x0000007007E07350 (IDL_DRSCrackNames)
+[RET] [0x7007dd2b30]
+
+[...]
+
+[CNT] [803]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <NdrClientCall2> in [RPCRT4.dll] 
+[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000700852EC78
+[FLD]                 -> RpcInterfaceInformation      = 0x000000700852EBA8
+[FLD]                    -> Length             = 0x60
+[FLD]                    -> InterfaceId
+[FLD]                       -> SyntaxGUID    = ({E3514235-4B06-11D1-AB04-00C04FC2DCD2})
+[FLD]                       -> MajorVersion  = 0x4
+[FLD]                       -> MinorVersion  = 0x0
+[FLD]                    -> TransferSyntax
+[FLD]                       -> SyntaxGUID    = ({8A885D04-1CEB-11C9-9FE8-08002B104860})
+[FLD]                       -> MajorVersion  = 0x2
+[FLD]                       -> MinorVersion  = 0x0
+[FLD]                    -> DispatchTable      = NULL
+[FLD]                    -> RpcProtseqEndpointCount = 0x0
+[FLD]                    -> RpcProtseqEndpoint = NULL
+[FLD]                    -> InterpreterInfo    = 0x0000000000000000
+[FLD]                    -> Flags              = 0x0
+[FLD]                 -> pfnAllocate                  = 0x0000007007DD3670
+[FLD]                 -> pfnFree                      = 0x0000007007DD3680
+[FLD]                 -> pGenericBindingInfo          = 0x000000700852EB10
+[FLD]                 -> apfnNdrRundownRoutines       = 0x0000000000000000
+[FLD]                 -> aGenericBindingRoutinePairs  = 0x0000000000000000
+[FLD]                 -> apfnExprEval                 = 0x0000000000000000
+[FLD]                 -> aXmitQuintuple               = 0x0000000000000000
+[FLD]                 -> pFormatTypes                 = 0x0000007007E07482
+[FLD]                 -> fCheckBounds                 = 0x1
+[FLD]                 -> Version                      = 0x60000
+[FLD]                 -> pMallocFreeStruct            = 0x0000000000000000
+[FLD]                 -> MIDLVersion                  = 0x8000253
+[FLD]                 -> CommFaultOffsets             = 0x0
+[FLD]                 -> aUserMarshalQuadruple        = 0x0
+[FLD]                 -> NotifyRoutineTable           = 0x0
+[FLD]                 -> mFlags                       = 0x1
+[FLD]                 -> CsRoutineTables              = 0x0
+[FLD]                 -> ProxyServerInfo              = 0x0
+[FLD]                 -> pExprInfo                    = 0x0
+[PAR] PFORMAT_STRING  pFormat         : 0x0000007007E071A8 (IDL_DRSGetNCChanges)
+[RET] [0x7007dd2bb0]
+```
+
+**III. Result**   
+
+```html
+[CNT] [814]
+[PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000007005F7DFE0
+[STR]        -> "8198"
+[STR]           "11"
+[STR]           "MYDC.mylab.local"
+[PAR] DWORD  cbBinary   : 0x32
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000007005F9FC70
+[PAR] DWORD* pcchString : 0x000000700852E9FC
+[RET] [0x7007dee028]
 ```
 
 <a id="netshareenum"></a>
