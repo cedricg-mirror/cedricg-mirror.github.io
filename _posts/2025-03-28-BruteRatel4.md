@@ -63,9 +63,10 @@ In the following section, I share some dynamic analysis results from the aforeme
 <a id="ASN1_unknown"></a>
 # ASN1_unknown
 
-This function would require some reverse-engineering to maybe enable a runtime execution.  
-It requires two parameters of fixed size that are used to create an ASN.1 Decoder and Encoder and 14 unknown parameters    
-Without a domain controler, I cannot run past the LsaQueryInformationPolicy call in dynamic analysis
+update : 10/04/2025  
+
+This function would require some more reverse-engineering to enable a full runtime execution.  
+It's a very likely implementation of Vicent Le Toux [MakeMeEntrepriseAdmin](https://github.com/vletoux/MakeMeEnterpriseAdmin/blob/master/MakeMeEnterpriseAdmin.ps1)  
 
 ```php
 /*
@@ -94,64 +95,176 @@ function ASN1_unknown($p1, $p2)
 **II. Execution**   
 
 ```html
-[CNT] [394]
-[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[CNT] [492]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
 [API] <ASN1_CreateModule> in [MSASN1.dll] 
 [INF] [ Undocumented ]
 [PAR] ASN1uint32_t       nVersion       : 0x10000
 [PAR] ASN1encodingrule_e eRule          : 0x400
 [PAR] ASN1uint32_t       dwFlags        : 0x1000
 [PAR] ASN1uint32_t       cPDU           : 0x1
-[PAR] ASN1GenericFun_t   apfnEncoder    : 0x000000CFB02390A0
-[PAR] ASN1GenericFun_t   apfnDecoder    : 0x000000CFB02390A0
-[PAR] ASN1FreeFun_t      apfnFreeMemory : 0x000000CFB02390A0
-[PAR] ASN1uint32_t*      acbStructSize  : 0x000000CFB0239760
+[PAR] ASN1GenericFun_t   apfnEncoder    : 0x000000D40B7390A0
+[PAR] ASN1GenericFun_t   apfnDecoder    : 0x000000D40B7390A0
+[PAR] ASN1FreeFun_t      apfnFreeMemory : 0x000000D40B7390A0
+[PAR] ASN1uint32_t*      acbStructSize  : 0x000000D40B739760
 [PAR] ASN1magic_t        nModuleName    : 0x0
-[RET] [0xcfb020b54c]
+[RET] [0xd40b70b54c]
 
-[CNT] [395]
-[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[CNT] [493]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
 [API] <ASN1_CreateEncoder> in [MSASN1.dll] 
 [INF] [ Undocumented ]
-[PAR] ASN1module_t    pModule       : 0x000000CFAE35DAB0
-[PAR] ASN1encoding_t* ppEncoderInfo : 0x000000CFB0236240
+[PAR] ASN1module_t    pModule       : 0x000000D4097D4240
+[PAR] ASN1encoding_t* ppEncoderInfo : 0x000000D40B736240
 [PAR] ASN1octet_t*    pbBuff        : 0x0
 [PAR] ASN1uint32_t    cbBuffSize    : 0x0
 [PAR] ASN1encoding_t  pParent       : 0x0
-[RET] [0xcfb020b57b]
+[RET] [0xd40b70b57b]
 
-[CNT] [396]
-[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[CNT] [494]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
 [API] <ASN1_CreateDecoder> in [MSASN1.dll] 
 [INF] [ Undocumented ]
-[PAR] ASN1module_t    pModule       : 0x000000CFAE35DAB0
-[PAR] ASN1decoding_t* ppDecoderInfo : 0x000000CFB0236230
+[PAR] ASN1module_t    pModule       : 0x000000D4097D4240
+[PAR] ASN1decoding_t* ppDecoderInfo : 0x000000D40B736230
 [PAR] ASN1octet_t*    pbBuff        : 0x0
 [PAR] ASN1uint32_t    cbBuffSize    : 0x0
 [PAR] ASN1decoding_t  pParent       : 0x0
-[RET] [0xcfb020b5bc]
+[RET] [0xd40b70b5bc]
 
-[CNT] [403]
-[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[CNT] [501]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
 [API] <LsaOpenPolicy> in [ADVAPI32.dll] 
 [PAR] PLSA_UNICODE_STRING    SystemName       : 0x0
-[PAR] PLSA_OBJECT_ATTRIBUTES ObjectAttributes : 0x000000CFB082EAE0
+[PAR] PLSA_OBJECT_ATTRIBUTES ObjectAttributes : 0x000000D40BD2E710
 [PAR] ACCESS_MASK            DesiredAccess    : 0x1
-[PAR] PLSA_HANDLE            PolicyHandle     : 0x000000CFB082EAD8
-[RET] [0xcfb020d2e2]
+[PAR] PLSA_HANDLE            PolicyHandle     : 0x000000D40BD2E708
+[RET] [0xd40b70d2e2]
 
-[CNT] [404]
-[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[CNT] [502]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
 [API] <LsaQueryInformationPolicy> in [ADVAPI32.dll] 
-[PAR] LSA_HANDLE               PolicyHandle     : 0x000000CFAE35DB30
+[PAR] LSA_HANDLE               PolicyHandle     : 0x000000D4097D4280
 [PAR] POLICY_INFORMATION_CLASS InformationClass : 0xc (PolicyDnsDomainInformation)
-[PAR] PVOID*                   Buffer           : 0x000000CFB082EBE0
-[RET] [0xcfb020d2f9]
+[PAR] PVOID*                   Buffer           : 0x000000D40BD2E810
+[RET] [0xd40b70d2f9]
 
-[CNT] [405]
-[PTP] [0xbc8] [0x7c0] [c:\windows\system32\rundll32.exe]
+[CNT] [503]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
 [API] <LsaClose> in [ADVAPI32.dll] 
-[RET] [0xcfb020d30d]
+[PAR] LSA_HANDLE ObjectHandle : 0x000000D4097D4280
+[RET] [0xd40b70d30d]
+
+[CNT] [504]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[API] <DsGetDcNameW> in [LOGONCLI.DLL] 
+[PAR] LPCWSTR                   ComputerName         : 0x0 (null)
+[PAR] LPCWSTR                   DomainName           : 0x000000D4097ECC08
+[STR]                           -> "mylab.local"
+[PAR] GUID*                     DomainGuid           : 0x0
+[PAR] LPWCSTR                   SiteName             : 0x0 (null)
+[PAR] ULONG                     Flags                : 0x40020010 (DS_DIRECTORY_SERVICE_REQUIRED | DS_IS_DNS_NAME | DS_RETURN_DNS_NAME)
+[PAR] PDOMAIN_CONTROLLER_INFOW* DomainControllerInfo : 0x000000D40BD2E748
+[RET] [0xd40b70d479]
+
+[CNT] [514]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[API] <RtlGetNtVersionNumbers> in [ntdll.dll] 
+[INF] [ Undocumented Function ]
+[PAR] DWORD* MajorVersion : 0x000000D40BD2E7F8
+[PAR] DWORD* MinorVersion : 0x000000D40BD2E7FC
+[PAR] DWORD* BuildNumber  : 0x000000D40BD2E800
+[RET] [0xd40b70b117]
+
+[CNT] [515]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[API] <RpcStringBindingComposeW> in [RPCRT4.dll] 
+[PAR] RPC_WSTR  ObjUuid       : 0x0 (null)
+[PAR] RPC_WSTR  ProtSeq       : 0x000000D4097F0240
+[STR]           -> "ncacn_ip_tcp"
+[PAR] RPC_WSTR  NetworkAddr   : 0x000000D4097EFFA0
+[STR]           -> "MYDC.mylab.local"
+[PAR] RPC_WSTR  Endpoint      : 0x0 (null)
+[PAR] RPC_WSTR  Options       : 0x0 (null)
+[PAR] RPC_WSTR* StringBinding : 0x000000D40BD2E6F0
+[RET] [0xd40b70a470]
+
+[CNT] [516]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[API] <RpcBindingFromStringBindingW> in [RPCRT4.dll] 
+[PAR] RPC_WSTR            StringBinding : 0x000000D4097E9540
+[STR]                     -> "ncacn_ip_tcp:MYDC.mylab.local"
+[PAR] RPC_BINDING_HANDLE* Binding       : 0x000000D40BD2E818
+[RET] [0xd40b70a489]
+
+[CNT] [517]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[API] <RpcBindingSetAuthInfoExW> in [RPCRT4.dll] 
+[PAR] RPC_BINDING_HANDLE       Binding         : 0x000000D4097E8DB0
+[PAR] RPC_WSTR                 ServerPrincName : 0x000000D4097D42C0
+[STR]                          -> "ldap/MYDC.mylab.local"
+[PAR] unsigned long            AuthnLevel      : 0x6 (RPC_C_AUTHN_LEVEL_PKT_PRIVACY)
+[PAR] unsigned long            AuthnSvc        : 0x9 (RPC_C_AUTHN_GSS_NEGOTIATE)
+[PAR] RPC_AUTH_IDENTITY_HANDLE AuthIdentity    : 0x0
+[PAR] unsigned long            AuthzSvc        : 0x0
+[PAR] RPC_SECURITY_QOS*        SecurityQOS     : 0x000000D40BD2E700
+[RET] [0xd40b70a586]
+
+[CNT] [518]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[API] <RpcBindingSetOption> in [RPCRT4.dll] 
+[PAR] RPC_BINDING_HANDLE hBinding    : 0x000000D4097E8DB0
+[PAR] unsigned long      option      : 0xa (RPC_C_OPT_SECURITY_CALLBACK)
+[PAR] ULONG_PTR          optionValue : 0x000000D40B704C70
+[RET] [0xd40b70a5b5]
+
+[CNT] [520]
+[PTP] [0xc44] [0x504] [c:\windows\system32\rundll32.exe]
+[API] <NdrClientCall2> in [RPCRT4.dll] 
+[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000D40BD2ECA8
+[FLD]                 -> RpcInterfaceInformation      = 0x000000D40BD2EBD8
+[FLD]                    -> Length             = 0x60
+[FLD]                    -> InterfaceId
+[FLD]                       -> SyntaxGUID    = ({E3514235-4B06-11D1-AB04-00C04FC2DCD2})
+[FLD]                       -> MajorVersion  = 0x4
+[FLD]                       -> MinorVersion  = 0x0
+[FLD]                    -> TransferSyntax
+[FLD]                       -> SyntaxGUID    = ({8A885D04-1CEB-11C9-9FE8-08002B104860})
+[FLD]                       -> MajorVersion  = 0x2
+[FLD]                       -> MinorVersion  = 0x0
+[FLD]                    -> DispatchTable      = NULL
+[FLD]                    -> RpcProtseqEndpointCount = 0x0
+[FLD]                    -> RpcProtseqEndpoint = NULL
+[FLD]                    -> InterpreterInfo    = 0x0000000000000000
+[FLD]                    -> Flags              = 0x0
+[FLD]                 -> pfnAllocate                  = 0x000000D40B703670
+[FLD]                 -> pfnFree                      = 0x000000D40B703680
+[FLD]                 -> pGenericBindingInfo          = 0x000000D40BD2EB40
+[FLD]                 -> apfnNdrRundownRoutines       = 0x0000000000000000
+[FLD]                 -> aGenericBindingRoutinePairs  = 0x0000000000000000
+[FLD]                 -> apfnExprEval                 = 0x0000000000000000
+[FLD]                 -> aXmitQuintuple               = 0x0000000000000000
+[FLD]                 -> pFormatTypes                 = 0x000000D40B737482
+[FLD]                 -> fCheckBounds                 = 0x1
+[FLD]                 -> Version                      = 0x60000
+[FLD]                 -> pMallocFreeStruct            = 0x0000000000000000
+[FLD]                 -> MIDLVersion                  = 0x8000253
+[FLD]                 -> CommFaultOffsets             = 0x0
+[FLD]                 -> aUserMarshalQuadruple        = 0x0
+[FLD]                 -> NotifyRoutineTable           = 0x0
+[FLD]                 -> mFlags                       = 0x1
+[FLD]                 -> CsRoutineTables              = 0x0
+[FLD]                 -> ProxyServerInfo              = 0x0
+[FLD]                 -> pExprInfo                    = 0x0
+[PAR] PFORMAT_STRING  pFormat         : 0x000000D40B737122
+[STR]                 -> "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+[STR]                    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+[STR]                    [TRUNCATED]
+[RET] [0xd40b702af0]
 ```
 
 <a id="netshareenum"></a>
