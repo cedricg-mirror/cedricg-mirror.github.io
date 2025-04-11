@@ -44,3 +44,518 @@ Here is a short description of the next 20 command codes and purpose :
 |"\x3a\xe5"    | [GetFileTimeStamp](#GetFileTimeStamp) | $filename |
 |"\xd3\xb1"    | [WbemCreateProcess](#WbemCreateProcess) | $CommandLine |
 |"\x3e\xf8"    | [listdir2](#listdir2) | $dir_path |
+|"\xb9\xe4"    | [GetDelegationToken](#GetDelegationToken) | $TargetName |
+|"\x3a\xb9"    | [ping](#ping) | $host |
+|"\x9c\xda"    | [GetCredentialsFromUiPrompt](#GetCredentialsFromUiPrompt) | $CaptionText |
+|"\xe4\xcd"    | [GetThreadsInfo](#GetThreadsInfo) | $pid |
+|"\xba\xe1"    | [InjectSetContext](#InjectSetContext) | $pid, $tid |
+|"\xed\xf2"    | [connect_localhost_global_struct](#connect_localhost_global_struct) | $index |
+|"\xd8\x3b"    | [WriteMemory](#WriteMemory) | $address, $data |
+|"\x3b\xa2"    | [GetUsersPwdHashes](#GetUsersPwdHashes) | NA |
+|"\xd2\xe3"    | [CreateProcessConf3](#CreateProcessConf3) |  |
+|""    | [](#) |  |
+|"\xb3\xd2"    | [StopService](#StopService) | $MachineName, $ServiceName |
+|"\x9a\x6c"    | [DelayCmdExec](#DelayCmdExec) | $delay |
+|"\xd1\xf3"    | [unknown_network](#unknown_network) | $ip, $port, $unknown, $unknown2 |
+
+In the following section, I share some dynamic analysis results from the aforementioned commands :  
+
+<a id="GetFullPathNameW"></a>
+# GetFullPathNameW  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="inet_ntoa"></a>
+# inet_ntoa  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="dump_process_from_pid"></a>
+# dump_process_from_pid  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="adjustTokenPrivilege"></a>
+# adjustTokenPrivilege  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="GetFileTimeStamp"></a>
+# GetFileTimeStamp  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="WbemCreateProcess"></a>
+# WbemCreateProcess  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="listdir2"></a>
+# listdir2  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="GetDelegationToken"></a>
+# GetDelegationToken  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="ping"></a>
+# ping  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="GetCredentialsFromUiPrompt"></a>
+# GetCredentialsFromUiPrompt  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="GetThreadsInfo"></a>
+# GetThreadsInfo  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="InjectSetContext"></a>
+# InjectSetContext  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="connect_localhost_global_struct"></a>
+# connect_localhost_global_struct  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="WriteMemory"></a>
+# WriteMemory  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="GetUsersPwdHashes"></a>
+# GetUsersPwdHashes  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="CreateProcessConf3"></a>
+# CreateProcessConf3  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id=""></a>
+# 
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="StopService"></a>
+# StopService  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="DelayCmdExec"></a>
+# DelayCmdExec  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id="unknown_network"></a>
+# unknown_network  
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
