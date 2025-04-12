@@ -109,4 +109,24 @@ http://greshunka[.]com/admin.php:8041
 | "\xf3\xd8"   | [WtsEnumProcessA](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#WtsEnumProcessA) | $RDServerName |
 | "\xbf\xb"   | [UpdateConfig](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#UpdateConfig) | $config |
 | "\xa9\xb3"   | [count_exec_cmd](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html#count_exec_cmd) | $count, $sleep, $cmd |
+|"\x9a\xe1"    | [GetFullPathNameW](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#GetFullPathNameW) | $filename |
+|"\x57\xa6"    | [inet_ntoa](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#inet_ntoa) | $host |
+|"\xf1\xa5"    | [dump_process_from_pid](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#dump_process_from_pid) | $pid |
+|"\x63\xd1"    | [adjustTokenPrivilege](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#adjustTokenPrivilege) | $privilege |
+|"\x3a\xe5"    | [GetFileTimeStamp](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#GetFileTimeStamp) | $filename |
+|"\xd3\xb1"    | [WbemCreateProcess](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#WbemCreateProcess) | $CommandLine |
+|"\x3e\xf8"    | [listdir2](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#listdir2) | $dir_path |
+|"\xb9\xe4"    | [GetDelegationToken](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#GetDelegationToken) | $TargetName |
+|"\x3a\xb9"    | [ping](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#ping) | $host |
+|"\x9c\xda"    | [GetCredentialsFromUiPrompt](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#GetCredentialsFromUiPrompt) | $CaptionText |
+|"\xe4\xcd"    | [GetThreadsInfo](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#GetThreadsInfo) | $pid |
+|"\xba\xe1"    | [InjectSetContext](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#InjectSetContext) | $pid, $tid |
+|"\xed\xf2"    | [connect_localhost_global_struct](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#connect_localhost_global_struct) | $index |
+|"\xd8\x3b"    | [WriteMemory](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#WriteMemory) | $address, $data |
+|"\x3b\xa2"    | [GetUsersPwdHashes](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#GetUsersPwdHashes) | NA |
+|"\xd2\xe3"    | [CreateProcessConf3](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#CreateProcessConf3) | TODO |
+|"\xd9\xa7"    | [unknown_update_global_struct](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#unknown_update_global_struct) | TODO |
+|"\xb3\xd2"    | [StopService](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#StopService) | $MachineName, $ServiceName |
+|"\x9a\x6c"    | [DelayCmdExec](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#DelayCmdExec) | $delay |
+|"\xd1\xf3"    | [unknown_network](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#unknown_network) | $ip, $port, $unknown, $unknown2 |
 
