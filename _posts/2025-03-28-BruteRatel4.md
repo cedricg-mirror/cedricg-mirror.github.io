@@ -2102,11 +2102,15 @@ This is the unencrypted default configuration from the analysed sample :
 
 This command is 'supposed' to execute n times a given command with a timer between each execution :
 
-![exec_loop](/docs/assets/images/bruteratel/command_exec_loop.jpg)
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/bruteratel/command_exec_loop.jpg">
+<img src="/docs/assets/images/bruteratel/command_exec_loop.jpg" alt="Execution loop">
+</a></p>
 
 There is however a design flaw here since the function executing the command ends with an ExitThread :  
 
-![ExitThread](/docs/assets/images/bruteratel/exit_thread.jpg)
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/bruteratel/exit_thread.jpg">
+<img src="/docs/assets/images/bruteratel/exit_thread.jpg" alt="ExitThread">
+</a></p>
 
 The loop is broken by the ExitThread, invalidating the purpose of this command...  
 Below a run exemple after removing the unnecessary Exit Thread :
