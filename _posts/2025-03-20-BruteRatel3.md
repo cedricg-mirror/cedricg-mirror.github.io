@@ -1,5 +1,5 @@
 ---
-title: "BruteRatel full command analysis (3/X)"
+title: "BruteRatel full command analysis (3/6)"
 date: 2025-03-20 
 ---
 
@@ -30,6 +30,7 @@ http://greshunka[.]com/admin.php:8041
 This article is the third part of my full analysis of BruteRatel commands :  
 [Previous Part](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html)  
 [Next Part](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html)  
+[Full List](https://cedricg-mirror.github.io/2025/03/24/BruteRatelCommandList.html)  
 
 This detailed analysis will be split into several parts, I will be presenting in this post the next 20 commands that BruteRatel can respond to.  
 
