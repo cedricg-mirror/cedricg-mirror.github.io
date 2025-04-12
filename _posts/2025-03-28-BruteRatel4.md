@@ -29,7 +29,7 @@ http://greshunka[.]com/admin.php:8041
 
 # INTRO  
 
-This article is the 4th part of my full analysis of BruteRatel commands : 
+This article is the 4th part of my full analysis of BruteRatel commands :  
 [Previous Part](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html)  
 [Next Part](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html)  
 
