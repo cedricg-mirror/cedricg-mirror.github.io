@@ -9,9 +9,16 @@ I'll be happy to exchange with other researchers in the field of static or dynam
 
 ---  
 
+# 12/04/2025
+
+## [BRUTERATEL Full command list 5/6](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html)  
+The Emperor's New Clothes  
+
+---  
+
 # 28/03/2025
 
-## [BRUTERATEL Full command list 4/X](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html)  
+## [BRUTERATEL Full command list 4/6](https://cedricg-mirror.github.io/2025/03/28/BruteRatel4.html)  
 The Emperor's New Clothes  
 
 ---  
@@ -25,21 +32,21 @@ Spot the differences
 
 # 20/03/2025
 
-## [BRUTERATEL Full command list 3/X](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html)  
+## [BRUTERATEL Full command list 3/6](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html)  
 The Emperor's New Clothes  
 
 ---  
 
 # 19/03/2025
 
-## [BRUTERATEL Full command list 2/X](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html)  
+## [BRUTERATEL Full command list 2/6](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html)  
 The Emperor's New Clothes  
 
 ---  
 
 # 17/03/2025
 
-## [BRUTERATEL Full command list 1/X](https://cedricg-mirror.github.io/2025/03/17/BruteRatel.html)  
+## [BRUTERATEL Full command list 1/6](https://cedricg-mirror.github.io/2025/03/17/BruteRatel.html)  
 The Emperor's New Clothes  
 
 ---
