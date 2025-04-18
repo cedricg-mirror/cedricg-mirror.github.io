@@ -1522,7 +1522,7 @@ function NetInfo($option, $parameters)
 }
 ```
 
-Here is an example with the "A" option :  
+Here is an example with the "B" option :  
 
 **I. Fetching the order**  
 
