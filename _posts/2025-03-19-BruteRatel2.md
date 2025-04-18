@@ -57,7 +57,7 @@ Here is a short description of the next 20 command codes and purpose :
 | "\x61\x3f"   | [CreateDirectoryW](#CreateDirectoryW) | $dir_path         |
 | "\x40\x8f"   | [RemoveDirectoryW](#RemoveDirectoryW) | $dir_path |
 | "\x32\x0a"   | [listdir](#listdir) | $dir_path        | 
-| "\x59\xa9"   | [NetInfo](#NetInfo) | $option, $server_name | 
+| "\x59\xa9"   | [NetInfo](#NetInfo) | $option, $parameters | 
 | "\x84\xf5"   | [CreateProcessWithLogon](#CreateProcessWithLogon) | $domain $username $password $AppName $CommandLine | 
 | "\x99\xf9"   | [LogonUserW](#LogonUserW) | $type, $domain, $username, $password |
 
@@ -1566,7 +1566,7 @@ Here is an example with the "B" option :
 [RET] [0x55ab71501d]
 ```
 
-**III. Result **   
+**III. Result**   
 
 ```html
 [CNT] [408]
