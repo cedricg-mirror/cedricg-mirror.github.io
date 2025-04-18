@@ -7,7 +7,7 @@ date: 2025-03-17
 
 ## BRUTERATEL COMMAND LIST PART 1  
 
-updated : 09/04/2025  
+updated : 18/04/2025  
 
 ## Context  
 
@@ -672,10 +672,287 @@ It is likely to be called when done impersonating another user, for instance aft
 <a id="Screenshot"></a>
 # Screenshot  
 
-I have to come forward and confess that I'm still running a Windows 8.1 system for my lab.  
-Unfortunatly this sample is relying on an API not available for this version of Windows, and also doesn't check whether the required API is available, triggering a crash when attempting to execute the order...   
+Note: This command relies on the "SetProcessDpiAwarenessContext" function which is only available from WIN10 1703.  
+BruteRatel doesn't check whether this API is available to the infected system, triggering a crash when not present.  
+For a functionnality as basic as a screenshot, this very likely implies that any Windows version prior to Server 2016 / Win 10 is NOT part of the quality cycle from the BruteRatel devs.  
 
 ![Missing Function](/docs/assets/images/BazaarLoader/ScreenShot_fail.jpg)  
+
+**I. Order**  
+
+```html
+[CNT] [490]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x000002AD619B78B0
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+RdHiErJ4MxXM8BuhP3piww5zGn8qlv6Z"
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x000002AD619C1CF0
+[PAR] DWORD   *pcbBinary : 0x000000DED296E4BC
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x2ad61acbea1]
+```
+
+**II. Execution**  
+
+```html
+[CNT] [520]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <GetSystemMetrics> in [USER32.dll] 
+[PAR] int nIndex : 76 (SM_XVIRTUALSCREEN)
+[RET] [0x2ad61ab9a1a]
+
+[CNT] [521]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <GetSystemMetrics> in [USER32.dll] 
+[PAR] int nIndex : 77 (SM_YVIRTUALSCREEN)
+[RET] [0x2ad61ab9a29]
+
+[CNT] [522]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <SetProcessDpiAwarenessContext> in [USER32.dll] 
+[PAR] DPI_AWARENESS_CONTEXT   Value   : 0xfffffffe (DPI_AWARENESS_CONTEXT_SYSTEM_AWARE)
+[RET] [0x2ad61ab9af7]
+
+[CNT] [528]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <GetDC> in [USER32.dll] 
+[PAR] HWND   hWnd  : 0x0
+[RET] [0x2ad61ab9b4b]
+
+[CNT] [529]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <CreateCompatibleDC> in [GDI32.dll] 
+[PAR] HDC hdc : 0xb010914
+[RET] [0x2ad61ab9b6f]
+
+[CNT] [530]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <CreateCompatibleDC> in [gdi32full.dll] 
+[RET] [0x2ad61ab9b6f]
+
+[CNT] [531]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <GetCurrentObject> in [GDI32.dll] 
+[PAR] HDC  hdc  : 0xb010914
+[PAR] UINT type : 0x7
+[RET] [0x2ad61ab9b95]
+
+[CNT] [532]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <GetObjectW> in [GDI32.dll] 
+[PAR] HANDLE h  : 0x10505a5
+[PAR] int c     : 0x20
+[PAR] LPVOID pv : 0x000000DED296E370
+[RET] [0x2ad61ab9bb3]
+
+[CNT] [533]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <CreateDIBSection> in [GDI32.dll] 
+[PAR] HDC         hdc      : 0xb010914
+[PAR] BITMAPINFO* pbmi     : 0x000000DED296E1C4
+[PAR] UINT        usage    : 0x1
+[PAR] VOID**      ppvBits  : 0x000000DED296E138
+[PAR] HANDLE      hSection : 0x0
+[PAR] DWORD       offset   : 0x0
+[RET] [0x2ad61ab9607]
+
+[CNT] [534]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <SelectObject> in [GDI32.dll] 
+[PAR] HDC     hdc : 0xFFFFFFFF9C010803
+[PAR] HGDIOBJ h   : 0x480509a5
+[RET] [0x2ad61ab961b]
+
+[CNT] [535]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <BitBlt> in [GDI32.dll] 
+[PAR] HDC hdc    : 0xFFFFFFFF9C010803
+[PAR] int x      : 0x0
+[PAR] int y      : 0x0
+[PAR] int cx     : 0x569
+[PAR] int cy     : 0x3a7
+[PAR] HDC hdcSrc : 0xb010914
+[PAR] int x1     : 0x0
+[PAR] int y1     : 0x0
+[PAR] int rop    : 0xcc0020
+[RET] [0x2ad61ab9660]
+
+[CNT] [536]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <GetCursorInfo> in [USER32.dll] 
+[PAR] PCURSORINFO pci : 0x000000DED296E160
+[RET] [0x2ad61ab9683]
+
+[CNT] [537]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <GetDesktopWindow> in [USER32.dll] 
+[RET] [0x2ad61ab9697]
+
+[CNT] [538]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <GetIconInfo> in [USER32.dll] 
+[PAR] HICON     hIcon     : 0x10003
+[PAR] PICONINFO piconinfo : 0x000000DED296E178
+[RET] [0x2ad61ab96e2]
+
+[CNT] [539]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <GetObjectW> in [GDI32.dll] 
+[PAR] HANDLE h  : 0x4d050833
+[PAR] int c     : 0x20
+[PAR] LPVOID pv : 0x000000DED296E198
+[RET] [0x2ad61ab9748]
+
+[CNT] [540]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <DrawIconEx> in [USER32.dll] 
+[PAR] HDC    hdc                : 0xFFFFFFFF9C010803
+[PAR] int    xLeft              : 0x3cb
+[PAR] int    yTop               : 0x1b0
+[PAR] HICON  hIcon              : 0x10003
+[PAR] int    cxWidth            : 0x20
+[PAR] int    cyWidth            : 0x20
+[PAR] UINT   istepIfAniCur      : 0x0
+[PAR] HBRUSH hbrFlickerFreeDraw : 0x0
+[PAR] UINT   diFlags            : 0x3
+[RET] [0x2ad61ab9793]
+
+[CNT] [541]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <CreateCompatibleDC> in [GDI32.dll] 
+[PAR] HDC hdc : 0xb010914
+[RET] [0x2ad61ab979c]
+
+[CNT] [542]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <CreateCompatibleDC> in [gdi32full.dll] 
+[RET] [0x2ad61ab979c]
+
+[CNT] [543]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <CreateCompatibleBitmap> in [GDI32.dll] 
+[PAR] HDC hdc : 0xb010914
+[PAR] int cx  : 0x780
+[PAR] int cy  : 0x438
+[RET] [0x2ad61ab97c6]
+
+[CNT] [544]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <SelectObject> in [GDI32.dll] 
+[PAR] HDC     hdc : 0x3a0109a8
+[PAR] HGDIOBJ h   : 0x3e050bab
+[RET] [0x2ad61ab97da]
+
+[CNT] [545]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <SetStretchBltMode> in [GDI32.dll] 
+[PAR] HDC hdc  : 0x3a0109a8
+[PAR] int mode : 0x4
+[RET] [0x2ad61ab97ed]
+
+[CNT] [546]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <StretchBlt> in [GDI32.dll] 
+[PAR] HDC   hdcDest : 0x3a0109a8
+[PAR] int   xDest   : 0x0
+[PAR] int   yDest   : 0x0
+[PAR] int   wDest   : 0x780
+[PAR] int   hDest   : 0x438
+[PAR] HDC   hdcSrc  : 0xFFFFFFFF9C010803
+[PAR] int   xSrc    : 0x0
+[PAR] int   ySrc    : 0x0
+[PAR] int   wSrc    : 0x569
+[PAR] int   hSrc    : 0x3a7
+[PAR] DWORD rop     : 0xcc0020
+[RET] [0x2ad61ab9833]
+
+[CNT] [547]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <CreateStreamOnHGlobal> in [combase.dll] 
+[PAR] HGLOBAL  hGlobal          : 0x0
+[PAR] BOOL     fDeleteOnRelease : 0x1
+[PAR] LPSTREAM *ppstm           : 0x000000DED296E130
+[RET] [0x2ad61ab98a6]
+
+[CNT] [548]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <IStream::Seek> in [combase.dll] 
+[PAR] LARGE_INTEGER  dlibMove         : 0x0
+[PAR] DWORD          dwOrigin         : 0x0
+[PAR] ULARGE_INTEGER *plibNewPosition : 0x000000DED296E148
+[RET] [0x2ad61ab98ef]
+
+[CNT] [549]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <IStream::Stat> in [combase.dll] 
+[PAR] STATSTG* pstatstg    : 0x000000DED296E1F0
+[PAR] DWORD    grfStatFlag : 0x1
+[RET] [0x2ad61ab990f]
+
+[CNT] [550]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <IStream::Read> in [combase.dll] 
+[PAR] void  *pv      : 0x000002AD632D0080
+[PAR] ULONG cb       : 0x99bd5
+[PAR] ULONG *pcbRead : 0x000000DED296E12C
+[RET] [0x2ad61ab993e]
+
+[CNT] [551]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <IStream::Release> in [combase.dll] 
+[RET] [0x2ad61ab996c]
+
+[CNT] [552]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <DeleteDC> in [GDI32.dll] 
+[PAR] HDC hdc : 0x3a0109a8
+[RET] [0x2ad61ab997a]
+
+[CNT] [553]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <DeleteObject> in [GDI32.dll] 
+[PAR] HGDIOBJ ho : 0x480509a5
+[RET] [0x2ad61ab9988]
+
+[CNT] [554]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <DeleteObject> in [GDI32.dll] 
+[PAR] HGDIOBJ ho : 0x3e050bab
+[RET] [0x2ad61ab9996]
+```
+**III. Result**  
+
+```html
+[CNT] [566]
+[PTP] [0x1188] [0x18ec] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x000002AD63683040
+[STR]        -> "419C"
+[STR]           "iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAP+lSURB"
+[STR]           "VHhe7J0FmJ3F1cev33Xfze7GlWBJcIckSKHQltIWKC2F9ivF3bVFixVaSpGEBG1xd3cCcXfXjWclG4X/N2fe99w9d+68V1ZCAvs9z++ZmXPOnPfuku/hkl9n"
+[STR]           "Xp/v0Xq0s4MyrBa+4XU7DP5hikfc8XvEN3QdfI+o3933iH+IYuj2i+/htfANUb+nHRS/ImDB99Aa+NXPtr1Bv+/Ag4qH4vE/uAa+B1br8fvG959V+rNYUbm4"
+[STR]           "WhWjMZOfg/v7/6O43x1bGd+/V8J3v3rO94RfEbhP8e+W4fvXCvjvW9lsaL/vn8udMV1Uva0X4fRS+X+q9b3q5/zntiEo8N+zAoF7V1rxK4L3KP7hjmJOOdue"
+[STR]           "dKHn+v6hfnY16rk7Bu5W/CM9fHfVwH+36pECqjP3ctysbUvoeb47lzkjz+9Y6sAxF/+dijvc0QPf7bSXemxD/r7Eea7J3xW3LVaovMLvge/WxfArAqpe4lcE"
+[STR]           "b12C4C2LnZG5xd4nU3y3LNLPlgRU78DN6vm3tAz/zar/TernolERuGkRAjcudMZm4vvbAvhVj7bG54768ybB99f58NNnSgPfDfN0fatAva6f64wC/3WK6+34"
+[STR]           "FAGVD1zrjgb+a1W/a+boMY5rVPy6JmidUOPiUwSunoPAVbOdMQV+Vee7cpYek+G7YmYTqj4pqsavRv0Z0uFKhdoTuELtcfFdNgP+y1UfC75Lp+t8DLWW+eCl"
+[STR]           "issyx3/JdAQunZEWvoun6fq0oNqLpjpjBgQvVFxkJ6AIXTRFMdkd7QQumKT6TI7hP3+ijhE0lzkioAhdoDjfHT0InKf2nq96W/CfO0Hnm4vfHYPnKs5Rvc4e"
+[STR]           "r8dk87bCf9Y4/RwbfkXwLMWZ7mgQOHMc/H8Zq0eToCJkIXDGGATVnuYQUITOUPzZHZtJ4P9GI/hn9Tkk/6f40yiFyqVB4I+jNGbMf/rIWE6j1r7TvtFxztHI"
+[STR]           "e2Ixtz6oagOKoIqH1DpdeI8X/j98rWtS87X6DGrPH9T81K/h+91X8J3ypR79vx+hR4ozwd9/jdDvFDQaBH83AoFTvtJjUO0L/lbFTlaoMXDyCIRO+aZZ8H7d"
+[STR]           "LwMC7hg6SaE+h0nwJPV5T1SfU41M6DdfIqRiyQi6NRHVgwirfTxyTeDXX+g6gua+Ez6LQ+a5J8do5D6yn/9Xn2uohp6ln/ebrxBOk+CvVN9fq+dlSOAE9Uy1"
+[STR]           "l+F1qlpzH30GquG1/5fqd3H8p/D94hMNrQlzXyoC9DtRY1gR+uXnCJ+g5org8Z/pNY2BX3waG4nQ8apOEPy5iv1C1SsCP/skBse5LvLLLxA94Us9ErzXf9zH"
+[STR]           "8B37kYbmtJf7UZ570Uh5Qsa5luE413jlCH6e5rhPEPnZp5qwmDOhYz9OCu2xEVJE1LMi9BnUc8JqLqE4EaXfkRqD9Jnod/HTD2PwmnKcp776Gcc2PSsV8nPy"
+[STR]           "3PwZzJ/b3GfWcJ4I/vQjBI5Rn1ONjP/oD2JQLvRT1csgdIyqPVrl1CgxY+Y+SSZ52TMZQUVYfYbwTz5wRkHwqPcTMGtCal+yHGHGJbSP67iXWcNxHonAke8l"
+[STR]           "7E0F15v9Y/xEoWrCR6kaC6Ej1bOPeA+Bw9+Ff/A7eqQ1xSNqb/Toj2LQmusJquc9FJc57mNb05zhNe8nIocrjnAIDX4X4cPf0wQHvaPXNAYGvq2htaxhOC7z"
+[STR]           [TRUNCATED]
+[PAR] DWORD  cbBinary   : 0x199f9a
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x000002AD63820040
+[PAR] DWORD* pcchString : 0x000000DED296E20C
+[RET] [0x2ad61ace028]
+```
 
 <a id="GetDomainControlerInfo"></a>
 # GetDomainControlerInfo  
