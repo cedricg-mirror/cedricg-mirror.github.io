@@ -65,7 +65,7 @@ http://greshunka[.]com/admin.php:8041
 | "\x61\x3f"   | [CreateDirectoryW](#CreateDirectoryW) | $dir_path         |
 | "\x40\x8f"   | [RemoveDirectoryW](#RemoveDirectoryW) | $dir_path |
 | "\x32\x0a"   | [listdir](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#listdir) | $dir_path        | 
-| "\x59\xa9"   | [NetInfo](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#NetInfo) | $option, $unknown | 
+| "\x59\xa9"   | [NetInfo](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#NetInfo) | $option, $parameters | 
 | "\x84\xf5"   | [CreateProcessWithLogon](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#CreateProcessWithLogon) | $domain $username $password $AppName $CommandLine | 
 | "\x99\xf9"   | [LogonUserW](https://cedricg-mirror.github.io/2025/03/19/BruteRatel2.html#LogonUserW) | $type, $domain, $username, $password |
 | "\xb0\xe9"   | [CreateProcessA](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#CreateProcessA) | $process_path              |
