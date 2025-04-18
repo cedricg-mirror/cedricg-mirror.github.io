@@ -57,7 +57,7 @@ Here is a short description of the next 20 command codes and purpose :
 | "\x61\x3f"   | [CreateDirectoryW](#CreateDirectoryW) | $dir_path         |
 | "\x40\x8f"   | [RemoveDirectoryW](#RemoveDirectoryW) | $dir_path |
 | "\x32\x0a"   | [listdir](#listdir) | $dir_path        | 
-| "\x59\xa9"   | [NetInfo](#NetInfo) | $option, $unknown | 
+| "\x59\xa9"   | [NetInfo](#NetInfo) | $option, $server_name | 
 | "\x84\xf5"   | [CreateProcessWithLogon](#CreateProcessWithLogon) | $domain $username $password $AppName $CommandLine | 
 | "\x99\xf9"   | [LogonUserW](#LogonUserW) | $type, $domain, $username, $password |
 
@@ -1505,73 +1505,94 @@ function listdir($dir_path)
 <a id="NetInfo"></a>
 # NetInfo
 
-So, this command requires a parameter thant can take the following values :  
-"A" (NetUserEnum)   
-"B" (NetUserGetInfo)  
-"C" (NetLocalGroupEnum)  
-"D" (NetLocalGroupGetMembers / NetGroupGetUsers)  
+So, this command requires a first option thant can take the following values :  
+"A" (NetUserEnum), parameter : "$server_name"   
+"B" (NetUserGetInfo), parameter : "$server_name $user_name"  
+"C" (NetLocalGroupEnum), parameter : "$server_name"  
+"D" (NetLocalGroupGetMembers / NetGroupGetUsers), parameter : "$server_name $local_group_name"  
 
 ```php
-function NetInfo($option, $unkn)
+// ex: NetInfo("B", "mydc.mylab.local Eglantine");
+function NetInfo($option, $parameters)
 {
-	$cmd_id = "\x59\xa9 $option $unkn";
+	$cmd_id = "\x59\xa9 $option $parameters";
 	$cmd_id_b64 = base64_encode($cmd_id);
 	
 	return $cmd_id_b64;
 }
 ```
 
-As I still didn't setup a domain controler in my lab yet, results will be quite limited, here is an example with the "A" option :  
+Here is an example with the "A" option :  
 
 **I. Fetching the order**  
 
 ```html
 [CNT] [327]
-[PTP] [0xa6c] [0xa98] [c:\windows\system32\rundll32.exe]
+[PTP] [0x214] [0x7f0] [c:\windows\system32\rundll32.exe]
 [API] <CryptStringToBinaryA> in [crypt32.dll] 
-[PAR] LPCTSTR pszString  : 0x000000B444DFB5A0
-[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+Q+r+SM8LHDz0+y6dHT95+1B/Tm4I08vdHavsPxB7FcO6FimYweFDbLXL"
+[PAR] LPCTSTR pszString  : 0x00000055A97B5870
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+Q+r+SM8xHAzewAShMmAet1EJcDYnjOXSHNz4IDoMN526Yi7QiYZuboynJ4jna5rdAoIH46acf+RoFa35NanAMQ=="
 [PAR] DWORD   cchString  : 0x0
 [PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
-[PAR] BYTE    *pbBinary  : 0x000000B444DE3240
-[PAR] DWORD   *pcbBinary : 0x000000B446C7E6CC
+[PAR] BYTE    *pbBinary  : 0x00000055A97AEAF0
+[PAR] DWORD   *pcbBinary : 0x00000055AB7BE71C
 [PAR] DWORD   *pdwSkip   : 0x0
 [PAR] DWORD   *pdwFlags  : 0x0
-[RET] [0xb446bdbea1]
+[RET] [0x55ab71bea1]
 ```
 
 **II. Execution**   
 
 ```html
-[CNT] [375]
-[PTP] [0xa6c] [0xa98] [c:\windows\system32\rundll32.exe]
-[API] <NetUserEnum> in [SAMCLI.DLL] 
-[PAR] LPCWSTR servername    : 0x000000B444DE9740
-[STR]         -> "C:\Users\user\Desktop"
-[PAR] DWORD   level         : 0x2
-[PAR] DWORD   filter        : 0x2 (FILTER_NORMAL_ACCOUNT)
-[PAR] LPBYTE* bufptr        : 0x000000B446C7E448
-[PAR] DWORD   prefmaxlen    : 0xffffffff
-[PAR] LPDWORD entriesread   : 0x000000B446C7E43C
-[PAR] LPDWORD totalentries  : 0x000000B446C7E440
-[PAR] PDWORD  resume_handle : 0x000000B446C7E444
-[RET] [0xb446bd53d3]
+[CNT] [379]
+[PTP] [0x214] [0x7f0] [c:\windows\system32\rundll32.exe]
+[API] <NetUserGetInfo> in [SAMCLI.DLL] 
+[PAR] LPCWSTR servername : 0x00000055A97CE7E0
+[STR]         -> "mydc.mylab.local"
+[PAR] LPCWSTR username   : 0x00000055A97BF1E0
+[STR]         -> "Eglantine"
+[PAR] DWORD   level      : 0x2
+[PAR] LPBYTE* bufptr     : 0x00000055AB7BE388
+[RET] [0x55ab714f33]
+
+[CNT] [380]
+[PTP] [0x214] [0x7f0] [c:\windows\system32\rundll32.exe]
+[API] <_ctime64> in [msvcrt.dll] 
+[RET] [0x55ab714f94]
+
+[CNT] [381]
+[PTP] [0x214] [0x7f0] [c:\windows\system32\rundll32.exe]
+[API] <_ctime64> in [msvcrt.dll] 
+[RET] [0x55ab71501d]
 ```
 
-**III. Result (failed)**   
+**III. Result **   
 
 ```html
-[CNT] [386]
-[PTP] [0xa6c] [0xa98] [c:\windows\system32\rundll32.exe]
+[CNT] [408]
+[PTP] [0x214] [0x7f0] [c:\windows\system32\rundll32.exe]
 [API] <CryptBinaryToStringW> in [crypt32.dll] 
-[PAR] BYTE*  pbBinary   : 0x000000B444DEED40
-[STR]        -> "9999"
-[STR]           "1707"
-[PAR] DWORD  cbBinary   : 0x12
+[PAR] BYTE*  pbBinary   : 0x00000055A97D6E40
+[STR]        -> "59A9"
+[STR]           "B"
+[STR]           "mydc.mylab.local"
+[STR]           "eglantine"
+[STR]           "Eglantine"
+[STR]           ""
+[STR]           "0"
+[STR]           "Sun Feb 07 07:28:15 2106"
+[STR]           "238"
+[STR]           "Fri Apr 18 23:52:47 2025"
+[STR]           "0"
+[STR]           "45"
+[STR]           "\\*"
+[STR]           ""
+[STR]           ""
+[PAR] DWORD  cbBinary   : 0xe0
 [PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
-[PAR] LPWSTR pszString  : 0x000000B444DE9400
-[PAR] DWORD* pcchString : 0x000000B446C7E2FC
-[RET] [0xb446bde028]
+[PAR] LPWSTR pszString  : 0x00000055A97AC5A0
+[PAR] DWORD* pcchString : 0x00000055AB7BE2BC
+[RET] [0x55ab71e028]
 ```
 
 <a id="CreateProcessWithLogon"></a>
