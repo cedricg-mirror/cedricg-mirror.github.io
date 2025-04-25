@@ -124,7 +124,7 @@ http://greshunka[.]com/admin.php:8041
 |"\xed\xf2"    | [connect_localhost_global_struct](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#connect_localhost_global_struct) | $index |
 |"\xd8\x3b"    | [WriteMemory](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#WriteMemory) | $address, $data |
 |"\x3b\xa2"    | [GetUsersPwdHashes](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#GetUsersPwdHashes) | NA |
-|"\xd2\xe3"    | [CreateProcessConf3](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#CreateProcessConf3) | TODO |
+|"\xd2\xe3"    | [CreateProcessSuspendedInjectThread](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#CreateProcessSuspendedInjectThread) |  |
 |"\xd9\xa7"    | [unknown_update_global_struct](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#unknown_update_global_struct) | TODO |
 |"\xb3\xd2"    | [StopService](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#StopService) | $MachineName, $ServiceName |
 |"\x9a\x6c"    | [DelayCmdExec](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#DelayCmdExec) | $delay |
