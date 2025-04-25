@@ -74,8 +74,8 @@ http://greshunka[.]com/admin.php:8041
 | "\xe0\x9d"   | [ListActiveProcess](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ListActiveProcess) | NA                |
 | "\xae\x6b"   | [ImpersonateSystem](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ImpersonateSystem) | NA |
 | "\x39\x6f"   | [ImpersonateSystem2](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ImpersonateSystem2) | NA  |
-| "\xd9\xf3"   | [unknown](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#unknown) | $p1, $p2 |
-| "\xd4\x3f"   | [unknown2](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#unknown2) | $p1, $p2          |
+| "\xd9\xf3"   | [CreateProcessGetPidTid](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#CreateProcessGetPidTid) | $p1, $p2 |
+| "\xd4\x3f"   | [CreateProcessGetPidTid2](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#CreateProcessGetPidTid2) | $p1, $p2          |
 | "\x74\x2c"   | [ReadFileW](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ReadFileW) | $filename, $size_in_KB              |
 | "\x36\x6c"   | [RegEnumKeyA](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#RegEnumKeyA) | $hKey, $SubKey       |
 | "\x58\xb4"   | [QueryServiceConfig](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#QueryServiceConfig) | $MachineName, $p2, $ServiceName       |
