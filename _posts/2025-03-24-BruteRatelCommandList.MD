@@ -79,7 +79,7 @@ http://greshunka[.]com/admin.php:8041
 | "\x74\x2c"   | [ReadFileW](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#ReadFileW) | $filename, $size_in_KB              |
 | "\x36\x6c"   | [RegEnumKeyA](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#RegEnumKeyA) | $hKey, $SubKey       |
 | "\x58\xb4"   | [QueryServiceConfig](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#QueryServiceConfig) | $MachineName, $p2, $ServiceName       |
-| "\xea\xe2"   | [unknown3](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#unknown3) | $p1         |
+| "\xea\xe2"   | [test_base64_decode](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#test_base64_decode) | $p1         |
 | "\xa1\x13"   | [WriteFile](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#WriteFile) | $filename, $data   |
 | "\x9a\x69"   | [listen](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#listen) | $label, $port        |
 | "\x4d\x3c"   | [pipe_com_todo](https://cedricg-mirror.github.io/2025/03/20/BruteRatel3.html#pipe_com_todo) | $PipeName   $p2     |
