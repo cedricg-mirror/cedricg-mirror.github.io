@@ -47,5 +47,5 @@ Here is a short description of the next 20 command codes and purpose :
 |""    | [](#) |  |
 |""    | [](#) |  |
 |""    | [](#) |  |
-|"\x42\x9D"    | [screenshot_jpg](#screenshot_jpg) | NA |
+|"\x41\x9D"    | [screenshot_jpg](#screenshot_jpg) | NA |
 
