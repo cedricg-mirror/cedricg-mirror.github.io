@@ -48,8 +48,8 @@ Here is a short description of the next 20 command codes and purpose :
 | "\xe0\x9d"   | [ListActiveProcess](#ListActiveProcess) | NA                |
 | "\xae\x6b"   | [ImpersonateSystem](#ImpersonateSystem) | $command_line |
 | "\x39\x6f"   | [ImpersonateSystem2](#ImpersonateSystem2) | NA  |
-| "\xd9\xf3"   | [unknown](#unknown) | $p1, $p2 |
-| "\xd4\x3f"   | [unknown2](#unknown2) | $p1, $p2          |
+| "\xd9\xf3"   | [CreateProcessGetPidTid](#CreateProcessGetPidTid) | $p1, $p2 |
+| "\xd4\x3f"   | [CreateProcessGetPidTid2](#CreateProcessGetPidTid2) | $p1, $p2          |
 | "\x74\x2c"   | [ReadFileW](#ReadFileW) | $filename, $size_in_KB              |
 | "\x36\x6c"   | [RegEnumKeyA](#RegEnumKeyA) | $hKey, $SubKey       |
 | "\x58\xb4"   | [QueryServiceConfig](#QueryServiceConfig) | $MachineName, $p2, $ServiceName       |
@@ -690,12 +690,20 @@ function ImpersonateSystem2()
 This command is a simple wrapper to the previous one. Maybe for some backward compatibility with previous version of the malware ?  
 
 
-<a id="unknown"></a>
-# unknown  
+<a id="CreateProcessGetPidTid"></a>
+# CreateProcessGetPidTid  
+
+This command needs to be chained after another command in order to work.  
+The first command is needed to set the command line of the created process into a specific field from the malware main structure  
+The second one, presented below, will create a process and report back its PID and TID to the C2.  
 
 ```php
-// CreateProcess based on fields C1E0 and C26C from GlobalStruct
-function unknown($p1, $p2)
+/*
+	$cmd_id = "\xa9\xc3 $code, $value"; has to be executed beforehand.
+	In this case, "\xa9\xc3 "5", "notepad";
+	The two parameters $p1 and $p2 function are unknown yet
+*/
+function CreateProcessGetPidTid($p1, $p2)
 {
 	$p1_b64 = base64_encode($p1);
 	
@@ -705,15 +713,110 @@ function unknown($p1, $p2)
 	return $cmd_id_b64;
 }
 ```
+**I. Fetching the order**  
 
-Not sure yet, it definitly leads to a CreateProcessA call but in relation with internal structures I haven't reversed.  
+```html
+[CNT] [1582]
+[PTP] [0x9ac] [0xa28] [c:\windows\system32\rundll32.exe]
+[API] <CryptStringToBinaryA> in [crypt32.dll] 
+[PAR] LPCTSTR pszString  : 0x00000036CFBBC110
+[STR]         -> "vJ7S4O4DWydoZDlAiZKGGsy+ZejYSNALKR/Z+m/7JFVt6mkPC2JHwa/CCInpBzoxAIqZFSXC0PwuO7ubbdKGIbbHOKR3tMvLX8giT8yzNanuTd9Qd/IfcQjJ"
+[PAR] DWORD   cchString  : 0x0
+[PAR] DWORD   dwFlags    : 0x1 (CRYPT_STRING_BASE64)
+[PAR] BYTE    *pbBinary  : 0x00000036CFBAF200
+[PAR] DWORD   *pcbBinary : 0x00000036D1B3ED5C
+[PAR] DWORD   *pdwSkip   : 0x0
+[PAR] DWORD   *pdwFlags  : 0x0
+[RET] [0x36d1a9bea1]
+```
 
-<a id="unknown2"></a>
-# unknown2  
+**II. Execution**   
+
+```html
+[CNT] [1620]
+[PTP] [0x9ac] [0x3d4] [c:\windows\system32\rundll32.exe]
+[API] <RtlAdjustPrivilege> in [ntdll.dll] 
+[PAR] ULONG    Privilege  : 0x14
+[PAR] BOOLEAN  Enable     : 0x1
+[PAR] BOOLEAN  Client     : 0x0
+[PAR] PBOOLEAN WasEnabled : 0x00000036D202F2AC
+[RET] [0x36d1a99a5c]
+
+[CNT] [1626]
+[PTP] [0x9ac] [0x3d4] [c:\windows\system32\rundll32.exe]
+[API] <CreatePipe> in [KERNEL32.DLL] 
+[PAR] PHANDLE               hReadPipe        : 0x00000036D202E1A8
+[PAR] PHANDLE               hWritePipe       : 0x00000036D202E1B0
+[PAR] LPSECURITY_ATTRIBUTES lpPipeAttributes : 0x00000036D202E1E8
+[PAR] DWORD                 nSize            : 0x0
+[RET] [0x36d1aab70d]
+
+[ * ] [pid 0x9ac][tid 0x3d4] c:\windows\system32\rundll32.exe
+[API] <CreatePipe>
+[PAR] HANDLE  hReadPipe  : 0x3ac
+[PAR] HANDLE  hWritePipe : 0x35c
+[RES] BOOL 0x1
+
+[CNT] [1629]
+[PTP] [0x9ac] [0x3d4] [c:\windows\system32\rundll32.exe]
+[API] <SetHandleInformation> in [KERNEL32.DLL] 
+[PAR] HANDLE hObject : 0x3ac
+[PAR] DWORD dwMask   : 0x1
+[PAR] DWORD dwFlags  : 0x0
+[RET] [0x36d1aab72b]
+
+[CNT] [1636]
+[PTP] [0x9ac] [0x3d4] [c:\windows\system32\rundll32.exe]
+[API] <CreateProcessA> in [KERNEL32.DLL] 
+[PAR] LPCTSTR               lpApplicationName    : 0x0 (null)
+[PAR] LPCTSTR               lpCommandLine        : 0x00000036CFB9E410
+[STR]                       -> "notepad"
+[PAR] LPSECURITY_ATTRIBUTES lpProcessAttributes  : 0x0
+[PAR] LPSECURITY_ATTRIBUTES lpThreadAttributes   : 0x0
+[PAR] BOOL                  bInheritHandles      : 0x1
+[PAR] DWORD                 dwCreationFlags      : 0x8000004 (CREATE_NO_WINDOW | CREATE_SUSPENDED)
+[PAR] LPVOID                lpEnvironment        : 0x0
+[PAR] LPCSTR                lpCurrentDirectory   : 0x0 (null)
+[PAR] LPSTARTUPINFOA        lpStartupInfo        : 0x00000036D202E200
+[FLD]                       -> lpDesktop   = 0x0 (null)
+[FLD]                       -> lpTitle     = 0x0 (null)
+[FLD]                       -> dwFlags     = 0x100 (STARTF_USESTDHANDLES)
+[FLD]                       -> wShowWindow = 0x0
+[FLD]                       -> hStdInput   = 0x0
+[FLD]                       -> hStdOutput  = 0x35c
+[FLD]                       -> hStdError   = 0x35c
+[PAR] LPPROCESS_INFORMATION lpProcessInformation : 0x00000036D202E1D0
+[RET] [0x36d1aab8ee]
+
+[CNT] [1649]
+[PTP] [0x9ac] [0x3d4] [c:\windows\system32\rundll32.exe]
+[API] <ResumeThread> in [KERNEL32.DLL] 
+[PAR] HANDLE hThread       : 0x3bc
+[RET] [0x36d1aabade]
+```
+
+**III. Result**   
+
+```html
+[CNT] [1648]
+[PTP] [0x9ac] [0x3d4] [c:\windows\system32\rundll32.exe]
+[API] <CryptBinaryToStringW> in [crypt32.dll] 
+[PAR] BYTE*  pbBinary   : 0x00000036CFB6B860
+[STR]        -> "B0E9"
+[STR]           "AB 332 1432 notepad"
+[PAR] DWORD  cbBinary   : 0x30
+[PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
+[PAR] LPWSTR pszString  : 0x00000036CFBBC470
+[PAR] DWORD* pcchString : 0x00000036D202E06C
+[RET] [0x36d1a9e028]
+```
+
+<a id="CreateProcessGetPidTid2"></a>
+# CreateProcessGetPidTid2  
 
 ```php
 // CreateProcess based on fields C1E0 and C26C from GlobalStruct
-function unknown2($p1, $p2)
+function CreateProcessGetPidTid2($p1, $p2)
 {
 	$p1_b64 = base64_encode($p1);
 	
@@ -724,7 +827,7 @@ function unknown2($p1, $p2)
 }
 ```
 
-Not sure yet, it definitly leads to a CreateProcessA call but in relation with internal structures I haven't reversed.  
+Not sure yet, but this function seems to be exactly the same as the previous one  
 
 <a id="ReadFileW"></a>
 # ReadFileW  
