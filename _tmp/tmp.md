@@ -39,13 +39,13 @@ Here is a short description of the next 20 command codes and purpose :
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
-|""    | [](#) |  |
-|""    | [](#) |  |
-|""    | [](#) |  |
-|""    | [](#) |  |
-|""    | [](#) |  |
-|""    | [](#) |  |
-|""    | [](#) |  |
-|""    | [](#) |  |
+|"\x8C\xED"    | [ReflectiveDllLoading](#ReflectiveDllLoading) |  |
+|"\x8X\x9D"    | [ReflectiveDllLoading2](#ReflectiveDllLoading2) |  |
+|"\x3B\x2D"    | [SekurLsaPTH](#SekurLsaPTH) |  |
+|"\x9C\xE2"    | [HttpGet](#HttpGet) |  |
+|"\x2B\xEF"    | [GetFileSecurity](#GetFileSecurity) |  |
+|"\xB3\xD1"    | [GlobalStructControl17](#GlobalStructControl17) |  |
+|"\xE2\xF1"    | [GlobalStructFree10](#GlobalStructFree10) |  |
+|"\xA9\xC3"    | [GlobalStructControl15](#GlobalStructControl15) |  |
 |"\x41\x9D"    | [screenshot_jpg](#screenshot_jpg) | NA |
 
