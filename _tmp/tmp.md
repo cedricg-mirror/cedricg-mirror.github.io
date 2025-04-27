@@ -35,7 +35,7 @@ I will be presenting in this post the last 9 commands that BruteRatel can respon
 
 # COMMAND LIST
 
-Here is a short description of the next 20 command codes and purpose :  
+Here is a short description of the last 9 commands codes and purpose :  
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
@@ -48,4 +48,230 @@ Here is a short description of the next 20 command codes and purpose :
 |"\xE2\xF1"    | [GlobalStructFree10](#GlobalStructFree10) |  |
 |"\xA9\xC3"    | [GlobalStructControl15](#GlobalStructControl15) |  |
 |"\x41\x9D"    | [screenshot_jpg](#screenshot_jpg) | NA |
+
+
+<a id=""></a>
+#   
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id=""></a>
+#   
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id=""></a>
+#   
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id=""></a>
+#   
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id=""></a>
+#   
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id=""></a>
+#   
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id=""></a>
+#   
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id=""></a>
+#   
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
+
+<a id=""></a>
+#   
+
+```php
+
+```
+
+**I. Fetching the order**  
+
+```html
+
+```
+
+**II. Execution**   
+
+```html
+
+```
+
+**III. Result**   
+
+```html
+
+```
 
