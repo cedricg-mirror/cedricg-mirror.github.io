@@ -848,7 +848,7 @@ I'll update later on after some more static analysis.
 # unknown2  
 
 No direct interaction with the infected Host  
-Samme, this command free some memory allocated within the malware's global structure, todo..  
+Same, this command free some memory allocated within the malware's global structure, todo..  
 
 <a id="unknown3"></a>
 # unknown3  
