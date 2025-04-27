@@ -1,11 +1,13 @@
 ---
-title: "BruteRatel full command list (In progress)"
+title: "BruteRatel full command list"
 date: 2025-03-24 
 ---
 
 <link rel="stylesheet" href="/css/main.css">
 
 ## BRUTERATEL AVAILABLE COMMANDS 
+
+updated 27/04/2025
 
 ## Context  
 
