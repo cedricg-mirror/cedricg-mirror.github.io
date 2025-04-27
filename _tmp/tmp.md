@@ -47,7 +47,7 @@ Here is a short description of the last 9 commands codes and purpose :
 |"\xB3\xD1"    | [GlobalStructControl17](#GlobalStructControl17) |  |
 |"\xE2\xF1"    | [GlobalStructFree10](#GlobalStructFree10) |  |
 |"\xA9\xC3"    | [GlobalStructControl15](#GlobalStructControl15) |  |
-|"\x41\x9D"    | [screenshot_jpg](#screenshot_jpg) | NA |
+|"\x41\x9D"    | [record_screen_jpg](#record_screen_jpg) | NA |
 
 
 <a id="ReflectiveDllLoading"></a>
@@ -250,8 +250,8 @@ Here is a short description of the last 9 commands codes and purpose :
 
 ```
 
-<a id="screenshot_jpg"></a>
-# screenshot_jpg    
+<a id="record_screen_jpg"></a>
+# record_screen_jpg    
 
 ```php
 
