@@ -9,6 +9,13 @@ I'll be happy to exchange with other researchers in the field of static or dynam
 
 ---  
 
+# 27/04/2025
+
+## [BRUTERATEL Full command list 6/6](https://cedricg-mirror.github.io/2025/04/27/BruteRatel6.html)  
+The Emperor's New Clothes  
+
+---  
+
 # 12/04/2025
 
 ## [BRUTERATEL Full command list 5/6](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html)  
