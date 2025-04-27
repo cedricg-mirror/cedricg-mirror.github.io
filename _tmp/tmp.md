@@ -50,8 +50,8 @@ Here is a short description of the last 9 commands codes and purpose :
 |"\x41\x9D"    | [screenshot_jpg](#screenshot_jpg) | NA |
 
 
-<a id=""></a>
-#   
+<a id="ReflectiveDllLoading"></a>
+# ReflectiveDllLoading    
 
 ```php
 
@@ -75,8 +75,8 @@ Here is a short description of the last 9 commands codes and purpose :
 
 ```
 
-<a id=""></a>
-#   
+<a id="ReflectiveDllLoading2"></a>
+# ReflectiveDllLoading2    
 
 ```php
 
@@ -100,8 +100,8 @@ Here is a short description of the last 9 commands codes and purpose :
 
 ```
 
-<a id=""></a>
-#   
+<a id="SekurLsaPTH"></a>
+# SekurLsaPTH    
 
 ```php
 
@@ -125,8 +125,8 @@ Here is a short description of the last 9 commands codes and purpose :
 
 ```
 
-<a id=""></a>
-#   
+<a id="HttpGet"></a>
+# HttpGet    
 
 ```php
 
@@ -150,8 +150,8 @@ Here is a short description of the last 9 commands codes and purpose :
 
 ```
 
-<a id=""></a>
-#   
+<a id="GetFileSecurity"></a>
+# GetFileSecurity    
 
 ```php
 
@@ -175,8 +175,8 @@ Here is a short description of the last 9 commands codes and purpose :
 
 ```
 
-<a id=""></a>
-#   
+<a id="GlobalStructControl17"></a>
+# GlobalStructControl17    
 
 ```php
 
@@ -200,8 +200,8 @@ Here is a short description of the last 9 commands codes and purpose :
 
 ```
 
-<a id=""></a>
-#   
+<a id="GlobalStructFree10"></a>
+# GlobalStructFree10    
 
 ```php
 
@@ -225,8 +225,8 @@ Here is a short description of the last 9 commands codes and purpose :
 
 ```
 
-<a id=""></a>
-#   
+<a id="GlobalStructControl15"></a>
+# GlobalStructControl15    
 
 ```php
 
@@ -250,8 +250,8 @@ Here is a short description of the last 9 commands codes and purpose :
 
 ```
 
-<a id=""></a>
-#   
+<a id="screenshot_jpg"></a>
+# screenshot_jpg    
 
 ```php
 
