@@ -39,15 +39,15 @@ Here is a short description of the last 9 commands codes and purpose :
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
-|"\x8C\xED"    | [ReflectiveDllLoading](#ReflectiveDllLoading) |  |
-|"\x8X\x9D"    | [ReflectiveDllLoading2](#ReflectiveDllLoading2) |  |
-|"\x3B\x2D"    | [SekurLsaPTH](#SekurLsaPTH) |  |
-|"\x9C\xE2"    | [HttpGet](#HttpGet) |  |
-|"\x2B\xEF"    | [GetFileSecurity](#GetFileSecurity) |  |
-|"\xB3\xD1"    | [GlobalStructControl17](#GlobalStructControl17) |  |
-|"\xE2\xF1"    | [GlobalStructFree10](#GlobalStructFree10) |  |
-|"\xA9\xC3"    | [GlobalStructControl15](#GlobalStructControl15) |  |
-|"\x41\x9D"    | [record_screen_jpg](#record_screen_jpg) | NA |
+|"\x8C\xED"    | [ReflectiveDllLoading](#ReflectiveDllLoading) | $dll |
+|"\x8X\x9D"    | [ReflectiveDllLoading2](#ReflectiveDllLoading2) | $dll |
+|"\x3B\x2D"    | [SekurLsaPTH](#SekurLsaPTH) | $unknown, $domain, $user_name, $ntlm_hash, $command_line |
+|"\x9C\xE2"    | [HttpGet](#HttpGet) | $opt, $ServerName, $port, $ObjectName |
+|"\x2B\xEF"    | [GetFileSecurity](#GetFileSecurity) | $file_name |
+|"\xB3\xD1"    | [GlobalStructControl17](#GlobalStructControl17) | $code, $value |
+|"\xE2\xF1"    | [GlobalStructFree10](#GlobalStructFree10) | $code |
+|"\xA9\xC3"    | [GlobalStructControl15](#GlobalStructControl15) | $code, $value |
+|"\x41\x9D"    | [record_screen_jpg](#record_screen_jpg) | $p1, $duration |
 
 
 <a id="ReflectiveDllLoading"></a>
