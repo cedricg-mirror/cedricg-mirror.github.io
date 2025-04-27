@@ -902,6 +902,8 @@ function listdir2($dir_path)
 <a id="GetDelegationToken"></a>
 # GetDelegationToken  
 
+This function could be part of a Kerberos Relay Attack, i'll update accordingly after a more in-depth static analysis  
+
 ```php
 // GetDelegationToken("ldap/MYDC.mylab.local");
 function GetDelegationToken($TargetName)
