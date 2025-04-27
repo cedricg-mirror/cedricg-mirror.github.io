@@ -129,4 +129,14 @@ http://greshunka[.]com/admin.php:8041
 |"\xb3\xd2"    | [StopService](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#StopService) | $MachineName, $ServiceName |
 |"\x9a\x6c"    | [DelayCmdExec](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#DelayCmdExec) | $delay |
 |"\xd1\xf3"    | [unknown_network](https://cedricg-mirror.github.io/2025/04/12/BruteRatel5.html#unknown_network) | $ip, $port, $unknown, $unknown2 |
+|"\x8C\xED"    | [ReflectiveDllLoading](#ReflectiveDllLoading) | $dll |
+|"\x8X\x9D"    | [ReflectiveDllLoading2](#ReflectiveDllLoading2) | $dll |
+|"\x3B\x2D"    | [SekurLsaPTH](#SekurLsaPTH) | $unknown, $domain, $user_name, $ntlm_hash, $command_line |
+|"\x9C\xE2"    | [HttpGet](#HttpGet) | $opt, $ServerName, $port, $ObjectName |
+|"\x2B\xEF"    | [GetFileSecurity](#GetFileSecurity) | $file_name |
+|"\xB3\xD1"    | [GlobalStructControl17](#GlobalStructControl17) | $code, $value |
+|"\xE2\xF1"    | [GlobalStructFree10](#GlobalStructFree10) | $code |
+|"\xA9\xC3"    | [GlobalStructControl15](#GlobalStructControl15) | $code, $value |
+|"\x41\x9D"    | [record_screen_jpg](#record_screen_jpg) | $p1, $duration |
+
 
