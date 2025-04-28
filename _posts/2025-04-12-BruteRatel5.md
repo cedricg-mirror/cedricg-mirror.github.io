@@ -47,7 +47,7 @@ Here is a short description of the next 20 command codes and purpose :
 |"\x3a\xe5"    | [GetFileTimeStamp](#GetFileTimeStamp) | $filename |
 |"\xd3\xb1"    | [WbemCreateProcess](#WbemCreateProcess) | $CommandLine |
 |"\x3e\xf8"    | [listdir2](#listdir2) | $dir_path |
-|"\xb9\xe4"    | [GetDelegationToken](#GetDelegationToken) | $TargetName |
+|"\xb9\xe4"    | [GetDelegationToken](#GetDelegationToken) | $TargetNames |
 |"\x3a\xb9"    | [ping](#ping) | $host |
 |"\x9c\xda"    | [GetCredentialsFromUiPrompt](#GetCredentialsFromUiPrompt) | $CaptionText |
 |"\xe4\xcd"    | [GetThreadsInfo](#GetThreadsInfo) | $pid |
@@ -905,10 +905,14 @@ function listdir2($dir_path)
 This function could be part of a Kerberos Relay Attack, i'll update accordingly after a more in-depth static analysis  
 
 ```php
-// GetDelegationToken("ldap/MYDC.mylab.local");
-function GetDelegationToken($TargetName)
+
+The parameter can be a signle target or a space-separated list of targets
+
+// ex: GetDelegationToken("ldap/MYDC.mylab.local");
+// ex: GetDelegationToken("ldap/MYDC1.mylab.local ldap/MYDC2.mylab.local ldap/MYDC3.mylab.local");
+function GetDelegationToken($TargetNames)
 {
-	$cmd_id = "\xb9\xe4 $TargetName";
+	$cmd_id = "\xb9\xe4 $TargetNames";
 	$cmd_id_b64 = base64_encode($cmd_id);
 	
 	return $cmd_id_b64;
