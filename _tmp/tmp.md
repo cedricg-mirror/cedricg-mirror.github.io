@@ -17,7 +17,7 @@ Initial Sample Source :
 VirusTotal :  
 [VirusTotal](https://www.virustotal.com/gui/file/d8080b4f7a238f28435649f74fdd5679f7f7133ea81d12d9f10b05017b0897b1)  
 
-# INTRO  
+---
 
 Conveniently sold as a 'red teaming tool' with advanced capabilities to avoid detection from EDR and antivirus, BruteRatel is unsurprisingly used and abused by various cybercrime or state sponsored threat actors :  
 
