@@ -32,9 +32,7 @@ This version has been modified in the following fashion :
 - The inner payload only connects to the following local IP : http://192.168.30.46/admin.php on port 80   
 - SSL encryption has been removed
 
-I also publish a basic php framework to issue commands to this modified sample :  
-
-https://github.com/cedricg-mirror/reflexions/tree/main/CyberCrime/BRUTERATEL/Framework  
+I also publish a basic php [FrameWork](https://github.com/cedricg-mirror/reflexions/tree/main/CyberCrime/BRUTERATEL/Framework) to issue commands to this modified sample   
 
 This is a very basic php framework meant to test various commands from the malware and doesn't offer any 'C2' features  
 
