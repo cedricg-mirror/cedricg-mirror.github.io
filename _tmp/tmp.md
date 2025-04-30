@@ -5,7 +5,7 @@ date: 2025-04-30
 
 <link rel="stylesheet" href="/css/main.css">
 
-## BRUTERATEL OPEN FRAMEWORK 
+## BRUTERATEL BASIC OPEN FRAMEWORK 
 
 ## Context  
 
