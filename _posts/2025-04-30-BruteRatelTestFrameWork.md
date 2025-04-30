@@ -36,7 +36,7 @@ I also publish a basic php [FrameWork](https://github.com/cedricg-mirror/reflexi
 
 This is a very basic php framework meant to test various commands from the malware and doesn't offer any 'C2' features  
 
-A summary from most commands available from this sample is available on my [blog](https://cedricg-mirror.github.io/2025/03/24/BruteRatelCommandList.html)  
+A summary from most commands available from this sample is available [here](https://cedricg-mirror.github.io/2025/03/24/BruteRatelCommandList.html)  
 
 I didn't fully reverse / understood evry commands available nor do I intend to do so  
 
