@@ -24,7 +24,7 @@ Conveniently sold as a 'red teaming tool' with advanced capabilities to avoid de
 [BruteRatel and CVE-2025-31324](https://reliaquest.com/blog/threat-spotlight-reliaquest-uncovers-vulnerability-behind-sap-netweaver-compromise/)  
 [BruteRatel and APT29](https://unit42.paloaltonetworks.com/brute-ratel-c4-tool/)  
 
-As a mean to raise awareness and help blue teams better understand the threat posed by this specific tool, I publish a [stripped-down version](https://bazaar.abuse.ch/sample/) from a sample found in the wild and uploaded on bazar.abuse.ch in late 2024    
+As a mean to raise awareness and help blue teams better understand the threat posed by this specific tool, I publish a [stripped-down version](https://bazaar.abuse.ch/sample/dbc1be3c7194a4a179c407326391d4e20f2598120ffb91ae0d1af9697c2eca58/) from a sample found in the wild and uploaded on bazar.abuse.ch in late 2024    
 
 This version has been modified in the following fashion :  
 
