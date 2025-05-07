@@ -245,8 +245,8 @@ IDL_DRSUnbind
 [CNT] [778]
 [PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <NdrClientCall2> in [RPCRT4.dll] 
-[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000700852EC78
-[FLD]                 -> RpcInterfaceInformation      = 0x000000700852EBA8
+[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x0000000F04B2EBF8
+[FLD]                 -> RpcInterfaceInformation      = 0x0000000F04B2EB28
 [FLD]                    -> Length             = 0x60
 [FLD]                    -> InterfaceId
 [FLD]                       -> SyntaxGUID    = ({E3514235-4B06-11D1-AB04-00C04FC2DCD2})
@@ -261,14 +261,14 @@ IDL_DRSUnbind
 [FLD]                    -> RpcProtseqEndpoint = NULL
 [FLD]                    -> InterpreterInfo    = 0x0000000000000000
 [FLD]                    -> Flags              = 0x0
-[FLD]                 -> pfnAllocate                  = 0x0000007007DD3670
-[FLD]                 -> pfnFree                      = 0x0000007007DD3680
-[FLD]                 -> pGenericBindingInfo          = 0x000000700852EB10
+[FLD]                 -> pfnAllocate                  = 0x0000000F04403670
+[FLD]                 -> pfnFree                      = 0x0000000F04403680
+[FLD]                 -> pGenericBindingInfo          = 0x0000000F04B2EA90
 [FLD]                 -> apfnNdrRundownRoutines       = 0x0000000000000000
 [FLD]                 -> aGenericBindingRoutinePairs  = 0x0000000000000000
 [FLD]                 -> apfnExprEval                 = 0x0000000000000000
 [FLD]                 -> aXmitQuintuple               = 0x0000000000000000
-[FLD]                 -> pFormatTypes                 = 0x0000007007E07482
+[FLD]                 -> pFormatTypes                 = 0x0000000F04437482
 [FLD]                 -> fCheckBounds                 = 0x1
 [FLD]                 -> Version                      = 0x60000
 [FLD]                 -> pMallocFreeStruct            = 0x0000000000000000
@@ -280,7 +280,12 @@ IDL_DRSUnbind
 [FLD]                 -> CsRoutineTables              = 0x0
 [FLD]                 -> ProxyServerInfo              = 0x0
 [FLD]                 -> pExprInfo                    = 0x0
-[PAR] PFORMAT_STRING  pFormat         : 0x0000007007E07122 (IDL_DRSBind)
+[PAR] PFORMAT_STRING  pFormat         : 0x0000000F04437122 (IDL_DRSBind)
+[PAR] handle_t        rpc_handle     : 0x0000000F024DEBB0
+[PAR] UUID*           puuidClientDsa : 0x0000000F04437020 ({E24D201A-4FD6-11D1-A3DA-0000F875AE0D})
+[PAR] DRS_EXTENSION*  pextClient     : 0x0000000F04B2E794
+[PAR] DRS_EXTENSION** pextServer     : 0x0000000F04B2E570
+[PAR] DRS_HANDLE*     phDrs          : 0x0000000F04B2E608
 [RET] [0x7007dd2af0]
 
 [CNT] [779]
@@ -301,8 +306,8 @@ IDL_DRSUnbind
 [CNT] [781]
 [PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <NdrClientCall2> in [RPCRT4.dll] 
-[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000700852EC78
-[FLD]                 -> RpcInterfaceInformation      = 0x000000700852EBA8
+[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x0000000F04B2EBF8
+[FLD]                 -> RpcInterfaceInformation      = 0x0000000F04B2EB28
 [FLD]                    -> Length             = 0x60
 [FLD]                    -> InterfaceId
 [FLD]                       -> SyntaxGUID    = ({E3514235-4B06-11D1-AB04-00C04FC2DCD2})
@@ -317,14 +322,14 @@ IDL_DRSUnbind
 [FLD]                    -> RpcProtseqEndpoint = NULL
 [FLD]                    -> InterpreterInfo    = 0x0000000000000000
 [FLD]                    -> Flags              = 0x0
-[FLD]                 -> pfnAllocate                  = 0x0000007007DD3670
-[FLD]                 -> pfnFree                      = 0x0000007007DD3680
-[FLD]                 -> pGenericBindingInfo          = 0x000000700852EB10
+[FLD]                 -> pfnAllocate                  = 0x0000000F04403670
+[FLD]                 -> pfnFree                      = 0x0000000F04403680
+[FLD]                 -> pGenericBindingInfo          = 0x0000000F04B2EA90
 [FLD]                 -> apfnNdrRundownRoutines       = 0x0000000000000000
 [FLD]                 -> aGenericBindingRoutinePairs  = 0x0000000000000000
 [FLD]                 -> apfnExprEval                 = 0x0000000000000000
 [FLD]                 -> aXmitQuintuple               = 0x0000000000000000
-[FLD]                 -> pFormatTypes                 = 0x0000007007E07482
+[FLD]                 -> pFormatTypes                 = 0x0000000F04437482
 [FLD]                 -> fCheckBounds                 = 0x1
 [FLD]                 -> Version                      = 0x60000
 [FLD]                 -> pMallocFreeStruct            = 0x0000000000000000
@@ -336,7 +341,14 @@ IDL_DRSUnbind
 [FLD]                 -> CsRoutineTables              = 0x0
 [FLD]                 -> ProxyServerInfo              = 0x0
 [FLD]                 -> pExprInfo                    = 0x0
-[PAR] PFORMAT_STRING  pFormat         : 0x0000007007E073EE (IDL_DRSDomainControlerInfo)
+[PAR] PFORMAT_STRING  pFormat         : 0x0000000F044373EE (IDL_DRSDomainControlerInfo)
+[PAR] DRS_HANDLE           hDrs          : 0x0000000F0250A6C0
+[PAR] DWORD                dwInVersion   : 0x1
+[PAR] DRS_MSG_DCINFOREQ*   pmsgIn        : 0x0000000F04B2E630
+[FLD]                      -> Domain    = "mylab.local"
+[FLD]                      -> InfoLevel = 0x2
+[PAR] DWORD*               pdwOutVersion : 0x0000000F04B2E604
+[PAR] DRS_MSG_DCINFOREPLY* pmsgOut       : 0x0000000F04B2E640
 [RET] [0x7007dd2b70]
 
 [CNT] [782]
@@ -359,6 +371,35 @@ IDL_DRSUnbind
 [PAR] unsigned long  ulAttribute   : 0x9 (ISC_RET_DELEGATE | ISC_RET_SEQUENCE_DETECT)
 [PAR] void           *pBuffer      : 0x0000007007E07100
 [RET] [0x7007dd4cca]
+
+[ * ] [pid 0xba4][tid 0x5b4] c:\windows\system32\rundll32.exe
+[API] <IDL_DRSDomainControlerInfo>
+[PAR] DWORD                pdwOutVersion : 0x2
+[PAR] DRS_MSG_DCINFOREPLY* pmsgOut       : 0x0000000F04B2E640
+[FLD]                      -> cItems = 0x1
+[FLD]                      -> rItems = 0x0000000F024B1C10
+[FLD]                         -> NetbiosName        = 0x0000000F024B1C10
+[STR]                         -> "MYDC"
+[FLD]                         -> DnsHostName        = 0x0000000F0250D2F0
+[STR]                         -> "MYDC.mylab.local"
+[FLD]                         -> SiteName           = 0x0000000F0250CEE0
+[STR]                         -> "Default-First-Site-Name"
+[FLD]                         -> SiteObjectName     = 0x0000000F024C8B00
+[STR]                         -> "CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=mylab,DC=local"
+[FLD]                         -> ComputerObjectName = 0x0000000F024F12D0
+[STR]                         -> "CN=MYDC,OU=Domain Controllers,DC=mylab,DC=local"
+[FLD]                         -> ServerObjectName   = 0x0000000F02504470
+[STR]                         -> "CN=MYDC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=mylab,DC=local"
+[FLD]                         -> NtdsDsaObjectName  = 0x0000000F02539AD0
+[STR]                         -> "CN=NTDS Settings,CN=MYDC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=mylab,DC=local"
+[FLD]                         -> fIsPdc             = 1
+[FLD]                         -> fDsEnabled         = 1
+[FLD]                         -> fIsGc              = 1
+[FLD]                         -> SiteObjectGuid     = ({AE5589ED-B84D-4FE5-B2B0-99E85AAA7595})
+[FLD]                         -> ComputerObjectGuid = ({448E2A47-FB90-43BD-A9F3-24A079DEAB1E})
+[FLD]                         -> ServerObjectGuid   = ({132D5FEF-6D04-4430-A90C-864777A8465E})
+[FLD]                         -> NtdsDsaObjectGuid  = ({619FEAD3-E334-460F-A2BC-8ADFC1B85AA6})
+[RES] CLIENT_CALL_RETURN 0x0
 
 [CNT] [786]
 [PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
@@ -416,8 +457,8 @@ IDL_DRSUnbind
 [CNT] [791]
 [PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <NdrClientCall2> in [RPCRT4.dll] 
-[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000700852EC78
-[FLD]                 -> RpcInterfaceInformation      = 0x000000700852EBA8
+[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x0000000F04B2EBF8
+[FLD]                 -> RpcInterfaceInformation      = 0x0000000F04B2EB28
 [FLD]                    -> Length             = 0x60
 [FLD]                    -> InterfaceId
 [FLD]                       -> SyntaxGUID    = ({E3514235-4B06-11D1-AB04-00C04FC2DCD2})
@@ -432,14 +473,14 @@ IDL_DRSUnbind
 [FLD]                    -> RpcProtseqEndpoint = NULL
 [FLD]                    -> InterpreterInfo    = 0x0000000000000000
 [FLD]                    -> Flags              = 0x0
-[FLD]                 -> pfnAllocate                  = 0x0000007007DD3670
-[FLD]                 -> pfnFree                      = 0x0000007007DD3680
-[FLD]                 -> pGenericBindingInfo          = 0x000000700852EB10
+[FLD]                 -> pfnAllocate                  = 0x0000000F04403670
+[FLD]                 -> pfnFree                      = 0x0000000F04403680
+[FLD]                 -> pGenericBindingInfo          = 0x0000000F04B2EA90
 [FLD]                 -> apfnNdrRundownRoutines       = 0x0000000000000000
 [FLD]                 -> aGenericBindingRoutinePairs  = 0x0000000000000000
 [FLD]                 -> apfnExprEval                 = 0x0000000000000000
 [FLD]                 -> aXmitQuintuple               = 0x0000000000000000
-[FLD]                 -> pFormatTypes                 = 0x0000007007E07482
+[FLD]                 -> pFormatTypes                 = 0x0000000F04437482
 [FLD]                 -> fCheckBounds                 = 0x1
 [FLD]                 -> Version                      = 0x60000
 [FLD]                 -> pMallocFreeStruct            = 0x0000000000000000
@@ -451,16 +492,42 @@ IDL_DRSUnbind
 [FLD]                 -> CsRoutineTables              = 0x0
 [FLD]                 -> ProxyServerInfo              = 0x0
 [FLD]                 -> pExprInfo                    = 0x0
-[PAR] PFORMAT_STRING  pFormat         : 0x0000007007E07350 (IDL_DRSCrackNames)
+[PAR] PFORMAT_STRING  pFormat         : 0x0000000F04437350 (IDL_DRSCrackNames)
+[PAR] DRS_HANDLE          hDrs          : 0x0000000F0250A6C0
+[PAR] DWORD               dwInVersion   : 0x1
+[PAR] DRS_MSG_CRACKREQ*   pmsgIn        : 0x0000000F04B2E560
+[FLD]                     -> CodePage      = 0x0
+[FLD]                     -> LocaleId      = 0x0
+[FLD]                     -> dwFlags       = 0x0
+[FLD]                     -> formatOffered = 0xfffffff9
+[FLD]                     -> formatDesired = 0x6
+[FLD]                     -> cNames        = 0x1
+[FLD]                     -> rpNames[0]    = "admin"
+[PAR] DWORD*              pdwOutVersion : 0x0000000F04B2E554
+[PAR] DRS_MSG_CRACKREPLY* pmsgOut       : 0x0000000F04B2E558
 [RET] [0x7007dd2b30]
+
+[ * ] [pid 0xba4][tid 0x5b4] c:\windows\system32\rundll32.exe
+[API] <IDL_DRSCrackNames>
+[PAR] DWORD                pdwOutVersion : 0x1
+[PAR] DRS_MSG_CRACKREPLY*  pmsgOut       : 0x0000000F04B2E558
+[FLD]                      -> cItem = 0x1
+[FLD]                      -> rItems[0] = 0x0000000F02521630
+[FLD]                         -> status = 0x0
+[FLD]                         -> pDomain = 0x0000000F02521930
+[STR]                         -> "mylab.local"
+[FLD]                         -> pName   = 0x0000000F0250B3E0
+[STR]                         -> "{4970008d-5d6e-420c-b9e9-ed3ab8710838}"
+[RES] CLIENT_CALL_RETURN 0x0
+
 
 [...]
 
 [CNT] [803]
 [PTP] [0xba4] [0x5b4] [c:\windows\system32\rundll32.exe]
 [API] <NdrClientCall2> in [RPCRT4.dll] 
-[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x000000700852EC78
-[FLD]                 -> RpcInterfaceInformation      = 0x000000700852EBA8
+[PAR] PMIDL_STUB_DESC pStubDescriptor : 0x0000000F04B2EBF8
+[FLD]                 -> RpcInterfaceInformation      = 0x0000000F04B2EB28
 [FLD]                    -> Length             = 0x60
 [FLD]                    -> InterfaceId
 [FLD]                       -> SyntaxGUID    = ({E3514235-4B06-11D1-AB04-00C04FC2DCD2})
@@ -475,14 +542,14 @@ IDL_DRSUnbind
 [FLD]                    -> RpcProtseqEndpoint = NULL
 [FLD]                    -> InterpreterInfo    = 0x0000000000000000
 [FLD]                    -> Flags              = 0x0
-[FLD]                 -> pfnAllocate                  = 0x0000007007DD3670
-[FLD]                 -> pfnFree                      = 0x0000007007DD3680
-[FLD]                 -> pGenericBindingInfo          = 0x000000700852EB10
+[FLD]                 -> pfnAllocate                  = 0x0000000F04403670
+[FLD]                 -> pfnFree                      = 0x0000000F04403680
+[FLD]                 -> pGenericBindingInfo          = 0x0000000F04B2EA90
 [FLD]                 -> apfnNdrRundownRoutines       = 0x0000000000000000
 [FLD]                 -> aGenericBindingRoutinePairs  = 0x0000000000000000
 [FLD]                 -> apfnExprEval                 = 0x0000000000000000
 [FLD]                 -> aXmitQuintuple               = 0x0000000000000000
-[FLD]                 -> pFormatTypes                 = 0x0000007007E07482
+[FLD]                 -> pFormatTypes                 = 0x0000000F04437482
 [FLD]                 -> fCheckBounds                 = 0x1
 [FLD]                 -> Version                      = 0x60000
 [FLD]                 -> pMallocFreeStruct            = 0x0000000000000000
@@ -494,7 +561,42 @@ IDL_DRSUnbind
 [FLD]                 -> CsRoutineTables              = 0x0
 [FLD]                 -> ProxyServerInfo              = 0x0
 [FLD]                 -> pExprInfo                    = 0x0
-[PAR] PFORMAT_STRING  pFormat         : 0x0000007007E071A8 (IDL_DRSGetNCChanges)
+[PAR] PFORMAT_STRING  pFormat         : 0x0000000F044371A8 (IDL_DRSGetNCChanges)
+[PAR] DRS_HANDLE           hDrs          : 0x0000000F024B1C10
+[PAR] DWORD                dwInVersion   : 0x8
+[PAR] DRS_MSG_GETCHGREQ*   pmsgIn        : 0x0000000F04B2E808
+[FLD]                      -> uuidDsaObjDest = ({619FEAD3-E334-460F-A2BC-8ADFC1B85AA6})
+[FLD]                      -> uuidInvocIdSrc = ({00000000-0000-0000-0000-000000000000})
+[FLD]                      -> pNc            = 0x0000000F04B2E7CC
+[FLD]                         -> Guid        = ({4970008D-5D6E-420C-B9E9-ED3AB8710838})
+[FLD]                         -> Sid         = 0x0000000F04B2E7E4
+[FLD]                                 -> Revision            = 0
+[FLD]                                 -> SubAuthorityCount   = 0
+[FLD]                                 -> IdentifierAuthority = {0,0,0,0,0,0} (SECURITY_NULL_SID_AUTHORITY)
+[FLD]                         -> StringName  = 0x0000000F04B2E804
+[STR]                         -> ""
+[FLD]                      -> pUpToDateDestVecV1    = 0x0
+[FLD]                      -> ulFlags               = 0x288030
+[FLD]                      -> cMaxObjects           = 0x1
+[FLD]                      -> cMaxBytes             = 0xa00000
+[FLD]                      -> ulExtendedOp          = 0x6
+[FLD]                      -> liFsmoInfo            = 0x0
+[FLD]                      -> pPartialAttrSet       = 0x0000000F02521B30
+[FLD]                         -> dwVersion   = 0x1
+[FLD]                         -> dwReserved1 = 0x0
+[FLD]                         -> cAttrs      = 0xa
+[FLD]                         -> rgPartialAttr[0] = 0xdd
+[FLD]                         -> rgPartialAttr[1] = 0x12e
+[FLD]                         -> rgPartialAttr[2] = 0x9f
+[FLD]                         -> rgPartialAttr[3] = 0x60
+[FLD]                         -> rgPartialAttr[4] = 0x261
+[FLD]                         -> rgPartialAttr[5] = 0x92
+[FLD]                         -> rgPartialAttr[6] = 0x5a
+[FLD]                         -> rgPartialAttr[7] = 0x5e
+[FLD]                         -> rgPartialAttr[8] = 0x7d
+[FLD]                         -> rgPartialAttr[9] = 0x1b
+[PAR] DWORD*               pdwOutVersion : 0x0000000F04B2E754
+[PAR] DRS_MSG_GETCHGREPLY* pmsgOut       : 0x0000000F04B2E888
 [RET] [0x7007dd2bb0]
 ```
 
@@ -508,10 +610,41 @@ IDL_DRSUnbind
 [STR]        -> "8198"
 [STR]           "11"
 [STR]           "MYDC.mylab.local"
-[PAR] DWORD  cbBinary   : 0x32
+[STR]           "AA admin|AB |AC ????|AD 991CBFCF|AF 1106|BC 1 209C6174DA490CAEB422F3FA5A7AE634|BC 0 3DA19D4CDEA2DBD4F3529B644A5802A6|BC "
+[STR]           "0 1E9C07586A397ADBC4171333015374B7|BC 0 1E9C07586A397ADBC4171333015374B7|BC 0 1E9C07586A397ADBC4171333015374B7|BC 0 1E9C"
+[STR]           "07586A397ADBC4171333015374B7|BC 0 1E9C07586A397ADBC4171333015374B7|BC 0 1E9C07586A397ADB6A0AA91E5DEAC3E9|BC 0 A31EA367AD"
+[STR]           "536B9EE4E155C9AB343242|BC 0 BF0017D3D176F2BD5303B0647A8DE922|BC 0 EAD47BF8636D3A1E69F8EFC7C8379764|BC 0 30755C3BC01EE84E"
+[STR]           "412D63BB26B1AE3D|BC 0 0287C3B43B84B15A853EBB1680D4CBCD|BC 0 2EAC3D0F0B3F6F89A8BAFD4221E1A09E|BC 0 E16EB0C8197BFB3F12315C"
+[STR]           "9112F2E08A|BC 0 DF6468AE67ABFD475DF832627EB7F9A2|BC 0 C7766E086CF6AEADC7D27D9763467419|BC 0 E78F8618B9C0E1D7821A8D7A8113"
+[STR]           "F998|BC 0 CFDA5FBC0D4FA62E0605D1BC591E15F5|BC 0 D4DE9352490F714D7950D0AF207E5187|BC 0 CFDA5FBC0D4FA62E4F47C7C22C601421|B"
+[STR]           "C 0 98CC7A6D2B29B586DB3D9753142A5AEB|BC 0 7135B731DFBC6F3F833BB81F44CF54D1|BC 0 CFDA5FBC0D4FA62E4F47C7C22C601421|BC 0 98"
+[STR]           "CC7A6D2B29B58687F5F939909320D9|BC 0 136E5F1DD0A64C09E62B8BF770276B03|BC 0 CFDA5FBC0D4FA62E4F47C7C22C601421|BC 0 98CC7A6D"
+[STR]           "2B29B586821A8D7A8113F998|BC 0 3CFA3306E7E33EDA6663285C54F801A0|BC 0 CFDA5FBC0D4FA62E4F47C7C22C601421|BC 0 CFDA5FBC0D4FA6"
+[STR]           "2E4F47C7C22C601421|BC 0 CFDA5FBC0D4FA62E4F47C7C22C601421|BC 0 9692FED2F0745968225D53DB0E794E39|BC 0 2A0188BBB2F82D6D0BF8"
+[STR]           "6FD466EB0957|BC 0 4A0F5DEBFE5A30C63502536F89F4CAC5|BC 0 E55AFBB9A658273D2B2774898BE41455|BC 0 AA8B1BAEE84F09F5A4B3BB7218"
+[STR]           "34E9F0|BC 0 7376D8CFBA85B427131409F0F73A1F3C|BC 0 0AE79A27F51484ACF18F4613D0A39145|BC 0 2E032A8F0925866FD88BFA60415299E8"
+[STR]           "|BC 0 749196A082FEE5435ABEA7681C3A38B9|BC 0 27E58DF42E7186CCEB4F2E52CC2DC22F|BC 0 C0DC136960305F09B90934BA388E6C9D|BC 0 "
+[STR]           "88C63B02519CEE72A25EF6EC48C81645|BC 0 06E070EE0EBC18FCB231FA5F2232D552|BC 0 2D2E673C37BFB5AEFF7B6E993A31C42D|BC 0 818033"
+[STR]           "27E1E432C67DF9FE9FDAAFE186|BC 0 F4A20974C8C6800F4F47C7C22C601421|BC 0 CFDA5FBC0D4FA62E42C714255044F485|BC 0 186BD9A1E34F"
+[STR]           "7DCB4935742A21CE55E4|BC 0 CFDA5FBC0D4FA62E4F47C7C22C601421|BC 0 CFDA5FBC0D4FA62E4F47C7C22C601421|BC 0 CFDA5FBC0D4FA62E15"
+[STR]           "50302E99E6A1B8|BC 0 8E0CDC7D2CCCCA3423B299731A9C487E|BC 0 AA57DFD929447E2C2F9CDB8B35CD0DB9|BC 0 61DFD75FEC1D8BAFF9CEF530"
+[STR]           "46C65251|BC 0 5DA9BDDF024BA03A9297A024290AE0B0|BC 0 F531323570BD19FA6D4EB6E10648DAE6|BC 0 A268C197D736CC20E35271F5BFD9EC"
+[STR]           "B0|BC 0 ABEF3B8D4E7F2C8FC2364B6478E93E31|BC 0 0E9212F3FA0DA0198137A86865CAD58D|BC 0 129035EE04E505C3A3EA9649CF8756E5|BC "
+[STR]           "0 ABEF3B8D4E7F2C8FCB86D4136BB0B258|BC 0 5CB72986CDB74BA56F9A74B6D82B6FF5|BC 0 E3F6A92830C6EE0CB1BEE380C811D604|BC 0 1CC5"
+[STR]           "AC93AA679D8AAC823DEC5B2897DD|BC 0 7FFB7420A1D8F410B1BEE380C811D604|BC 0 C81E2637ECD4A64F9D99CBF5E5467B58|BC 0 B77E3F2BE7"
+[STR]           "1D3B9B6F9A74B6D82B6FF5|BC 0 E3F6A92830C6EE0CB1BEE380C811D604|BC 0 1CC5AC93AA679D8A287517A5EC37D4C7|BC 0 8EFD789E895C11FA"
+[STR]           "137BA53655BEA4A1|BC 0 CA0544AEA0F72F243CE6E6AE32CA670C|BC 0 E16EB0C8197BFB3F498A63DB91078752|BC 0 C176935497B19352909E32"
+[STR]           "F3149D8A1A|BC 0 2B6A40906714B7F04F47C7C22C601421|BC 0 CFDA5FBC0D4FA62E1B743A6088F53733|BC 0 FF47C9CACDC8A500B7AE5D12C9B2"
+[STR]           "D774|BC 0 F349185FA21BDBF550846852C104BBDF|BC 0 B8BDADE7C72CB6E40D1A0BEBE6B6AA49|BC 0 7C2350917926E9AC9D30A6DF11D1D3FD|B"
+[STR]           "C 0 2D7ABED60701CEC420E4E2F3F3EB8AED|BC 0 C732AFFFE6A3E2FB24C4B89DD0D2B154|BC 0 FF47C9CACDC8A500B7AE5D12C9B2D774|BC 0 F3"
+[STR]           "49185FA21BDBF550846852C104BBDF|BC 0 B8BDADE7C72CB6E40D1A0BEBE6B6AA49|BC 0 7C2350917926E9ACAE3FA42E6A85C7EB|BC 0 E70FD045"
+[STR]           "2BDA7295B2FB6C568762791C|BC 0 7037063EF65BF9CEC42B64AD4DBC00B2|BC 0 FF47C9CACDC8A500B7AE5D12C9B2D774|BC 0 F349185FA21BDB"
+[STR]           "F5FC1CD4EFB7BD7C98|BC 0 C5E9D12C29F4C7634566A6E8C1D327EF|BC 0 40905E55C5061A60A44A6AA11282C47D|BC 0 C5E9D12C29F4C7634566"
+[STR]           [TRUNCATED]
+[PAR] DWORD  cbBinary   : 0x289a
 [PAR] DWORD  dwFlags    : 0x40000001 (CRYPT_STRING_NOCRLF | CRYPT_STRING_BASE64)
-[PAR] LPWSTR pszString  : 0x0000007005F9FC70
-[PAR] DWORD* pcchString : 0x000000700852E9FC
+[PAR] LPWSTR pszString  : 0x0
+[PAR] DWORD* pcchString : 0x0000000F04B2E97C
 [RET] [0x7007dee028]
 ```
 
